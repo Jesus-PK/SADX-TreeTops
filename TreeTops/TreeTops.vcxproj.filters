@@ -1,0 +1,180 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Objects">
+      <UniqueIdentifier>{c011563c-1823-4f69-919e-31066732ba67}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="framework.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="objects\o_basicchest.h">
+      <Filter>Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="objects\o_crystalstatue.h">
+      <Filter>Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="objects\o_exitportal.h">
+      <Filter>Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="objects\o_exittext.h">
+      <Filter>Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="objects\o_firewood.h">
+      <Filter>Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="objects\o_largetorch.h">
+      <Filter>Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="objects\o_lifechest.h">
+      <Filter>Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="objects\o_lockedchest.h">
+      <Filter>Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="objects\o_metalchest.h">
+      <Filter>Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="objects\o_skybox.h">
+      <Filter>Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="objects\o_spaba.h">
+      <Filter>Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="objects\o_spottedchicken.h">
+      <Filter>Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="deathzones.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="hud.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="level.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="levelobj.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="mod.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="objects.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="paths.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ramps.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="utils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="dllmain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pch.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="objects\o_basicchest.cpp">
+      <Filter>Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="objects\o_crystalstatue.cpp">
+      <Filter>Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="objects\o_exitportal.cpp">
+      <Filter>Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="objects\o_exittext.cpp">
+      <Filter>Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="objects\o_firewood.cpp">
+      <Filter>Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="objects\o_largetorch.cpp">
+      <Filter>Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="objects\o_lifechest.cpp">
+      <Filter>Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="objects\o_lockedchest.cpp">
+      <Filter>Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="objects\o_metalchest.cpp">
+      <Filter>Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="objects\o_skybox.cpp">
+      <Filter>Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="objects\o_spaba.cpp">
+      <Filter>Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="objects\o_spottedchicken.cpp">
+      <Filter>Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="programming\AnimationFile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="programming\LandTableInfo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="programming\ModelInfo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="programming\Trampoline.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="deathzones.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hud.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="level.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="levelobj.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mod.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="objects.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="paths.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ramps.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="utils.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
