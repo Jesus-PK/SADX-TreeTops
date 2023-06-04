@@ -19,7 +19,7 @@ NJS_TEXLIST TEXLIST_TTObjects = { arrayptrandlength(TEX_TTObjects) };
 NJS_TEXNAME TEX_TTSpaba[17] = { 0 };
 NJS_TEXLIST TEXLIST_TTSpaba = { arrayptrandlength(TEX_TTSpaba) };
 
-NJS_TEXNAME TEX_TTDragons[15] = { 0 };
+NJS_TEXNAME TEX_TTDragons[11] = { 0 };
 NJS_TEXLIST TEXLIST_TTDragons = { arrayptrandlength(TEX_TTDragons) };
 
 NJS_TEXNAME TEX_TTHud[1] = { 0 };

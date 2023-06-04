@@ -1,7 +1,5 @@
 #include "pch.h"
 
-#define SPEED_Dragon twp->scl.x
-
 //  Models and Collisions:
 
 ModelInfo* MDL_CrystalBase = nullptr;
@@ -11,8 +9,20 @@ ModelInfo* MDL_CSDebris01 = nullptr;
 ModelInfo* MDL_CSDebris02 = nullptr;
 ModelInfo* MDL_CSDebris03 = nullptr;
 
+#define SPEED_Dragon twp->scl.x
+NJS_VECTOR SCALE_Dragon = { -0.04f, 0.04, 0.04 };
+
 ModelInfo* MDL_Isaak = nullptr;
+ModelInfo* MDL_Lyle = nullptr;
+ModelInfo* MDL_Jed = nullptr;
+ModelInfo* MDL_Bruno = nullptr;
+ModelInfo* MDL_Cleetus = nullptr;
+
 AnimationFile* ANIM_Isaak = nullptr;
+AnimationFile* ANIM_Lyle = nullptr;
+AnimationFile* ANIM_Jed = nullptr;
+AnimationFile* ANIM_Bruno = nullptr;
+AnimationFile* ANIM_Cleetus = nullptr;
 
 CCL_INFO COLLI_CrystalStatue = { 0, CollisionShape_Sphere, 0x77, 0x20, 0x400, { 0.0f, 5.25f, 0.0f }, 8.0f, 0.0f, 0.0f, 0.0f, 0, 0, 0 };
 
@@ -170,7 +180,6 @@ void DISPLAY_Isaak(task* tp)
 
     auto twp = tp->twp;
 
-    NJS_VECTOR SCALE_Isaak = { -0.04f, 0.04f, 0.04f };
     NJS_ACTION ACTION_Isaak = { MDL_Isaak->getmodel(), ANIM_Isaak->getmotion() };
 
     njSetTexture(&TEXLIST_TTDragons);
@@ -179,10 +188,106 @@ void DISPLAY_Isaak(task* tp)
     
     njTranslate(0, twp->pos.x, twp->pos.y + 2.0f, twp->pos.z);
     njRotateXYZ(0, twp->ang.x, twp->ang.y, twp->ang.z);
-    njScaleV(0, &SCALE_Isaak);
+    njScaleV(0, &SCALE_Dragon);
 
     SetupChunkModelRender();
     njCnkAction(&ACTION_Isaak, SPEED_Dragon);
+    ResetChunkModelRender();
+
+    njPopMatrix(1u);
+}
+
+void DISPLAY_Lyle(task* tp)
+{
+    if (MissedFrames)
+        return;
+
+    auto twp = tp->twp;
+
+    NJS_ACTION ACTION_Lyle = { MDL_Lyle->getmodel(), ANIM_Lyle->getmotion() };
+
+    njSetTexture(&TEXLIST_TTDragons);
+
+    njPushMatrix(0);
+
+    njTranslate(0, twp->pos.x, twp->pos.y + 2.0f, twp->pos.z);
+    njRotateXYZ(0, twp->ang.x, twp->ang.y, twp->ang.z);
+    njScaleV(0, &SCALE_Dragon);
+
+    SetupChunkModelRender();
+    njCnkAction(&ACTION_Lyle, SPEED_Dragon);
+    ResetChunkModelRender();
+
+    njPopMatrix(1u);
+}
+
+void DISPLAY_Jed(task* tp)
+{
+    if (MissedFrames)
+        return;
+
+    auto twp = tp->twp;
+
+    NJS_ACTION ACTION_Jed = { MDL_Jed->getmodel(), ANIM_Jed->getmotion() };
+
+    njSetTexture(&TEXLIST_TTDragons);
+
+    njPushMatrix(0);
+
+    njTranslate(0, twp->pos.x, twp->pos.y + 2.0f, twp->pos.z);
+    njRotateXYZ(0, twp->ang.x, twp->ang.y, twp->ang.z);
+    njScaleV(0, &SCALE_Dragon);
+
+    SetupChunkModelRender();
+    njCnkAction(&ACTION_Jed, SPEED_Dragon);
+    ResetChunkModelRender();
+
+    njPopMatrix(1u);
+}
+
+void DISPLAY_Bruno(task* tp)
+{
+    if (MissedFrames)
+        return;
+
+    auto twp = tp->twp;
+
+    NJS_ACTION ACTION_Bruno = { MDL_Bruno->getmodel(), ANIM_Bruno->getmotion() };
+
+    njSetTexture(&TEXLIST_TTDragons);
+
+    njPushMatrix(0);
+
+    njTranslate(0, twp->pos.x, twp->pos.y + 2.0f, twp->pos.z);
+    njRotateXYZ(0, twp->ang.x, twp->ang.y, twp->ang.z);
+    njScaleV(0, &SCALE_Dragon);
+
+    SetupChunkModelRender();
+    njCnkAction(&ACTION_Bruno, SPEED_Dragon);
+    ResetChunkModelRender();
+
+    njPopMatrix(1u);
+}
+
+void DISPLAY_Cleetus(task* tp)
+{
+    if (MissedFrames)
+        return;
+
+    auto twp = tp->twp;
+
+    NJS_ACTION ACTION_Cleetus = { MDL_Cleetus->getmodel(), ANIM_Cleetus->getmotion() };
+
+    njSetTexture(&TEXLIST_TTDragons);
+
+    njPushMatrix(0);
+
+    njTranslate(0, twp->pos.x, twp->pos.y + 2.0f, twp->pos.z);
+    njRotateXYZ(0, twp->ang.x, twp->ang.y, twp->ang.z);
+    njScaleV(0, &SCALE_Dragon);
+
+    SetupChunkModelRender();
+    njCnkAction(&ACTION_Cleetus, SPEED_Dragon);
     ResetChunkModelRender();
 
     njPopMatrix(1u);
@@ -254,8 +359,22 @@ void EXEC_CrystalStatue(task* tp)
 
         case 2:
 
-            tp->disp = DISPLAY_Isaak;
-            CCL_Init(tp, &COLLI_Isaak, 1, 4u);
+            if (DragonCount == 1)
+                tp->disp = DISPLAY_Isaak;
+
+            else if (DragonCount == 2)
+                tp->disp = DISPLAY_Lyle;
+
+            else if (DragonCount == 3)
+                tp->disp = DISPLAY_Jed;
+
+            else if (DragonCount == 4)
+                tp->disp = DISPLAY_Bruno;
+
+            else if (DragonCount >= 5)
+                tp->disp = DISPLAY_Cleetus;
+
+            //CCL_Init(tp, &COLLI_Isaak, 1, 4u);
 
             twp->mode++;
 
@@ -263,7 +382,7 @@ void EXEC_CrystalStatue(task* tp)
 
         case 3:
 
-            EntryColliList(twp);
+            //EntryColliList(twp);
 
             SPEED_Dragon += 0.3f;
 
@@ -291,7 +410,16 @@ void LOAD_CrystalStatue()
     MDL_CSDebris03 = LoadBasicModel("TreeTops_CSDebris03");
     
     MDL_Isaak = LoadChunkModel("TreeTops_Isaak");
+    MDL_Lyle = LoadChunkModel("TreeTops_Lyle");
+    MDL_Jed = LoadChunkModel("TreeTops_Jed");
+    MDL_Bruno = LoadChunkModel("TreeTops_Bruno");
+    MDL_Cleetus = LoadChunkModel("TreeTops_Cleetus");
+
     ANIM_Isaak = LoadObjectAnim("TreeTops_Isaak");
+    ANIM_Lyle = LoadObjectAnim("TreeTops_Lyle");
+    ANIM_Jed = LoadObjectAnim("TreeTops_Jed");
+    ANIM_Bruno = LoadObjectAnim("TreeTops_Bruno");
+    ANIM_Cleetus = LoadObjectAnim("TreeTops_Cleetus");
 
     CTS_CSDebris[0].ptr = MDL_CSDebris01->getmodel();
     CTS_CSDebris[1].ptr = MDL_CSDebris02->getmodel();
