@@ -2,12 +2,6 @@
 
 //  Models, Animations and Collisions:
 
-#define SPEED_Dragon twp->scl.x
-
-NJS_POINT3 POS_Smoke = { 0, 0, 0 };
-NJS_POINT3 VELO_Smoke = { 0, 0, 0 };
-NJS_POINT3 SCALE_Dragon = { -0.04f, 0.04f, 0.04f };
-
 ModelInfo* MDL_Isaak = nullptr;
 ModelInfo* MDL_Lyle = nullptr;
 ModelInfo* MDL_Jed = nullptr;
@@ -25,6 +19,21 @@ CCL_INFO COLLI_Lyle = { 0, CollisionShape_Cylinder, 0x77, 0, 0, { 0.0f, 9.0f, 0.
 CCL_INFO COLLI_Jed = { 0, CollisionShape_Cylinder, 0x77, 0, 0, { 0.0f, 9.0f, 0.0f }, 7.65f, 8.0f, 0.0f, 0.0f, 0, 0, 0 };
 CCL_INFO COLLI_Bruno = { 0, CollisionShape_Cylinder, 0x77, 0, 0, { 0.0f, 9.0f, 0.0f }, 7.65f, 8.0f, 0.0f, 0.0f, 0, 0, 0 };
 CCL_INFO COLLI_Cleetus = { 0, CollisionShape_Cylinder, 0x77, 0, 0, { 0.0f, 9.0f, 0.0f }, 7.65f, 8.0f, 0.0f, 0.0f, 0, 0, 0 };
+
+
+//  Values:
+
+#define SPEED_Dragon twp->scl.x
+
+NJS_POINT3 SCALE_Dragon = { -0.04f, 0.04f, 0.04f };
+
+NJS_POINT3 POS_IsaakSmoke = { 0, 0, 0 };
+NJS_POINT3 POS_LyleSmoke = { 0, 0, 0 };
+NJS_POINT3 POS_JedSmoke = { 0, 0, 0 };
+NJS_POINT3 POS_BrunoSmoke = { 0, 0, 0 };
+NJS_POINT3 POS_CleetusSmoke = { 0, 0, 0 };
+
+NJS_POINT3 VELO_DragonSmoke = { 0, 1, 0 };
 
 
 //  Dragons - Display Functions:
@@ -169,9 +178,9 @@ void EXEC_Isaak(task* tp)
                 tp->disp = DISPLAY_Isaak;
                 CCL_Init(tp, &COLLI_Isaak, 1, 4u);
 
-                POS_Smoke.x = twp->pos.x;
-                POS_Smoke.y = twp->pos.y + 10.25f;
-                POS_Smoke.z = twp->pos.z;
+                POS_IsaakSmoke.x = twp->pos.x;
+                POS_IsaakSmoke.y = twp->pos.y + 10.25f;
+                POS_IsaakSmoke.z = twp->pos.z;
 
                 twp->mode++;
 
@@ -179,11 +188,11 @@ void EXEC_Isaak(task* tp)
 
             case 1:
 
-                SPEED_Dragon += 0.33f;
+                SPEED_Dragon += 0.33f; // Como?
 
-                if (++twp->wtimer > 3300)
+                if (++twp->wtimer > 425)
                 {
-                    CreateSmoke(&POS_Smoke, &VELO_Smoke, 5.0f);
+                    CreateSmoke(&POS_IsaakSmoke, &VELO_DragonSmoke, 5.0f);
                     FreeTask(tp);
                 }
 
@@ -209,16 +218,23 @@ void EXEC_Lyle(task* tp)
                 tp->disp = DISPLAY_Lyle;
                 CCL_Init(tp, &COLLI_Lyle, 1, 4u);
 
+                POS_LyleSmoke.x = twp->pos.x;
+                POS_LyleSmoke.y = twp->pos.y + 10.25f;
+                POS_LyleSmoke.z = twp->pos.z;
+
                 twp->mode++;
 
                 break;
 
             case 1:
 
-                SPEED_Dragon += 0.33f;
+                SPEED_Dragon += 0.4f;
 
-                if (++twp->wtimer > 3300)
+                if (++twp->wtimer > 460)
+                {
+                    CreateSmoke(&POS_LyleSmoke, &VELO_DragonSmoke, 5.0f);
                     FreeTask(tp);
+                }
 
                 break;
         }
@@ -242,16 +258,23 @@ void EXEC_Jed(task* tp)
                 tp->disp = DISPLAY_Jed;
                 CCL_Init(tp, &COLLI_Jed, 1, 4u);
 
+                POS_JedSmoke.x = twp->pos.x;
+                POS_JedSmoke.y = twp->pos.y + 10.25f;
+                POS_JedSmoke.z = twp->pos.z;
+
                 twp->mode++;
 
                 break;
 
             case 1:
 
-                SPEED_Dragon += 0.33f;
+                SPEED_Dragon += 0.35f;
 
-                if (++twp->wtimer > 3300)
+                if (++twp->wtimer > 375)
+                {
+                    CreateSmoke(&POS_JedSmoke, &VELO_DragonSmoke, 5.0f);
                     FreeTask(tp);
+                }
 
                 break;
         }
@@ -275,16 +298,23 @@ void EXEC_Bruno(task* tp)
                 tp->disp = DISPLAY_Bruno;
                 CCL_Init(tp, &COLLI_Bruno, 1, 4u);
 
+                POS_BrunoSmoke.x = twp->pos.x;
+                POS_BrunoSmoke.y = twp->pos.y + 10.25f;
+                POS_BrunoSmoke.z = twp->pos.z;
+
                 twp->mode++;
 
                 break;
 
             case 1:
 
-                SPEED_Dragon += 0.33f;
+                SPEED_Dragon += 0.4f;
 
-                if (++twp->wtimer > 3300)
+                if (++twp->wtimer > 440)
+                {
+                    CreateSmoke(&POS_BrunoSmoke, &VELO_DragonSmoke, 5.0f);
                     FreeTask(tp);
+                }
 
                 break;
         }
@@ -308,16 +338,23 @@ void EXEC_Cleetus(task* tp)
                 tp->disp = DISPLAY_Cleetus;
                 CCL_Init(tp, &COLLI_Cleetus, 1, 4u);
 
+                POS_CleetusSmoke.x = twp->pos.x;
+                POS_CleetusSmoke.y = twp->pos.y + 10.25f;
+                POS_CleetusSmoke.z = twp->pos.z;
+
                 twp->mode++;
 
                 break;
 
             case 1:
 
-                SPEED_Dragon += 0.33f;
+                SPEED_Dragon += 0.7f;
 
-                if (++twp->wtimer > 3300)
+                if (++twp->wtimer > 350)
+                {
+                    CreateSmoke(&POS_CleetusSmoke, &VELO_DragonSmoke, 5.0f);
                     FreeTask(tp);
+                }
 
                 break;
         }
