@@ -163,6 +163,7 @@
     <ClInclude Include="objects.h" />
     <ClInclude Include="objects\o_basicchest.h" />
     <ClInclude Include="objects\o_crystalstatue.h" />
+    <ClInclude Include="objects\o_dragons.h" />
     <ClInclude Include="objects\o_exitportal.h" />
     <ClInclude Include="objects\o_exittext.h" />
     <ClInclude Include="objects\o_firewood.h" />
@@ -189,6 +190,7 @@
     <ClCompile Include="objects.cpp" />
     <ClCompile Include="objects\o_basicchest.cpp" />
     <ClCompile Include="objects\o_crystalstatue.cpp" />
+    <ClCompile Include="objects\o_dragons.cpp" />
     <ClCompile Include="objects\o_exitportal.cpp" />
     <ClCompile Include="objects\o_exittext.cpp" />
     <ClCompile Include="objects\o_firewood.cpp" />

@@ -55,6 +55,9 @@ extern "C"
 		TITLECARDS_TreeTops(path, helperFunctions);
 		MISSIONCARDS_TreeTops();
 
+		
+		//	Level Destructor Trampoline:
+		
 		INIT_LevelDestructor();
 	}
 

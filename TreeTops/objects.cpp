@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "o_basicchest.h"
 #include "o_crystalstatue.h"
+#include "o_dragons.h"
 #include "o_exitportal.h"
 #include "o_exittext.h"
 #include "o_firewood.h"
@@ -117,6 +118,7 @@ void LOADOBJECTS_TreeTops()
 {
 	LOAD_BasicChest();
 	LOAD_CrystalStatue();
+	LOAD_Dragons();
 	LOAD_ExitPortal();
 	LOAD_ExitText();
 	LOAD_Firewood();

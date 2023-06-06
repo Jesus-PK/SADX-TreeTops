@@ -1,4 +1,5 @@
 #include "pch.h"
+#include "o_dragons.h"
 
 //  Models and Collisions:
 
@@ -9,24 +10,7 @@ ModelInfo* MDL_CSDebris01 = nullptr;
 ModelInfo* MDL_CSDebris02 = nullptr;
 ModelInfo* MDL_CSDebris03 = nullptr;
 
-#define SPEED_Dragon twp->scl.x
-NJS_VECTOR SCALE_Dragon = { -0.04f, 0.04, 0.04 };
-
-ModelInfo* MDL_Isaak = nullptr;
-ModelInfo* MDL_Lyle = nullptr;
-ModelInfo* MDL_Jed = nullptr;
-ModelInfo* MDL_Bruno = nullptr;
-ModelInfo* MDL_Cleetus = nullptr;
-
-AnimationFile* ANIM_Isaak = nullptr;
-AnimationFile* ANIM_Lyle = nullptr;
-AnimationFile* ANIM_Jed = nullptr;
-AnimationFile* ANIM_Bruno = nullptr;
-AnimationFile* ANIM_Cleetus = nullptr;
-
 CCL_INFO COLLI_CrystalStatue = { 0, CollisionShape_Sphere, 0x77, 0x20, 0x400, { 0.0f, 5.25f, 0.0f }, 8.0f, 0.0f, 0.0f, 0.0f, 0, 0, 0 };
-
-CCL_INFO COLLI_Isaak = { 0, CollisionShape_Cylinder, 0x77, 0, 0, { 0.0f, 9.0f, 0.0f }, 7.65f, 8.0f, 0.0f, 0.0f, 0, 0, 0 };
 
 
 //  Crystal Base - Main:
@@ -147,11 +131,14 @@ void EXEC_CSDebris(task* tp)
                 twp->ang.y += 0x100;
 
                 twp->scl.y -= 0.05f;
+
+                if (++twp->wtimer > 120)
+                    FreeTask(tp);
                 
                 break;
         }
 
-        DISPLAY_CSDebris(tp);
+        tp->disp(tp);
     }
 }
 
@@ -163,138 +150,15 @@ childtaskset CTS_CSDebris[] = {
 };
 
 
-//  Crystal Statue - Dragons:
+//  Crystal Statue - Main:
 
 void SetDragonRescued()
 {
     uint16_t score = 1000;
     AddEnemyScore(score);
-    
+
     DragonCount++;
 }
-
-void DISPLAY_Isaak(task* tp)
-{
-    if (MissedFrames)
-        return;
-
-    auto twp = tp->twp;
-
-    NJS_ACTION ACTION_Isaak = { MDL_Isaak->getmodel(), ANIM_Isaak->getmotion() };
-
-    njSetTexture(&TEXLIST_TTDragons);
-    
-    njPushMatrix(0);
-    
-    njTranslate(0, twp->pos.x, twp->pos.y + 2.0f, twp->pos.z);
-    njRotateXYZ(0, twp->ang.x, twp->ang.y, twp->ang.z);
-    njScaleV(0, &SCALE_Dragon);
-
-    SetupChunkModelRender();
-    njCnkAction(&ACTION_Isaak, SPEED_Dragon);
-    ResetChunkModelRender();
-
-    njPopMatrix(1u);
-}
-
-void DISPLAY_Lyle(task* tp)
-{
-    if (MissedFrames)
-        return;
-
-    auto twp = tp->twp;
-
-    NJS_ACTION ACTION_Lyle = { MDL_Lyle->getmodel(), ANIM_Lyle->getmotion() };
-
-    njSetTexture(&TEXLIST_TTDragons);
-
-    njPushMatrix(0);
-
-    njTranslate(0, twp->pos.x, twp->pos.y + 2.0f, twp->pos.z);
-    njRotateXYZ(0, twp->ang.x, twp->ang.y, twp->ang.z);
-    njScaleV(0, &SCALE_Dragon);
-
-    SetupChunkModelRender();
-    njCnkAction(&ACTION_Lyle, SPEED_Dragon);
-    ResetChunkModelRender();
-
-    njPopMatrix(1u);
-}
-
-void DISPLAY_Jed(task* tp)
-{
-    if (MissedFrames)
-        return;
-
-    auto twp = tp->twp;
-
-    NJS_ACTION ACTION_Jed = { MDL_Jed->getmodel(), ANIM_Jed->getmotion() };
-
-    njSetTexture(&TEXLIST_TTDragons);
-
-    njPushMatrix(0);
-
-    njTranslate(0, twp->pos.x, twp->pos.y + 2.0f, twp->pos.z);
-    njRotateXYZ(0, twp->ang.x, twp->ang.y, twp->ang.z);
-    njScaleV(0, &SCALE_Dragon);
-
-    SetupChunkModelRender();
-    njCnkAction(&ACTION_Jed, SPEED_Dragon);
-    ResetChunkModelRender();
-
-    njPopMatrix(1u);
-}
-
-void DISPLAY_Bruno(task* tp)
-{
-    if (MissedFrames)
-        return;
-
-    auto twp = tp->twp;
-
-    NJS_ACTION ACTION_Bruno = { MDL_Bruno->getmodel(), ANIM_Bruno->getmotion() };
-
-    njSetTexture(&TEXLIST_TTDragons);
-
-    njPushMatrix(0);
-
-    njTranslate(0, twp->pos.x, twp->pos.y + 2.0f, twp->pos.z);
-    njRotateXYZ(0, twp->ang.x, twp->ang.y, twp->ang.z);
-    njScaleV(0, &SCALE_Dragon);
-
-    SetupChunkModelRender();
-    njCnkAction(&ACTION_Bruno, SPEED_Dragon);
-    ResetChunkModelRender();
-
-    njPopMatrix(1u);
-}
-
-void DISPLAY_Cleetus(task* tp)
-{
-    if (MissedFrames)
-        return;
-
-    auto twp = tp->twp;
-
-    NJS_ACTION ACTION_Cleetus = { MDL_Cleetus->getmodel(), ANIM_Cleetus->getmotion() };
-
-    njSetTexture(&TEXLIST_TTDragons);
-
-    njPushMatrix(0);
-
-    njTranslate(0, twp->pos.x, twp->pos.y + 2.0f, twp->pos.z);
-    njRotateXYZ(0, twp->ang.x, twp->ang.y, twp->ang.z);
-    njScaleV(0, &SCALE_Dragon);
-
-    SetupChunkModelRender();
-    njCnkAction(&ACTION_Cleetus, SPEED_Dragon);
-    ResetChunkModelRender();
-
-    njPopMatrix(1u);
-}
-
-
-//  Crystal Statue - Main:
 
 void DISPLAY_CrystalStatue(task* obj)
 {
@@ -303,7 +167,7 @@ void DISPLAY_CrystalStatue(task* obj)
     
     taskwk* twp = obj->twp;
 
-    if (twp->mode == 2)
+    if (twp->mode == 3)
         return;
 
     njSetTexture(&TEXLIST_TTObjects);
@@ -325,7 +189,7 @@ void EXEC_CrystalStatue(task* tp)
     {
         case 0:
 
-            SetFlagNoRespawn(tp); // Enabling this flag makes so the object won't respawn after is destroyed (if you destroyed the object and you die, the one you collected won't respawn)
+            SetFlagNoRespawn(tp); // Enabling this flag makes it so the object won't respawn after is destroyed (if you destroyed the object and you die, the one you collected won't respawn)
             
             tp->disp = DISPLAY_CrystalStatue;
             CCL_Init(tp, &COLLI_CrystalStatue, 1, 2u);
@@ -345,7 +209,7 @@ void EXEC_CrystalStatue(task* tp)
                     EnemyBounceAndRumble(hit_tp->twp->counter.b[0]);
                     dsPlay_oneshot(SE_BOMB, 0, 0, 0);
                     SetDragonRescued();
-                    Dead(tp);
+                    Dead(tp); // This sets the object to not respawn, DeadOut on the other hand, will set the flag and instantly destroy the object. In this case I use Dead since I need to run more code afterwards (the Child Tasks)
                     
                     CreateChildrenTask(CTS_CSDebris, tp);
 
@@ -360,34 +224,25 @@ void EXEC_CrystalStatue(task* tp)
         case 2:
 
             if (DragonCount == 1)
-                tp->disp = DISPLAY_Isaak;
+                CreateChildrenTask(CTS_Isaak, tp);
 
             else if (DragonCount == 2)
-                tp->disp = DISPLAY_Lyle;
+                CreateChildrenTask(CTS_Lyle, tp);
 
             else if (DragonCount == 3)
-                tp->disp = DISPLAY_Jed;
+                CreateChildrenTask(CTS_Jed, tp);
 
             else if (DragonCount == 4)
-                tp->disp = DISPLAY_Bruno;
+                CreateChildrenTask(CTS_Bruno, tp);
 
             else if (DragonCount >= 5)
-                tp->disp = DISPLAY_Cleetus;
-
-            //CCL_Init(tp, &COLLI_Isaak, 1, 4u);
+                CreateChildrenTask(CTS_Cleetus, tp);
 
             twp->mode++;
 
             break;
 
         case 3:
-
-            //EntryColliList(twp);
-
-            SPEED_Dragon += 0.3f;
-
-            if (++twp->wtimer > 120)
-                FreeTaskC(tp); // This will free ONLY the children of the task (the debris) - I use this one instead of FreeTask so the extra dragon model can stay until the object deloads.
 
             LoopTaskC(tp);
 
@@ -408,18 +263,6 @@ void LOAD_CrystalStatue()
     MDL_CSDebris01 = LoadBasicModel("TreeTops_CSDebris01");
     MDL_CSDebris02 = LoadBasicModel("TreeTops_CSDebris02");
     MDL_CSDebris03 = LoadBasicModel("TreeTops_CSDebris03");
-    
-    MDL_Isaak = LoadChunkModel("TreeTops_Isaak");
-    MDL_Lyle = LoadChunkModel("TreeTops_Lyle");
-    MDL_Jed = LoadChunkModel("TreeTops_Jed");
-    MDL_Bruno = LoadChunkModel("TreeTops_Bruno");
-    MDL_Cleetus = LoadChunkModel("TreeTops_Cleetus");
-
-    ANIM_Isaak = LoadObjectAnim("TreeTops_Isaak");
-    ANIM_Lyle = LoadObjectAnim("TreeTops_Lyle");
-    ANIM_Jed = LoadObjectAnim("TreeTops_Jed");
-    ANIM_Bruno = LoadObjectAnim("TreeTops_Bruno");
-    ANIM_Cleetus = LoadObjectAnim("TreeTops_Cleetus");
 
     CTS_CSDebris[0].ptr = MDL_CSDebris01->getmodel();
     CTS_CSDebris[1].ptr = MDL_CSDebris02->getmodel();
