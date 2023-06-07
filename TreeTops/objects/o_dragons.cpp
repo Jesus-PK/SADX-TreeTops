@@ -14,14 +14,17 @@ AnimationFile* ANIM_Jed = nullptr;
 AnimationFile* ANIM_Bruno = nullptr;
 AnimationFile* ANIM_Cleetus = nullptr;
 
-CCL_INFO COLLI_Isaak = { 0, CollisionShape_Cylinder, 0x77, 0, 0, { 0.0f, 9.0f, 0.0f }, 7.65f, 8.0f, 0.0f, 0.0f, 0, 0, 0 };
-CCL_INFO COLLI_Lyle = { 0, CollisionShape_Cylinder, 0x77, 0, 0, { 0.0f, 9.0f, 0.0f }, 7.65f, 8.0f, 0.0f, 0.0f, 0, 0, 0 };
-CCL_INFO COLLI_Jed = { 0, CollisionShape_Cylinder, 0x77, 0, 0, { 0.0f, 9.0f, 0.0f }, 7.65f, 8.0f, 0.0f, 0.0f, 0, 0, 0 };
-CCL_INFO COLLI_Bruno = { 0, CollisionShape_Cylinder, 0x77, 0, 0, { 0.0f, 9.0f, 0.0f }, 7.65f, 8.0f, 0.0f, 0.0f, 0, 0, 0 };
-CCL_INFO COLLI_Cleetus = { 0, CollisionShape_Cylinder, 0x77, 0, 0, { 0.0f, 9.0f, 0.0f }, 7.65f, 8.0f, 0.0f, 0.0f, 0, 0, 0 };
+CCL_INFO COLLI_Isaak = { 0, CollisionShape_Capsule, 0x77, 0, 0, { 0.0f, 15.0f, 0.0f }, 7.5f, 12.5f, 0.0f, 0.0f, 0, 0, 0 };
+CCL_INFO COLLI_Lyle = { 0, CollisionShape_Capsule, 0x77, 0, 0, { 0.0f, 12.5f, 0.0f }, 7.5f, 10.0f, 0.0f, 0.0f, 0, 0, 0 };
+CCL_INFO COLLI_Jed = { 0, CollisionShape_Capsule, 0x77, 0, 0, { 0.0f, 12.5f, 0.0f }, 7.5f, 10.0f, 0.0f, 0.0f, 0, 0, 0 };
+CCL_INFO COLLI_Bruno = { 0, CollisionShape_Capsule, 0x77, 0, 0, { 0.0f, 15.0f, 0.0f }, 7.5f, 12.5f, 0.0f, 0.0f, 0, 0, 0 };
+CCL_INFO COLLI_Cleetus = { 0, CollisionShape_Capsule, 0x77, 0, 0, { 0.0f, 12.5f, 0.0f }, 7.5f, 10.0f, 0.0f, 0.0f, 0, 0, 0 };
 
 
 //  Values:
+
+//  NOTE: Each dragon has it's own NJS_POINT3 value so I can set up individually the twp->pos + offset value for the smoke effect position in their execs.
+//  Using the same one results in the smoke effect using the twp->pos of the first triggered dragon. So it needs to be manually set per exec.
 
 #define SPEED_Dragon twp->scl.x
 
@@ -33,7 +36,7 @@ NJS_POINT3 POS_JedSmoke = { 0, 0, 0 };
 NJS_POINT3 POS_BrunoSmoke = { 0, 0, 0 };
 NJS_POINT3 POS_CleetusSmoke = { 0, 0, 0 };
 
-NJS_POINT3 VELO_DragonSmoke = { 0, 1, 0 };
+NJS_POINT3 VELO_DragonSmoke = { 0, 0, 0 };
 
 
 //  Dragons - Display Functions:
@@ -179,7 +182,7 @@ void EXEC_Isaak(task* tp)
                 CCL_Init(tp, &COLLI_Isaak, 1, 4u);
 
                 POS_IsaakSmoke.x = twp->pos.x;
-                POS_IsaakSmoke.y = twp->pos.y + 10.25f;
+                POS_IsaakSmoke.y = twp->pos.y + 18.0f;
                 POS_IsaakSmoke.z = twp->pos.z;
 
                 twp->mode++;
@@ -219,7 +222,7 @@ void EXEC_Lyle(task* tp)
                 CCL_Init(tp, &COLLI_Lyle, 1, 4u);
 
                 POS_LyleSmoke.x = twp->pos.x;
-                POS_LyleSmoke.y = twp->pos.y + 10.25f;
+                POS_LyleSmoke.y = twp->pos.y + 15.0f;
                 POS_LyleSmoke.z = twp->pos.z;
 
                 twp->mode++;
@@ -259,7 +262,7 @@ void EXEC_Jed(task* tp)
                 CCL_Init(tp, &COLLI_Jed, 1, 4u);
 
                 POS_JedSmoke.x = twp->pos.x;
-                POS_JedSmoke.y = twp->pos.y + 10.25f;
+                POS_JedSmoke.y = twp->pos.y + 15.0f;
                 POS_JedSmoke.z = twp->pos.z;
 
                 twp->mode++;
@@ -299,7 +302,7 @@ void EXEC_Bruno(task* tp)
                 CCL_Init(tp, &COLLI_Bruno, 1, 4u);
 
                 POS_BrunoSmoke.x = twp->pos.x;
-                POS_BrunoSmoke.y = twp->pos.y + 10.25f;
+                POS_BrunoSmoke.y = twp->pos.y + 18.0f;
                 POS_BrunoSmoke.z = twp->pos.z;
 
                 twp->mode++;
@@ -339,7 +342,7 @@ void EXEC_Cleetus(task* tp)
                 CCL_Init(tp, &COLLI_Cleetus, 1, 4u);
 
                 POS_CleetusSmoke.x = twp->pos.x;
-                POS_CleetusSmoke.y = twp->pos.y + 10.25f;
+                POS_CleetusSmoke.y = twp->pos.y + 15.0f;
                 POS_CleetusSmoke.z = twp->pos.z;
 
                 twp->mode++;

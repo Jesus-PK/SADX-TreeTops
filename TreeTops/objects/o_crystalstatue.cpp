@@ -10,7 +10,7 @@ ModelInfo* MDL_CSDebris01 = nullptr;
 ModelInfo* MDL_CSDebris02 = nullptr;
 ModelInfo* MDL_CSDebris03 = nullptr;
 
-CCL_INFO COLLI_CrystalStatue = { 0, CollisionShape_Sphere, 0x77, 0x20, 0x400, { 0.0f, 5.25f, 0.0f }, 8.0f, 0.0f, 0.0f, 0.0f, 0, 0, 0 };
+CCL_INFO COLLI_CrystalStatue = { 0, CollisionShape_Sphere, 0x77, 0x20, 0x400, { 0.0f, 7.0f, 0.0f }, 11.5f, 0.0f, 0.0f, 0.0f, 0, 0, 0 };
 
 
 //  Crystal Base - Main:
