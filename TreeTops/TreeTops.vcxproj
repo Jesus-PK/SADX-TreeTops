@@ -172,7 +172,6 @@
     <ClInclude Include="objects\o_lockedchest.h" />
     <ClInclude Include="objects\o_metalchest.h" />
     <ClInclude Include="objects\o_skybox.h" />
-    <ClInclude Include="objects\o_spaba.h" />
     <ClInclude Include="objects\o_spottedchicken.h" />
     <ClInclude Include="paths.h" />
     <ClInclude Include="pch.h" />
@@ -199,7 +198,6 @@
     <ClCompile Include="objects\o_lockedchest.cpp" />
     <ClCompile Include="objects\o_metalchest.cpp" />
     <ClCompile Include="objects\o_skybox.cpp" />
-    <ClCompile Include="objects\o_spaba.cpp" />
     <ClCompile Include="objects\o_spottedchicken.cpp" />
     <ClCompile Include="paths.cpp" />
     <ClCompile Include="pch.cpp">

@@ -9,16 +9,12 @@
 #include "o_lifechest.h"
 #include "o_lockedchest.h"
 #include "o_metalchest.h"
-#include "o_spaba.h"
 #include "o_spottedchicken.h"
 
 //  Custom Textures:
 
 NJS_TEXNAME TEX_TTObjects[32] = { 0 };
 NJS_TEXLIST TEXLIST_TTObjects = { arrayptrandlength(TEX_TTObjects) };
-
-NJS_TEXNAME TEX_TTSpaba[17] = { 0 };
-NJS_TEXLIST TEXLIST_TTSpaba = { arrayptrandlength(TEX_TTSpaba) };
 
 NJS_TEXNAME TEX_TTDragons[11] = { 0 };
 NJS_TEXLIST TEXLIST_TTDragons = { arrayptrandlength(TEX_TTDragons) };
@@ -79,7 +75,7 @@ _OBJ_ITEMENTRY OBJECTLIST_TreeTops_LIST[] = {
 	{ 2, 2, 1, 1000000.0f, 0, EXEC_ChestKey, "O CHEST KEY"}, // ID 46
 	{ 2, 2, 1, 1000000.0f, 0, EXEC_LockedChest, "O LOCKED CHEST"}, // ID 47
 	{ 2, 2, 1, 1000000.0f, 0, EXEC_ChestLid, "O LOCKED CHEST LID"}, // ID 48
-	{ 2, 2, 1, 1000000.0f, 0, EXEC_Spaba, "O SPABA"} // ID 49
+	{ 2, 2, 1, 1000000.0f, 0, EXEC_Spyro, "O SPYRO LEDGE"} // ID 49
 };
 
 _OBJ_ITEMTABLE OBJECTLIST_TreeTops = { LengthOfArray(OBJECTLIST_TreeTops_LIST), 0, OBJECTLIST_TreeTops_LIST };
@@ -103,9 +99,8 @@ TEX_PVMTABLE TEXTURELIST_TreeTops[] = {
 	{ NULL, (TexList*)0x214B41C },
 
 	{ "TreeTops_Objects", &TEXLIST_TTObjects },
-	{ "TreeTops_Spaba", &TEXLIST_TTSpaba },
-	{ "TreeTops_HUD", &TEXLIST_TTHUD },
 	{ "TreeTops_Dragons", &TEXLIST_TTDragons },
+	{ "TreeTops_HUD", &TEXLIST_TTHUD },
 	{ "E_SARU", (TexList*)0x962560 },
 	{ "E_BOMB", (TexList*)0x96B464 },
 	{ 0 }
@@ -127,7 +122,6 @@ void LOADOBJECTS_TreeTops()
 	LOAD_LockedChest();
 	LOAD_MetalChest();
 	LOAD_TTSkybox();
-	LOAD_Spaba();
 	LOAD_SpottedChicken();
 }
 

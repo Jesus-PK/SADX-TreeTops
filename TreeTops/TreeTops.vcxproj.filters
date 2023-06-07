@@ -54,9 +54,6 @@
     <ClInclude Include="objects\o_skybox.h">
       <Filter>Objects</Filter>
     </ClInclude>
-    <ClInclude Include="objects\o_spaba.h">
-      <Filter>Objects</Filter>
-    </ClInclude>
     <ClInclude Include="objects\o_spottedchicken.h">
       <Filter>Objects</Filter>
     </ClInclude>
@@ -129,9 +126,6 @@
       <Filter>Objects</Filter>
     </ClCompile>
     <ClCompile Include="objects\o_skybox.cpp">
-      <Filter>Objects</Filter>
-    </ClCompile>
-    <ClCompile Include="objects\o_spaba.cpp">
       <Filter>Objects</Filter>
     </ClCompile>
     <ClCompile Include="objects\o_spottedchicken.cpp">
