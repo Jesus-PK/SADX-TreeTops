@@ -21,12 +21,16 @@ void DISPLAY_CrystalBase(task* obj)
         return;
 
     taskwk* twp = obj->twp;
-
+    
     njSetTexture(&TEXLIST_TTObjects);
+    
     njPushMatrix(0);
+    
     njTranslateV(0, &twp->pos);
     njRotateXYZ(0, twp->ang.x, twp->ang.y, twp->ang.z);
+    
     dsDrawObject(MDL_CrystalBase->getmodel());
+    
     njPopMatrix(1u);
 }
 
@@ -88,16 +92,19 @@ void DISPLAY_CSDebris(task* tp)
     taskwk* twp = tp->twp;
 
     njSetTexture(&TEXLIST_TTObjects);
+    
     njPushMatrix(0);
+    
     njTranslateV(0, &twp->pos);
-
+    
     if (twp->ang.x)
         njRotateX(0, twp->ang.x);
-
+    
     if (twp->ang.y)
         njRotateY(0, twp->ang.y);
 
     ds_DrawObjectClip((NJS_OBJECT*)twp->counter.ptr, 1.0f);
+    
     njPopMatrix(1);
 }
 
@@ -157,6 +164,8 @@ void SetDragonRescued()
     uint16_t score = 1000;
     AddEnemyScore(score);
 
+    dsPlay_oneshot(SE_BOMB, 0, 0, 0);
+
     DragonCount++;
 }
 
@@ -171,10 +180,14 @@ void DISPLAY_CrystalStatue(task* obj)
         return;
 
     njSetTexture(&TEXLIST_TTObjects);
+    
     njPushMatrix(0);
+    
     njTranslateV(0, &twp->pos);
     njRotateXYZ(0, twp->ang.x, twp->ang.y, twp->ang.z);
+    
     dsDrawObject(MDL_CrystalStatue->getmodel());
+    
     njPopMatrix(1u);
 }
 
@@ -207,8 +220,9 @@ void EXEC_CrystalStatue(task* tp)
                 if (hit_tp && IsThisTaskPlayer(hit_tp) != -1)
                 {
                     EnemyBounceAndRumble(hit_tp->twp->counter.b[0]);
-                    dsPlay_oneshot(SE_BOMB, 0, 0, 0);
+                    
                     SetDragonRescued();
+                    
                     Dead(tp); // This sets the object to not respawn, DeadOut on the other hand, will set the flag and instantly destroy the object. In this case I use Dead since I need to run more code afterwards (the Child Tasks)
                     
                     CreateChildrenTask(CTS_CSDebris, tp);
@@ -223,20 +237,28 @@ void EXEC_CrystalStatue(task* tp)
 
         case 2:
 
-            if (DragonCount == 1)
-                CreateChildrenTask(CTS_Isaak, tp);
+            switch (DragonCount) // If DragonCount == 1, 2, 3...
+            {
+                case 1:
+                    CreateChildrenTask(CTS_Isaak, tp);
+                    break;
 
-            else if (DragonCount == 2)
-                CreateChildrenTask(CTS_Lyle, tp);
+                case 2:
+                    CreateChildrenTask(CTS_Lyle, tp);
+                    break;
 
-            else if (DragonCount == 3)
-                CreateChildrenTask(CTS_Jed, tp);
+                case 3:
+                    CreateChildrenTask(CTS_Jed, tp);
+                    break;
 
-            else if (DragonCount == 4)
-                CreateChildrenTask(CTS_Bruno, tp);
+                case 4:
+                    CreateChildrenTask(CTS_Bruno, tp);
+                    break;
 
-            else if (DragonCount >= 5)
-                CreateChildrenTask(CTS_Cleetus, tp);
+                case 5:
+                    CreateChildrenTask(CTS_Cleetus, tp);
+                    break;
+            }
 
             twp->mode++;
 

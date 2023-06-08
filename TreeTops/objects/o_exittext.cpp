@@ -15,10 +15,14 @@ void DISPLAY_ExitText(task* obj)
     taskwk* twp = obj->twp;
 
     njSetTexture(&TEXLIST_TTObjects);
+    
     njPushMatrix(0);
+    
     njTranslateV(0, &twp->pos);
     njRotateXYZ(0, twp->ang.x, twp->ang.y, twp->ang.z);
+    
     dsDrawObject(MDL_ExitText->getmodel());
+    
     njPopMatrix(1u);
 }
 

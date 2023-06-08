@@ -4,7 +4,7 @@
 
 ModelInfo* MDL_ExitPortal = nullptr;
 
-NJS_VECTOR POS_ExitTrigger = { 0, 0, 0 };
+NJS_POINT3 POS_ExitTrigger = { 0, 0, 0 };
 
 const char* MSG_ExitPortal[] = {
     "You need to rescue all 5 dragons before leaving!",
@@ -22,10 +22,14 @@ void DISPLAY_ExitPortal(task* obj)
     taskwk* twp = obj->twp;
 
     njSetTexture(&TEXLIST_TTObjects);
+    
     njPushMatrix(0);
+    
     njTranslateV(0, &twp->pos);
     njRotateXYZ(0, twp->ang.x, twp->ang.y, twp->ang.z);
+    
     dsDrawObject(MDL_ExitPortal->getmodel());
+    
     njPopMatrix(1u);
 }
 

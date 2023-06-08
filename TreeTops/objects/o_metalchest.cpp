@@ -18,7 +18,9 @@ void DISPLAY_MCDebris(task* tp)
     taskwk* twp = tp->twp;
 
     njSetTexture(&TEXLIST_TTObjects);
+    
     njPushMatrix(0);
+    
     njTranslateV(0, &twp->pos);
 
     if (twp->ang.x)
@@ -28,6 +30,7 @@ void DISPLAY_MCDebris(task* tp)
         njRotateY(0, twp->ang.y);
 
     ds_DrawObjectClip((NJS_OBJECT*)twp->counter.ptr, 1.0F);
+    
     njPopMatrix(1);
 }
 
@@ -65,7 +68,7 @@ void EXEC_MCDebris(task* tp)
                 break;
         }
 
-        DISPLAY_MCDebris(tp);
+        tp->disp(tp);
     }
 }
 
@@ -84,6 +87,8 @@ void SetMCDestroyed()
     uint16_t score = 100;
     AddEnemyScore(score);
 
+    dsPlay_oneshot(SE_BOMB, 0, 0, 0);
+
     Rings += 10;
 }
 
@@ -95,10 +100,14 @@ void DISPLAY_Number10(task* obj)
     taskwk* twp = obj->twp;
 
     njSetTexture(&TEXLIST_TTObjects);
+    
     njPushMatrix(0);
+    
     njTranslateV(0, &twp->pos);
     njRotateXYZ(0, twp->ang.x, twp->ang.y, twp->ang.z);
+    
     dsDrawObject(MDL_Number10->getmodel());
+    
     njPopMatrix(1u);
 }
 
@@ -116,10 +125,14 @@ void DISPLAY_MetalChest(task* obj)
         return;
 
     njSetTexture(&TEXLIST_TTObjects);
+    
     njPushMatrix(0);
+    
     njTranslateV(0, &twp->pos);
     njRotateXYZ(0, twp->ang.x, twp->ang.y, twp->ang.z);
+    
     dsDrawObject(MDL_MetalChest->getmodel());
+    
     njPopMatrix(1u);
 }
 
@@ -151,7 +164,6 @@ void EXEC_MetalChest(task* tp)
                 {
                     EnemyBounceAndRumble(hit_tp->twp->counter.b[0]);
                     
-                    dsPlay_oneshot(SE_BOMB, 0, 0, 0);
                     SetMCDestroyed();
                     
                     Dead(tp);

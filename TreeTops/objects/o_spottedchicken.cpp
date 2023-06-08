@@ -19,14 +19,15 @@ void DISPLAY_SpottedChicken(task* tp)
 
     auto twp = tp->twp;
     
-    NJS_POINT3 SCALE_SpottedChicken = { 2.0f, 2.0f, 2.0f };
     NJS_MOTION* MOTION_SpottedChicken = ANIM_SpottedChicken->getmotion();
 
     njSetTexture(&TEXLIST_TTObjects);
+    
     njPushMatrix(0);
+    
     njTranslateV(0, &twp->pos);
     njRotateXYZ(0, twp->ang.x, twp->ang.y, twp->ang.z);
-    njScaleV(0, &SCALE_SpottedChicken);
+    njScale(0, 2.0f, 2.0f, 2.0f);
 
     dsDrawShapeMotion(MDL_SpottedChicken->getmodel(), MOTION_SpottedChicken, MOTION_SpottedChicken, SPEED_SpottedChicken);
     

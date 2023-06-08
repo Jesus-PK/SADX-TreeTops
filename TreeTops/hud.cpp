@@ -55,7 +55,7 @@ void DrawDragonHUD()
 
 //  Key HUD:
 
-static NJS_TEXANIM TEXANIM_ChestKey = { 75.0f, 75.0f, 0, 0, 0, 0, 0x100, 0x100, 31, 0x20 };
+static NJS_TEXANIM TEXANIM_ChestKey = { 75, 75, 0, 0, 0, 0, 0x100, 0x100, 31, 0x20 };
 
 static NJS_SPRITE SPRITE_ChestKey = { { 0.0f, 0.0f, 0.0f }, 1.0f, 1.0f, 0, &TEXLIST_TTObjects, &TEXANIM_ChestKey };
 

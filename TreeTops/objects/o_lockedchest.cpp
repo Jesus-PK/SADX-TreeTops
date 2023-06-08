@@ -45,10 +45,14 @@ void DISPLAY_ChestKey(task* obj)
         return;
 
     njSetTexture(&TEXLIST_TTObjects);
+    
     njPushMatrix(0);
+    
     njTranslateV(0, &twp->pos);
     njRotateXYZ(0, twp->ang.x, twp->ang.y, twp->ang.z);
+    
     dsDrawObject(MDL_ChestKey->getmodel());
+    
     njPopMatrix(1u);
 }
 
@@ -116,10 +120,14 @@ void DISPLAY_LockedChest(task* obj)
     taskwk* twp = obj->twp;
 
     njSetTexture(&TEXLIST_TTObjects);
+    
     njPushMatrix(0);
+    
     njTranslateV(0, &twp->pos);
     njRotateXYZ(0, twp->ang.x, twp->ang.y, twp->ang.z);
+    
     dsDrawObject(MDL_LockedChest->getmodel());
+    
     njPopMatrix(1u);
 }
 
@@ -181,7 +189,9 @@ void DISPLAY_LCKDebris(task* tp)
     taskwk* twp = tp->twp;
 
     njSetTexture(&TEXLIST_TTObjects);
+    
     njPushMatrix(0);
+    
     njTranslateV(0, &twp->pos);
 
     if (twp->ang.x)
@@ -191,6 +201,7 @@ void DISPLAY_LCKDebris(task* tp)
         njRotateY(0, twp->ang.y);
 
     ds_DrawObjectClip((NJS_OBJECT*)twp->counter.ptr, 1.0f);
+    
     njPopMatrix(1);
 }
 
@@ -228,7 +239,7 @@ void EXEC_LCKDebris(task* tp)
                 break;
         }
 
-        DISPLAY_LCKDebris(tp);
+        tp->disp(tp);
     }
 }
 
@@ -251,10 +262,14 @@ void DISPLAY_Number25(task* obj)
     taskwk* twp = obj->twp;
 
     njSetTexture(&TEXLIST_TTObjects);
+    
     njPushMatrix(0);
+    
     njTranslateV(0, &twp->pos);
     njRotateXYZ(0, twp->ang.x, twp->ang.y, twp->ang.z);
+    
     dsDrawObject(MDL_Number25->getmodel());
+    
     njPopMatrix(1u);
 }
 
@@ -286,10 +301,14 @@ void DISPLAY_ChestLid(task* obj)
         return;
 
     njSetTexture(&TEXLIST_TTObjects);
+    
     njPushMatrix(0);
+    
     njTranslateV(0, &twp->pos);
     njRotateXYZ(0, twp->ang.x, twp->ang.y, twp->ang.z);
+    
     dsDrawObject(MDL_ChestLid->getmodel());
+    
     njPopMatrix(1u);
 }
 

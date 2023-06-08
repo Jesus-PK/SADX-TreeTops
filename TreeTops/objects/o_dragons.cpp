@@ -230,7 +230,7 @@ void DISPLAY_Cleetus(task* tp)
 
 void EXEC_Isaak(task* tp)
 {
-    if (!CheckRangeOutWithR(tp, 96100.0f))
+    if (!CheckRangeOutWithR(tp, 250000.0f))
     {
         auto twp = tp->twp;
 
@@ -270,7 +270,7 @@ void EXEC_Isaak(task* tp)
 
 void EXEC_Lyle(task* tp)
 {
-    if (!CheckRangeOutWithR(tp, 96100.0f))
+    if (!CheckRangeOutWithR(tp, 250000.0f))
     {
         auto twp = tp->twp;
 
@@ -310,7 +310,7 @@ void EXEC_Lyle(task* tp)
 
 void EXEC_Jed(task* tp)
 {
-    if (!CheckRangeOutWithR(tp, 96100.0f))
+    if (!CheckRangeOutWithR(tp, 250000.0f))
     {
         auto twp = tp->twp;
 
@@ -350,7 +350,7 @@ void EXEC_Jed(task* tp)
 
 void EXEC_Bruno(task* tp)
 {
-    if (!CheckRangeOutWithR(tp, 96100.0f))
+    if (!CheckRangeOutWithR(tp, 250000.0f))
     {
         auto twp = tp->twp;
 
@@ -390,7 +390,7 @@ void EXEC_Bruno(task* tp)
 
 void EXEC_Cleetus(task* tp)
 {
-    if (!CheckRangeOutWithR(tp, 96100.0f))
+    if (!CheckRangeOutWithR(tp, 250000.0f))
     {
         auto twp = tp->twp;
 

@@ -20,8 +20,8 @@ void DISPLAY_TTSkybox(task* obj)
     DisableFog();
     njPushMatrix(0);
 
-    NJS_VECTOR skyboxPos = { 0,0,0 };
-    njTranslateV(0, &skyboxPos);
+    NJS_VECTOR POS_TTSkybox = { 0, 0, 0 };
+    njTranslateV(0, &POS_TTSkybox);
     njScale(0, 20.0f, 20.0f, 20.0f);
 
     DrawModel(MDL_TTSkybox->getmodel()->basicdxmodel);

@@ -50,28 +50,42 @@ FunctionHook<void> LoadMissionImage_t(0x457450);
 
 void MISSIONTYPE_Check()
 {
-    if (Language == ENGLISH)
+    if (Language != JAPANESE)
     {
-        if (CurrentCharacter == Characters_Sonic)
-            MissionSpriteAnim.texid = 0;
-
-        if (CurrentCharacter == Characters_Tails)
-            MissionSpriteAnim.texid = 1;
-
-        if (CurrentCharacter == Characters_Knuckles)
-            MissionSpriteAnim.texid = 2;
+        switch (CurrentCharacter) // Sets the value to be compared, it's the X in a (if (X == Y)) for example.
+        {
+            case Characters_Sonic: // Case is to be compared to, it's the Y in a (if (X == Y)) for example. The way this is written also means Sonic and the Default match.
+            default: // This is where the checks will default to if it doesn't match any existing values. in this case, anyone who isn't Tails or Knuckles would end up here.                
+                MissionSpriteAnim.texid = 0;
+                break; // Breaks out of the switch case. You can skip having one of these, and it'll mean it falls into the next case to process more code.
+            
+            case Characters_Tails:                
+                MissionSpriteAnim.texid = 1;               
+                break;
+            
+            case Characters_Knuckles:                
+                MissionSpriteAnim.texid = 2;               
+                break;
+        }
     }
 
-    else if (Language == JAPANESE)
+    else
     {
-        if (CurrentCharacter == Characters_Sonic)
-            MissionSpriteAnim.texid = 3;
-
-        if (CurrentCharacter == Characters_Tails)
-            MissionSpriteAnim.texid = 4;
-
-        if (CurrentCharacter == Characters_Knuckles)
-            MissionSpriteAnim.texid = 5;
+        switch (CurrentCharacter)
+        {
+            case Characters_Sonic:            
+            default:                
+                MissionSpriteAnim.texid = 3;                
+                break;
+            
+            case Characters_Tails:                
+                MissionSpriteAnim.texid = 4;                
+                break;
+            
+            case Characters_Knuckles:                
+                MissionSpriteAnim.texid = 5;               
+                break;
+        }
     }
 }
 
@@ -94,7 +108,7 @@ void MissionCard_Result_r()
     
     tp->twp->mode = 0;
     tp->twp->counter.b[1] = GetPlayerNumber();
-    tp->twp->wtimer = (MissedFrames_B * 72.0f);
+    tp->twp->wtimer = (MissedFrames_B * 72);
     tp->twp->pos.x = 320.0f;
     tp->twp->pos.y = 240.0f;
     

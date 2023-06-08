@@ -21,7 +21,9 @@ void DISPLAY_LCDebris(task* tp)
     taskwk* twp = tp->twp;
 
     njSetTexture(&TEXLIST_TTObjects);
+    
     njPushMatrix(0);
+    
     njTranslateV(0, &twp->pos);
 
     if (twp->ang.x)
@@ -31,6 +33,7 @@ void DISPLAY_LCDebris(task* tp)
         njRotateY(0, twp->ang.y);
 
     ds_DrawObjectClip((NJS_OBJECT*)twp->counter.ptr, 1.0f);
+    
     njPopMatrix(1);
 }
 
@@ -68,7 +71,7 @@ void EXEC_LCDebris(task* tp)
                 break;
         }
 
-        DISPLAY_LCDebris(tp);
+        tp->disp(tp);
     }
 }
 
@@ -87,6 +90,9 @@ void SetLCDestroyed()
     uint16_t score = 250;
     AddEnemyScore(score);
 
+    dsPlay_oneshot(SE_BOMB, 0, 0, 0);
+    dsPlay_oneshot(743, 0, 0, 0);
+
     Lives += 1;
 }
 
@@ -98,10 +104,14 @@ void DISPLAY_LCStatue(task* obj)
     taskwk* twp = obj->twp;
 
     njSetTexture(&TEXLIST_TTObjects);
+    
     njPushMatrix(0);
+    
     njTranslateV(0, &twp->pos);
     njRotateXYZ(0, twp->ang.x, twp->ang.y, twp->ang.z);
+    
     dsDrawObject(MDL_LifeStatue->getmodel());
+    
     njPopMatrix(1u);
 }
 
@@ -121,7 +131,9 @@ void DISPLAY_LifeChest(task* obj)
     NJS_MOTION* MOTION_LifeChest = ANIM_LifeChest->getmotion();
     
     njSetTexture(&TEXLIST_TTObjects);
+    
     njPushMatrix(0);
+    
     njTranslateV(0, &twp->pos);
     njRotateXYZ(0, twp->ang.x, twp->ang.y, twp->ang.z);
     njScale(0, 2.0f, 2.0f, 2.0f);
@@ -163,8 +175,6 @@ void EXEC_LifeChest(task* tp)
                 {
                     EnemyBounceAndRumble(hit_tp->twp->counter.b[0]);
                     
-                    dsPlay_oneshot(SE_BOMB, 0, 0, 0);
-                    dsPlay_oneshot(743, 0, 0, 0);
                     SetLCDestroyed();
                     
                     Dead(tp);

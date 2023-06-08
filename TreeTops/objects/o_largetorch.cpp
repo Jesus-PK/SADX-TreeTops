@@ -22,14 +22,15 @@ void DISPLAY_LargeTorch(task* tp)
 
     auto twp = tp->twp;
     
-    NJS_POINT3 SCALE_LargeTorch = { 2.0f, 2.0f, 2.0f };
     NJS_MOTION* MOTION_LargeTorch = ANIM_LargeTorch->getmotion();
 
     njSetTexture(&TEXLIST_TTObjects);
+    
     njPushMatrix(0);
+    
     njTranslateV(0, &twp->pos);
     njRotateXYZ(0, twp->ang.x, twp->ang.y, twp->ang.z);
-    njScaleV(0, &SCALE_LargeTorch);
+    njScale(0, 2.0f, 2.0f, 2.0f);
 
     dsDrawShapeMotion(MDL_LargeTorch->getmodel(), MOTION_LargeTorch, MOTION_LargeTorch, SPEED_LargeTorch);
     
