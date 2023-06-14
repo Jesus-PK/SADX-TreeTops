@@ -13,6 +13,9 @@
 
 //  Custom Textures:
 
+NJS_TEXNAME TEX_TreeTops[79] = { 0 };
+NJS_TEXLIST TEXLIST_TreeTops = { arrayptrandlength(TEX_TreeTops) };
+
 NJS_TEXNAME TEX_TTObjects[32] = { 0 };
 NJS_TEXLIST TEXLIST_TTObjects = { arrayptrandlength(TEX_TTObjects) };
 

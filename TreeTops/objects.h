@@ -1,5 +1,6 @@
 #pragma once
 
+extern NJS_TEXLIST TEXLIST_TreeTops;
 extern NJS_TEXLIST TEXLIST_TTObjects;
 extern NJS_TEXLIST TEXLIST_TTSpaba;
 extern NJS_TEXLIST TEXLIST_TTDragons;

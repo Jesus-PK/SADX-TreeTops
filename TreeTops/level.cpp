@@ -42,7 +42,7 @@ LandTableInfo* MDL_TTLandtable = nullptr;
 
 void LANDTABLE_TreeTops()
 {
-	LoadLandTable(&MDL_TTLandtable, "TreeTops_Landtable", HelperFunctionsGlobal, nullptr);
+	LoadLandTable(&MDL_TTLandtable, "TreeTops_Landtable", HelperFunctionsGlobal, &TEXLIST_TreeTops);
 
 	GeoLists[LevelIDs_SkyDeck * 8] = MDL_TTLandtable->getlandtable();
 	GeoLists[LevelIDs_SkyDeck * 8 + 2] = MDL_TTLandtable->getlandtable();

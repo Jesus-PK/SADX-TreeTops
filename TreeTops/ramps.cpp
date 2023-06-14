@@ -15,7 +15,7 @@ void BackupTexture_WR()
 {
     for (uint8_t i = 0; i < LengthOfArray(TexAdd_Backup_WR); i++)
     {
-        TexAdd_Backup_WR[i] = SKYDECK01_TEXLIST.textures[TexID_Start_WR + i].texaddr;
+        TexAdd_Backup_WR[i] = TEXLIST_TreeTops.textures[TexID_Start_WR + i].texaddr;
     }
 }
 
@@ -25,7 +25,7 @@ void DeleteTexture_WR(task* tp)
 {
     for (uint8_t i = 0; i < LengthOfArray(TexAdd_Backup_WR); i++)
     {
-        SKYDECK01_TEXLIST.textures[TexID_Start_WR + i].texaddr = TexAdd_Backup_WR[i];
+        TEXLIST_TreeTops.textures[TexID_Start_WR + i].texaddr = TexAdd_Backup_WR[i];
     }
 
     TexID_Count_WR = TexID_Start_WR;
@@ -55,7 +55,7 @@ void ANIM_WoodenRamp(task* tp)
             
             if (++twp->wtimer == TimerSwap_WR)
             {
-                SKYDECK01_TEXLIST.textures[TexID_Count_WR].texaddr = SKYDECK01_TEXLIST.textures[TexID_LightON_WR].texaddr; // This changes the first arrow to the texID we specified earlier (the arrow with the light ON)
+                TEXLIST_TreeTops.textures[TexID_Count_WR].texaddr = TEXLIST_TreeTops.textures[TexID_LightON_WR].texaddr; // This changes the first arrow to the texID we specified earlier (the arrow with the light ON)
                 
                 twp->wtimer = 0;
                 
@@ -68,7 +68,7 @@ void ANIM_WoodenRamp(task* tp)
             
             if (++twp->wtimer == TimerSwap_WR)
             {
-                SKYDECK01_TEXLIST.textures[TexID_Count_WR].texaddr = TexAdd_Backup_WR[TexID_Count_WR - TexID_Start_WR]; // This restores the texture of the previous arrow.
+                TEXLIST_TreeTops.textures[TexID_Count_WR].texaddr = TexAdd_Backup_WR[TexID_Count_WR - TexID_Start_WR]; // This restores the texture of the previous arrow.
 
                 if (TexID_Count_WR < TexID_Total_WR)
                     TexID_Count_WR++;
@@ -76,7 +76,7 @@ void ANIM_WoodenRamp(task* tp)
                 else
                     TexID_Count_WR = TexID_Start_WR;
 
-                SKYDECK01_TEXLIST.textures[TexID_Count_WR].texaddr = SKYDECK01_TEXLIST.textures[TexID_LightON_WR].texaddr; // This sets the light ON arrow to the next arrow.
+                TEXLIST_TreeTops.textures[TexID_Count_WR].texaddr = TEXLIST_TreeTops.textures[TexID_LightON_WR].texaddr; // This sets the light ON arrow to the next arrow.
 
                 twp->wtimer = 0;
             }
@@ -99,7 +99,7 @@ void BackupTexture_GR()
 {
     for (uint8_t i = 0; i < LengthOfArray(TexAdd_Backup_GR); i++)
     {
-        TexAdd_Backup_GR[i] = SKYDECK01_TEXLIST.textures[TexID_Start_GR + i].texaddr;
+        TexAdd_Backup_GR[i] = TEXLIST_TreeTops.textures[TexID_Start_GR + i].texaddr;
     }
 }
 
@@ -107,7 +107,7 @@ void DeleteTexture_GR(task* tp)
 {
     for (uint8_t i = 0; i < LengthOfArray(TexAdd_Backup_GR); i++)
     {
-        SKYDECK01_TEXLIST.textures[TexID_Start_GR + i].texaddr = TexAdd_Backup_GR[i];
+        TEXLIST_TreeTops.textures[TexID_Start_GR + i].texaddr = TexAdd_Backup_GR[i];
     }
 
     TexID_Count_GR = TexID_Start_GR;
@@ -133,7 +133,7 @@ void ANIM_GrassRamp(task* tp)
             
             if (++twp->wtimer == TimerSwap_GR)
             {
-                SKYDECK01_TEXLIST.textures[TexID_Count_GR].texaddr = SKYDECK01_TEXLIST.textures[TexID_LightON_GR].texaddr;
+                TEXLIST_TreeTops.textures[TexID_Count_GR].texaddr = TEXLIST_TreeTops.textures[TexID_LightON_GR].texaddr;
                 
                 twp->wtimer = 0;
                 
@@ -146,7 +146,7 @@ void ANIM_GrassRamp(task* tp)
             
             if (++twp->wtimer == TimerSwap_GR)
             {
-                SKYDECK01_TEXLIST.textures[TexID_Count_GR].texaddr = TexAdd_Backup_GR[TexID_Count_GR - TexID_Start_GR];
+                TEXLIST_TreeTops.textures[TexID_Count_GR].texaddr = TexAdd_Backup_GR[TexID_Count_GR - TexID_Start_GR];
 
                 if (TexID_Count_GR < TexID_Total_GR)
                     TexID_Count_GR++;
@@ -154,7 +154,7 @@ void ANIM_GrassRamp(task* tp)
                 else
                     TexID_Count_GR = TexID_Start_GR;
 
-                SKYDECK01_TEXLIST.textures[TexID_Count_GR].texaddr = SKYDECK01_TEXLIST.textures[TexID_LightON_GR].texaddr;
+                TEXLIST_TreeTops.textures[TexID_Count_GR].texaddr = TEXLIST_TreeTops.textures[TexID_LightON_GR].texaddr;
 
                 twp->wtimer = 0;
             }
