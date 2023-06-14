@@ -7,12 +7,12 @@ ModelInfo* MDL_ExitText = nullptr;
 
 //  Exit Text - Main:
 
-void DISPLAY_ExitText(task* obj)
+void DISPLAY_ExitText(task* tp)
 {
     if (MissedFrames)
         return;
 
-    taskwk* twp = obj->twp;
+    auto twp = tp->twp;
 
     njSetTexture(&TEXLIST_TTObjects);
     

@@ -18,7 +18,7 @@ CCL_INFO COLLI_LifeChest = { 0, CollisionShape_Sphere, 0x77, 0x20, 0x400, { 0.0f
 
 void DISPLAY_LCDebris(task* tp)
 {
-    taskwk* twp = tp->twp;
+    auto twp = tp->twp;
 
     njSetTexture(&TEXLIST_TTObjects);
     
@@ -96,12 +96,12 @@ void SetLCDestroyed()
     Lives += 1;
 }
 
-void DISPLAY_LCStatue(task* obj)
+void DISPLAY_LCStatue(task* tp)
 {
     if (MissedFrames)
         return;
 
-    taskwk* twp = obj->twp;
+    auto twp = tp->twp;
 
     njSetTexture(&TEXLIST_TTObjects);
     
@@ -118,12 +118,12 @@ void DISPLAY_LCStatue(task* obj)
 
 //  Life Chest - Main:
 
-void DISPLAY_LifeChest(task* obj)
+void DISPLAY_LifeChest(task* tp)
 {
     if (MissedFrames)
         return;
     
-    taskwk* twp = obj->twp;
+    auto twp = tp->twp;
 
     if (twp->mode == 2)
         return;

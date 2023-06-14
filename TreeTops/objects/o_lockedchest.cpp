@@ -34,12 +34,12 @@ void KeyPickup()
     HasKey = 1;
 }
 
-void DISPLAY_ChestKey(task* obj)
+void DISPLAY_ChestKey(task* tp)
 {
     if (MissedFrames)
         return;
 
-    taskwk* twp = obj->twp;
+    auto twp = tp->twp;
 
     if (twp->mode == 2)
         return;
@@ -112,12 +112,12 @@ void EXEC_ChestKey(task* tp)
 
 //  Locked Chest - Main:
 
-void DISPLAY_LockedChest(task* obj)
+void DISPLAY_LockedChest(task* tp)
 {
     if (MissedFrames)
         return;
 
-    taskwk* twp = obj->twp;
+    auto twp = tp->twp;
 
     njSetTexture(&TEXLIST_TTObjects);
     
@@ -186,7 +186,7 @@ void EXEC_LockedChest(task* tp)
 
 void DISPLAY_LCKDebris(task* tp)
 {
-    taskwk* twp = tp->twp;
+    auto twp = tp->twp;
 
     njSetTexture(&TEXLIST_TTObjects);
     
@@ -254,12 +254,12 @@ childtaskset CTS_LCKDebris[] = {
 
 //  Locked Chest - Value Number:
 
-void DISPLAY_Number25(task* obj)
+void DISPLAY_Number25(task* tp)
 {
     if (MissedFrames)
         return;
 
-    taskwk* twp = obj->twp;
+    auto twp = tp->twp;
 
     njSetTexture(&TEXLIST_TTObjects);
     
@@ -290,12 +290,12 @@ void SetChestOpen()
     HasKey = 0;
 }
 
-void DISPLAY_ChestLid(task* obj)
+void DISPLAY_ChestLid(task* tp)
 {
     if (MissedFrames)
         return;
     
-    taskwk* twp = obj->twp;
+    auto twp = tp->twp;
 
     if (twp->mode == 3)
         return;

@@ -11,9 +11,9 @@ ModelInfo* MDL_TTSkybox = nullptr;
 //  In the exec there's some hardcoded things such as the gravity gimmick - So what I did in here was writing first a custom display function for the skybox then a custom exec function in were I call my custom display function. Literally same thing I did with my custom objects.
 //  Then I WriteJump this custom skybox exec on the address of Skybox_SkyDeck -> WriteJump((void*)0x5F0340, EXEC_TTSkybox);
 
-void DISPLAY_TTSkybox(task* obj)
+void DISPLAY_TTSkybox(task* tp)
 {
-    auto data = obj->twp;
+    auto twp = tp->twp;
     
     Direct3D_SetNearFarPlanes(SkyboxDrawDistance.Minimum, SkyboxDrawDistance.Maximum);
 

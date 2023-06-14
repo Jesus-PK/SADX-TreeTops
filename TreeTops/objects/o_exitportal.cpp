@@ -14,12 +14,12 @@ const char* MSG_ExitPortal[] = {
 
 //  Exit Portal - Main:
 
-void DISPLAY_ExitPortal(task* obj)
+void DISPLAY_ExitPortal(task* tp)
 {
     if (MissedFrames)
         return;
     
-    taskwk* twp = obj->twp;
+    auto twp = tp->twp;
 
     njSetTexture(&TEXLIST_TTObjects);
     

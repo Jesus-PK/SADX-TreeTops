@@ -15,7 +15,7 @@ CCL_INFO COLLI_MetalChest = { 0, CollisionShape_Sphere, 0x77, 0x20, 0x400, { 0.0
 
 void DISPLAY_MCDebris(task* tp)
 {
-    taskwk* twp = tp->twp;
+    auto twp = tp->twp;
 
     njSetTexture(&TEXLIST_TTObjects);
     
@@ -92,12 +92,12 @@ void SetMCDestroyed()
     Rings += 10;
 }
 
-void DISPLAY_Number10(task* obj)
+void DISPLAY_Number10(task* tp)
 {
     if (MissedFrames)
         return;
 
-    taskwk* twp = obj->twp;
+    auto twp = tp->twp;
 
     njSetTexture(&TEXLIST_TTObjects);
     
@@ -114,12 +114,12 @@ void DISPLAY_Number10(task* obj)
 
 //  Metal Chest - Main:
 
-void DISPLAY_MetalChest(task* obj)
+void DISPLAY_MetalChest(task* tp)
 {
     if (MissedFrames)
         return;
 
-    taskwk* twp = obj->twp;
+    auto twp = tp->twp;
 
     if (twp->mode == 2)
         return;

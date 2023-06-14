@@ -15,7 +15,7 @@ CCL_INFO COLLI_BasicChest = { 0, CollisionShape_Sphere, 0x77, 0x20, 0x400, { 0.0
 
 void DISPLAY_BCDebris(task* tp)
 {
-    taskwk* twp = tp->twp;
+    auto twp = tp->twp;
 
     njSetTexture(&TEXLIST_TTObjects);
     
@@ -92,12 +92,12 @@ void SetBCDestroyed()
     Rings += 5;
 }
 
-void DISPLAY_Number5(task* obj)
+void DISPLAY_Number5(task* tp)
 {
     if (MissedFrames)
         return;
 
-    taskwk* twp = obj->twp;
+    auto twp = tp->twp;
 
     njSetTexture(&TEXLIST_TTObjects);
     
@@ -114,12 +114,12 @@ void DISPLAY_Number5(task* obj)
 
 //  Basic Chest - Main:
 
-void DISPLAY_BasicChest(task* obj)
+void DISPLAY_BasicChest(task* tp)
 {
     if (MissedFrames)
         return;
     
-    taskwk* twp = obj->twp;
+    auto twp = tp->twp;
 
     if (twp->mode == 2)
         return;

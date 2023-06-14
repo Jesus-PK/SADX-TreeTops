@@ -15,12 +15,12 @@ CCL_INFO COLLI_CrystalStatue = { 0, CollisionShape_Sphere, 0x77, 0x20, 0x400, { 
 
 //  Crystal Base - Main:
 
-void DISPLAY_CrystalBase(task* obj)
+void DISPLAY_CrystalBase(task* tp)
 {
     if (MissedFrames)
         return;
 
-    taskwk* twp = obj->twp;
+    auto twp = tp->twp;
     
     njSetTexture(&TEXLIST_TTObjects);
     
@@ -89,7 +89,7 @@ void EXEC_CrystalBase(task* tp)
 
 void DISPLAY_CSDebris(task* tp)
 {
-    taskwk* twp = tp->twp;
+    auto twp = tp->twp;
 
     njSetTexture(&TEXLIST_TTObjects);
     
@@ -169,12 +169,12 @@ void SetDragonRescued()
     DragonCount++;
 }
 
-void DISPLAY_CrystalStatue(task* obj)
+void DISPLAY_CrystalStatue(task* tp)
 {
     if (MissedFrames)
         return;
     
-    taskwk* twp = obj->twp;
+    auto twp = tp->twp;
 
     if (twp->mode == 3)
         return;
