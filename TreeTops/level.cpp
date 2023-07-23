@@ -78,7 +78,7 @@ void STARTPOSITIONS_TreeTops(const HelperFunctions& helperFunctions)
 void PATHS_TreeTops(const HelperFunctions& helperFunctions)
 {
 	helperFunctions.RegisterPathList(PATHDATA_TreeTops00);
-	//helperFunctions.RegisterPathList(PATHDATA_TreeTops01);
+	helperFunctions.RegisterPathList(PATHDATA_TreeTops01);
 }
 
 
