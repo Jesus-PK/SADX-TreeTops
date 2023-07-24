@@ -13,6 +13,7 @@ ModelInfo* MDL_LCKDebris04 = nullptr;
 ModelInfo* MDL_Number25 = nullptr;
 
 ModelInfo* MDL_LCKColli01 = nullptr;
+ModelInfo* MDL_LCKColli02 = nullptr;
 
 CCL_INFO COLLI_ChestKey = { 0, CollisionShape_Sphere, 0xF0, 0, 0, { 0.0f, 4.625f, 0.0f }, 4.625f, 0.0f, 0.0f, 0.0f, 0, 0, 0 };
 
@@ -322,11 +323,34 @@ void EXEC_ChestLid(task* tp)
     switch (twp->mode)
     {
         case 0:
-
+        {
             SetFlagNoRespawn(tp);
-            
-            tp->disp = DISPLAY_ChestLid;
 
+            auto object = GetMobileLandObject();
+
+            tp->disp = DISPLAY_ChestLid;
+            tp->dest = B_Destructor;
+
+            // Dyncol code:
+            object->pos[0] = twp->pos.x;
+            object->pos[1] = twp->pos.y;
+            object->pos[2] = twp->pos.z;
+
+            object->ang[0] = twp->ang.x;
+            object->ang[1] = twp->ang.y;
+            object->ang[2] = twp->ang.z;
+
+            object->scl[0] = 1.0f;
+            object->scl[1] = 1.0f;
+            object->scl[2] = 1.0f;
+
+            object->basicdxmodel = MDL_LCKColli02->getmodel()->basicdxmodel;
+
+            RegisterCollisionEntry(ColFlags_Solid, tp, object);
+
+            twp->counter.ptr = object;
+
+            //  Invisible trigger location code (for the chest lock):
             POS_LCKTrigger.x = twp->pos.x;
             POS_LCKTrigger.y = twp->pos.y + 8.25f;
             POS_LCKTrigger.z = twp->pos.z + 20.0f;
@@ -334,9 +358,10 @@ void EXEC_ChestLid(task* tp)
             twp->mode++;
 
             break;
+        }
 
         case 1:
-
+        {
             if (CheckCollisionP(&POS_LCKTrigger, 10.0f))
             {
                 if (HasKey == 0)
@@ -345,25 +370,30 @@ void EXEC_ChestLid(task* tp)
 
                     twp->mode = 2;
                 }
-                
+
                 else
                 {
                     SetChestOpen();
-                    
+
                     Dead(tp);
-                    
+
                     tp->disp = DISPLAY_Number25;
-                    
+
                     CreateChildrenTask(CTS_LCKDebris, tp);
+
+                    //  Necessary functions to kill a dyncol early:
+                    WithdrawCollisionEntry(tp, (NJS_OBJECT*)twp->counter.ptr);
+                    ReleaseMobileLandObject((NJS_OBJECT*)twp->counter.ptr);
 
                     twp->mode = 3;
                 }
             }
 
             break;
+        }
 
         case 2:
-
+        {
             if (++twp->wtimer > 150)
             {
                 twp->wtimer = 0;
@@ -371,10 +401,11 @@ void EXEC_ChestLid(task* tp)
                 twp->mode = 1;
             }
 
-            break;     
-        
-        case 3:
+            break;
+        }
 
+        case 3:
+        {            
             twp->ang.y += 750;
 
             if (++twp->wtimer > 120)
@@ -383,8 +414,11 @@ void EXEC_ChestLid(task* tp)
             LoopTaskC(tp);
 
             break;
+        }
     }
     
+    MirenObjCheckCollisionP(twp, 100.0f);
+
     tp->disp(tp);
 }
 
@@ -402,6 +436,7 @@ void LOAD_LockedChest()
     MDL_LCKDebris04 = LoadBasicModel("TreeTops_LCKDebris04");
     MDL_Number25 = LoadBasicModel("TreeTops_Number25");
     MDL_LCKColli01 = LoadBasicModel("TreeTops_LCKColli01");
+    MDL_LCKColli02 = LoadBasicModel("TreeTops_LCKColli02");
 
     CTS_LCKDebris[0].ptr = MDL_LCKDebris01->getmodel();
     CTS_LCKDebris[1].ptr = MDL_LCKDebris02->getmodel();
