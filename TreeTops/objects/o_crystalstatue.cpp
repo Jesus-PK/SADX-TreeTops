@@ -41,45 +41,35 @@ void EXEC_CrystalBase(task* tp)
 
     auto twp = tp->twp;
 
-    switch (twp->mode)
+    if (!twp->mode)
     {
-        case 0:
-        {
-            auto object = GetMobileLandObject();
+        auto object = GetMobileLandObject();
 
-            tp->disp = DISPLAY_CrystalBase;
-            tp->dest = B_Destructor;
+        tp->disp = DISPLAY_CrystalBase;
+        tp->dest = B_Destructor;
 
-            object->pos[0] = twp->pos.x;
-            object->pos[1] = twp->pos.y;
-            object->pos[2] = twp->pos.z;
+        object->pos[0] = twp->pos.x;
+        object->pos[1] = twp->pos.y;
+        object->pos[2] = twp->pos.z;
 
-            object->ang[0] = twp->ang.x;
-            object->ang[1] = twp->ang.y;
-            object->ang[2] = twp->ang.z;
+        object->ang[0] = twp->ang.x;
+        object->ang[1] = twp->ang.y;
+        object->ang[2] = twp->ang.z;
 
-            object->scl[0] = 1.0f;
-            object->scl[1] = 1.0f;
-            object->scl[2] = 1.0f;
+        object->scl[0] = 1.0f;
+        object->scl[1] = 1.0f;
+        object->scl[2] = 1.0f;
 
-            object->basicdxmodel = MDL_CrystalBase->getmodel()->basicdxmodel;
+        object->basicdxmodel = MDL_CrystalBase->getmodel()->basicdxmodel;
 
-            RegisterCollisionEntry(ColFlags_Solid, tp, object);
+        RegisterCollisionEntry(ColFlags_Solid, tp, object);
 
-            twp->counter.ptr = object;
+        twp->counter.ptr = object;
 
-            twp->mode++;
-
-            break;
-        }
-
-        case 1:
-        {
-            MirenObjCheckCollisionP(twp, 100.0f);
-
-            break;
-        }
+        twp->mode++;
     }
+
+    MirenObjCheckCollisionP(twp, 100.0f);
 
     tp->disp(tp);
 }

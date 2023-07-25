@@ -42,9 +42,6 @@ void DISPLAY_ChestKey(task* tp)
 
     auto twp = tp->twp;
 
-    if (twp->mode == 2)
-        return;
-
     njSetTexture(&TEXLIST_TTObjects);
     
     njPushMatrix(0);
@@ -89,24 +86,17 @@ void EXEC_ChestKey(task* tp)
                 {
                     KeyPickup();
 
-                    Dead(tp);
+                    DeadOut(tp); // This will kill the object on contact, so there's no need to setup a FreeTask(tp); timer on another case like when using Dead(tp);
 
                     twp->mode++;
                 }
             }
-
-            EntryColliList(twp);
-
-            break;
-
-        case 2:
-
-            if (++twp->wtimer > 120)
-                FreeTask(tp);
-
+            
             break;
     }
 
+    EntryColliList(twp);
+    
     tp->disp(tp);
 }
 
@@ -139,46 +129,36 @@ void EXEC_LockedChest(task* tp)
 
     auto twp = tp->twp;
 
-    switch (twp->mode)
+    if (!twp->mode)
     {
-        case 0:
-        {
-            auto object = GetMobileLandObject();
+        auto object = GetMobileLandObject();
 
-            tp->disp = DISPLAY_LockedChest;
-            tp->dest = B_Destructor;
+        tp->disp = DISPLAY_LockedChest;
+        tp->dest = B_Destructor;
 
-            object->pos[0] = twp->pos.x;
-            object->pos[1] = twp->pos.y;
-            object->pos[2] = twp->pos.z;
+        object->pos[0] = twp->pos.x;
+        object->pos[1] = twp->pos.y;
+        object->pos[2] = twp->pos.z;
 
-            object->ang[0] = twp->ang.x;
-            object->ang[1] = twp->ang.y;
-            object->ang[2] = twp->ang.z;
+        object->ang[0] = twp->ang.x;
+        object->ang[1] = twp->ang.y;
+        object->ang[2] = twp->ang.z;
 
-            object->scl[0] = 1.0f;
-            object->scl[1] = 1.0f;
-            object->scl[2] = 1.0f;
+        object->scl[0] = 1.0f;
+        object->scl[1] = 1.0f;
+        object->scl[2] = 1.0f;
 
-            object->basicdxmodel = MDL_LCKColli01->getmodel()->basicdxmodel;
+        object->basicdxmodel = MDL_LCKColli01->getmodel()->basicdxmodel;
 
-            RegisterCollisionEntry(ColFlags_Solid, tp, object);
+        RegisterCollisionEntry(ColFlags_Solid, tp, object);
 
-            twp->counter.ptr = object;
+        twp->counter.ptr = object;
 
-            twp->mode++;
-
-            break;
-        }
-
-        case 1:
-        {
-            MirenObjCheckCollisionP(twp, 100.0f);
-
-            break;
-        }
+        twp->mode++;
     }
 
+    MirenObjCheckCollisionP(twp, 100.0f);
+    
     tp->disp(tp);
 }
 

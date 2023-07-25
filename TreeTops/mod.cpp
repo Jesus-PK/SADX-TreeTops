@@ -35,13 +35,9 @@ extern "C"
 		//FILES_TreeTops(helperFunctions);
 
 
-		//	Load Object Assets:
+		//	Load Object Assets - Load Object List and Texture List:
 
 		LOADOBJECTS_TreeTops();
-
-
-		//	Load Object List and Texture List:
-
 		INITOBJECTS_TreeTops();
 
 

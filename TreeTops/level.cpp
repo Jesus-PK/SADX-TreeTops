@@ -8,7 +8,7 @@ bool HasKey = 0;
 uint8_t DragonCount{ 0 };
 
 
-//	Custom FogData, DrawDistance and SkyboxDrawDistance values:
+//	Custom FogData, DrawDistance and SkyboxDrawDistance values - Due to creating a custom LevelOBJ, it's necessary to setup these values via ___stcFog / ___stcClip.
 
 ___stcFog FOGDATA_TreeTops[] = {
 	{ 100.0f, 1000.0f, 0xFFFFFF, 0 },

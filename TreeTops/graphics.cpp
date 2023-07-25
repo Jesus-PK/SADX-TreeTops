@@ -50,7 +50,7 @@ FunctionHook<void> LoadMissionImage_t(0x457450);
 
 void MISSIONTYPE_Check()
 {
-    if (Language != JAPANESE)
+    if (Language != JAPANESE) // Use an "if it isn't JP" so the EN MissionCards work if other languages are selected.
     {
         switch (CurrentCharacter) // Sets the value to be compared, it's the X in a (if (X == Y)) for example.
         {

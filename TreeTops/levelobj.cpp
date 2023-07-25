@@ -23,23 +23,19 @@ void OBJ_TreeTops(task* tp)
 {
 	auto twp = tp->twp;
 
-	switch (twp->mode)
+	if (!twp->mode)
 	{
-		case 0:
-
-			tp->disp = DISPLAY_TreeTops;
+		tp->disp = DISPLAY_TreeTops;
 			
-			ADXTaskInit();
-			PlayMusic(MusicIDs_skydeck1);
+		ADXTaskInit();
+		PlayMusic(MusicIDs_skydeck1);
 
-			CreateElementalTask(2, 2, ANIM_WoodenRamp);
-			CreateElementalTask(2, 2, ANIM_GrassRamp);
+		CreateElementalTask(2, 2, ANIM_WoodenRamp);
+		CreateElementalTask(2, 2, ANIM_GrassRamp);
 
-			EnableFreeCamera(1); // Forces FreeCam on level start, pending removal.
+		EnableFreeCamera(1); // Forces FreeCam on level start, pending removal.
 
-			twp->mode++;
-
-			break;
+		twp->mode++;
 	}
 
 	tp->disp(tp);

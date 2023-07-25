@@ -14,9 +14,7 @@ static uint32_t TexAdd_Backup_WR[4]{ 0 }; // We specify the number of textures f
 void BackupTexture_WR()
 {
     for (uint8_t i = 0; i < LengthOfArray(TexAdd_Backup_WR); i++)
-    {
         TexAdd_Backup_WR[i] = TEXLIST_TreeTops.textures[TexID_Start_WR + i].texaddr;
-    }
 }
 
 //  This resets the texlist and variable to their original state when the task is deleted:
@@ -24,9 +22,7 @@ void BackupTexture_WR()
 void DeleteTexture_WR(task* tp)
 {
     for (uint8_t i = 0; i < LengthOfArray(TexAdd_Backup_WR); i++)
-    {
         TEXLIST_TreeTops.textures[TexID_Start_WR + i].texaddr = TexAdd_Backup_WR[i];
-    }
 
     TexID_Count_WR = TexID_Start_WR;
 }
@@ -98,17 +94,13 @@ static uint32_t TexAdd_Backup_GR[4]{ 0 };
 void BackupTexture_GR()
 {
     for (uint8_t i = 0; i < LengthOfArray(TexAdd_Backup_GR); i++)
-    {
         TexAdd_Backup_GR[i] = TEXLIST_TreeTops.textures[TexID_Start_GR + i].texaddr;
-    }
 }
 
 void DeleteTexture_GR(task* tp)
 {
     for (uint8_t i = 0; i < LengthOfArray(TexAdd_Backup_GR); i++)
-    {
         TEXLIST_TreeTops.textures[TexID_Start_GR + i].texaddr = TexAdd_Backup_GR[i];
-    }
 
     TexID_Count_GR = TexID_Start_GR;
 }

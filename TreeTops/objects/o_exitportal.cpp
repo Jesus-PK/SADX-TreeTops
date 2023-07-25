@@ -77,9 +77,7 @@ void EXEC_ExitPortal(task* tp)
         }
         
         case 1:
-        {
-            MirenObjCheckCollisionP(twp, 100.0f);
-            
+        {           
             if (CheckCollisionP(&POS_ExitTrigger, 12.0f) && CurrentCharacter == Characters_Tails)
             {
                 if (DragonCount >= 5)
@@ -118,6 +116,8 @@ void EXEC_ExitPortal(task* tp)
             }
         }
     }
+    
+    MirenObjCheckCollisionP(twp, 100.0f);
     
     tp->disp(tp);
 }
