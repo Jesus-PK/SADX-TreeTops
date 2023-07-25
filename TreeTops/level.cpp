@@ -51,11 +51,11 @@ void LANDTABLE_TreeTops()
 
 //	Load Deathzones:
 
-/*void DEATHZONES_TreeTops()
+void DEATHZONES_TreeTops()
 {
-	KillingCollisionModelsListList[LevelIDs_SkyDeck][0] = TTDeathzones;
-	KillingCollisionModelsListList[LevelIDs_SkyDeck][1] = TTDeathzones;
-}*/
+	KillingCollisionModelsListList[LevelIDs_SkyDeck][0] = TTDeathzones00;
+	KillingCollisionModelsListList[LevelIDs_SkyDeck][2] = TTDeathzones01;
+}
 
 
 //	Start Positions:

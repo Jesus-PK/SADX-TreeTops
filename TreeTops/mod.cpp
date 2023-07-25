@@ -29,7 +29,7 @@ extern "C"
 		//	Load Level Stuff:
 
 		LANDTABLE_TreeTops();
-		//DEATHZONES_TreeTops();
+		DEATHZONES_TreeTops();
 		STARTPOSITIONS_TreeTops(helperFunctions);
 		PATHS_TreeTops(helperFunctions);
 		//FILES_TreeTops(helperFunctions);
