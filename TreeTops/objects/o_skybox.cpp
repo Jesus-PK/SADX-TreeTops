@@ -20,16 +20,13 @@ void DISPLAY_TTSkybox(task* tp)
     DisableFog();
     njPushMatrix(0);
 
-    NJS_VECTOR POS_TTSkybox = { 0, 0, 0 };
-    njTranslateV(0, &POS_TTSkybox);
+    njTranslate(0, 0.0f, 0.0f, 0.0f);
     njScale(0, 20.0f, 20.0f, 20.0f);
 
     DrawModel(MDL_TTSkybox->getmodel()->basicdxmodel);
 
     njPopMatrix(1u);
     ToggleStageFog();
-
-    SetGlobalPoint2Col_Colors(0x15201A, 0x15201A, 0x15201A);
 
     Direct3D_SetNearFarPlanes(LevelDrawDistance.Minimum, LevelDrawDistance.Maximum);
 }
@@ -43,6 +40,8 @@ void EXEC_TTSkybox(task* tp)
     if (!twp->mode)
     {
         tp->disp = DISPLAY_TTSkybox;
+
+        SetGlobalPoint2Col_Colors(0x15201A, 0x15201A, 0x15201A);
         
         twp->mode++;
     }

@@ -68,16 +68,16 @@ _OBJ_ITEMENTRY OBJECTLIST_TreeTops_LIST[] = {
 	{ 2, 2, 1, 1000000.0f, 0, EXEC_BasicChest, "O BASIC CHEST"}, // ID 36
 	{ 2, 2, 1, 1000000.0f, 0, EXEC_MetalChest, "O METAL CHEST"}, // ID 37
 	{ 2, 2, 1, 1000000.0f, 0, EXEC_LifeChest, "O LIFE CHEST"}, // ID 38
-	{ 2, 2, 1, 1000000.0f, 0, EXEC_ExitPortal, "O EXIT PORTAL"}, // ID 39
-	{ 2, 2, 1, 1000000.0f, 0, EXEC_ExitText, "O EXIT TEXT"}, // ID 40
-	{ 2, 2, 1, 1000000.0f, 0, EXEC_Firewood, "O FIREWOOD"}, // ID 41
-	{ 2, 2, 1, 1000000.0f, 0, EXEC_LargeTorch, "O LARGE TORCH"}, // ID 42
-	{ 2, 2, 1, 1000000.0f, 0, EXEC_SpottedChicken, "O SPOTTED CHICKEN"}, // ID 43
-	{ 2, 2, 1, 1000000.0f, 0, EXEC_CrystalBase, "O CRYSTAL BASE"}, // ID 44
-	{ 2, 2, 1, 1000000.0f, 0, EXEC_CrystalStatue, "O CRYSTAL STATUE"}, // ID 45
-	{ 2, 2, 1, 1000000.0f, 0, EXEC_ChestKey, "O CHEST KEY"}, // ID 46
-	{ 2, 2, 1, 1000000.0f, 0, EXEC_LockedChest, "O LOCKED CHEST"}, // ID 47
-	{ 2, 2, 1, 1000000.0f, 0, EXEC_ChestLid, "O LOCKED CHEST LID"}, // ID 48
+	{ 2, 2, 1, 1000000.0f, 0, EXEC_LockedChest, "O LOCKED CHEST"}, // ID 39
+	{ 2, 2, 1, 1000000.0f, 0, EXEC_LKCLid, "O LOCKED CHEST LID"}, // ID 40
+	{ 2, 2, 1, 1000000.0f, 0, EXEC_LKCKey, "O CHEST KEY"}, // ID 41
+	{ 2, 2, 1, 1000000.0f, 0, EXEC_CrystalBase, "O CRYSTAL BASE"}, // ID 42
+	{ 2, 2, 1, 1000000.0f, 0, EXEC_CrystalStatue, "O CRYSTAL STATUE"}, // ID 43
+	{ 2, 2, 1, 1000000.0f, 0, EXEC_ExitPortal, "O EXIT PORTAL"}, // ID 44
+	{ 2, 2, 1, 1000000.0f, 0, EXEC_ExitText, "O EXIT TEXT"}, // ID 45
+	{ 2, 2, 1, 1000000.0f, 0, EXEC_Firewood, "O FIREWOOD"}, // ID 46
+	{ 2, 2, 1, 1000000.0f, 0, EXEC_LargeTorch, "O LARGE TORCH"}, // ID 47
+	{ 2, 2, 1, 1000000.0f, 0, EXEC_SpottedChicken, "O SPOTTED CHICKEN"}, // ID 48
 	{ 2, 2, 1, 1000000.0f, 0, EXEC_Spyro, "O SPYRO LEDGE"} // ID 49
 };
 

@@ -1,23 +1,24 @@
 #include "pch.h"
 
-//  Models, Collisions and Text Messages:
-
-ModelInfo* MDL_ChestKey = nullptr;
+//  Models, Collisions and Text Messages - Note: Used the acronym "LKC which stands for LocKed Chest", the Life Chest was already using the LC acronym.
 
 ModelInfo* MDL_LockedChest = nullptr;
-ModelInfo* MDL_ChestLid = nullptr;
-ModelInfo* MDL_LCKDebris01 = nullptr;
-ModelInfo* MDL_LCKDebris02 = nullptr;
-ModelInfo* MDL_LCKDebris03 = nullptr;
-ModelInfo* MDL_LCKDebris04 = nullptr;
+
+ModelInfo* MDL_LKCLid = nullptr;
+ModelInfo* MDL_LKCDebris01 = nullptr;
+ModelInfo* MDL_LKCDebris02 = nullptr;
+ModelInfo* MDL_LKCDebris03 = nullptr;
+ModelInfo* MDL_LKCDebris04 = nullptr;
 ModelInfo* MDL_Number25 = nullptr;
 
-ModelInfo* MDL_LCKColli01 = nullptr;
-ModelInfo* MDL_LCKColli02 = nullptr;
+ModelInfo* MDL_LKCKey = nullptr;
 
-CCL_INFO COLLI_ChestKey = { 0, CollisionShape_Sphere, 0xF0, 0, 0, { 0.0f, 4.625f, 0.0f }, 4.625f, 0.0f, 0.0f, 0.0f, 0, 0, 0 };
+ModelInfo* MDL_LKCColli01 = nullptr;
+ModelInfo* MDL_LKCColli02 = nullptr;
 
-NJS_VECTOR POS_LCKTrigger = { 0, 0, 0 };
+CCL_INFO COLLI_LKCKey = { 0, CollisionShape_Sphere, 0xF0, 0, 0, { 0.0f, 4.625f, 0.0f }, 4.625f, 0.0f, 0.0f, 0.0f, 0, 0, 0 };
+
+NJS_VECTOR POS_LKCTrigger = { 0, 0, 0 };
 
 const char* MSG_LockedChest[] = {
     "You need a key to open this chest!",
@@ -25,7 +26,7 @@ const char* MSG_LockedChest[] = {
 };
 
 
-//  Chest Key - Main:
+//  Locked Chest Key - Main:
 
 void KeyPickup()
 {
@@ -35,7 +36,7 @@ void KeyPickup()
     HasKey = 1;
 }
 
-void DISPLAY_ChestKey(task* tp)
+void DISPLAY_LKCKey(task* tp)
 {
     if (MissedFrames)
         return;
@@ -49,12 +50,12 @@ void DISPLAY_ChestKey(task* tp)
     njTranslateV(0, &twp->pos);
     njRotateXYZ(0, twp->ang.x, twp->ang.y, twp->ang.z);
     
-    dsDrawObject(MDL_ChestKey->getmodel());
+    dsDrawObject(MDL_LKCKey->getmodel());
     
     njPopMatrix(1u);
 }
 
-void EXEC_ChestKey(task* tp)
+void EXEC_LKCKey(task* tp)
 {
     auto twp = tp->twp;
 
@@ -67,8 +68,8 @@ void EXEC_ChestKey(task* tp)
 
             SetFlagNoRespawn(tp);
             
-            tp->disp = DISPLAY_ChestKey;
-            CCL_Init(tp, &COLLI_ChestKey, 1, 4u);
+            tp->disp = DISPLAY_LKCKey;
+            CCL_Init(tp, &COLLI_LKCKey, 1, 4u);
 
             twp->mode++;
 
@@ -101,7 +102,7 @@ void EXEC_ChestKey(task* tp)
 }
 
 
-//  Locked Chest - Main:
+//  Locked Chest Body - Main:
 
 void DISPLAY_LockedChest(task* tp)
 {
@@ -148,7 +149,7 @@ void EXEC_LockedChest(task* tp)
         object->scl[1] = 1.0f;
         object->scl[2] = 1.0f;
 
-        object->basicdxmodel = MDL_LCKColli01->getmodel()->basicdxmodel;
+        object->basicdxmodel = MDL_LKCColli01->getmodel()->basicdxmodel;
 
         RegisterCollisionEntry(ColFlags_Solid, tp, object);
 
@@ -165,7 +166,7 @@ void EXEC_LockedChest(task* tp)
 
 //  Locked Chest - Debris Pieces:
 
-void DISPLAY_LCKDebris(task* tp)
+void DISPLAY_LKCDebris(task* tp)
 {
     auto twp = tp->twp;
 
@@ -186,7 +187,7 @@ void DISPLAY_LCKDebris(task* tp)
     njPopMatrix(1);
 }
 
-void EXEC_LCKDebris(task* tp)
+void EXEC_LKCDebris(task* tp)
 {
     if (!CheckRangeOutWithR(tp, 96100.0))
     {
@@ -196,7 +197,7 @@ void EXEC_LCKDebris(task* tp)
         {
             case 0:
                 
-                tp->disp = DISPLAY_LCKDebris;
+                tp->disp = DISPLAY_LKCDebris;
                 
                 twp->mode = 1;
 
@@ -224,11 +225,11 @@ void EXEC_LCKDebris(task* tp)
     }
 }
 
-childtaskset CTS_LCKDebris[] = {
-    { EXEC_LCKDebris, 2, 0, {0}, {0}, 0 },
-    { EXEC_LCKDebris, 2, 0, {0}, {0}, 0 },
-    { EXEC_LCKDebris, 2, 0, {0}, {0}, 0 },
-    { EXEC_LCKDebris, 2, 0, {0}, {0}, 0 },
+childtaskset CTS_LKCDebris[] = {
+    { EXEC_LKCDebris, 2, 0, {0}, {0}, 0 },
+    { EXEC_LKCDebris, 2, 0, {0}, {0}, 0 },
+    { EXEC_LKCDebris, 2, 0, {0}, {0}, 0 },
+    { EXEC_LKCDebris, 2, 0, {0}, {0}, 0 },
     { 0 }
 };
 
@@ -257,7 +258,7 @@ void DISPLAY_Number25(task* tp)
 
 //  Chest Lid - Main:
 
-void SetChestOpen()
+void SetLKCOpen()
 {
     uint16_t score = 1000;
     AddEnemyScore(score);
@@ -271,7 +272,7 @@ void SetChestOpen()
     HasKey = 0;
 }
 
-void DISPLAY_ChestLid(task* tp)
+void DISPLAY_LKCLid(task* tp)
 {
     if (MissedFrames)
         return;
@@ -288,12 +289,12 @@ void DISPLAY_ChestLid(task* tp)
     njTranslateV(0, &twp->pos);
     njRotateXYZ(0, twp->ang.x, twp->ang.y, twp->ang.z);
     
-    dsDrawObject(MDL_ChestLid->getmodel());
+    dsDrawObject(MDL_LKCLid->getmodel());
     
     njPopMatrix(1u);
 }
 
-void EXEC_ChestLid(task* tp)
+void EXEC_LKCLid(task* tp)
 {
     auto twp = tp->twp;
     
@@ -308,7 +309,7 @@ void EXEC_ChestLid(task* tp)
 
             auto object = GetMobileLandObject();
 
-            tp->disp = DISPLAY_ChestLid;
+            tp->disp = DISPLAY_LKCLid;
             tp->dest = B_Destructor;
 
             // Dyncol code:
@@ -324,16 +325,16 @@ void EXEC_ChestLid(task* tp)
             object->scl[1] = 1.0f;
             object->scl[2] = 1.0f;
 
-            object->basicdxmodel = MDL_LCKColli02->getmodel()->basicdxmodel;
+            object->basicdxmodel = MDL_LKCColli02->getmodel()->basicdxmodel;
 
             RegisterCollisionEntry(ColFlags_Solid, tp, object);
 
             twp->counter.ptr = object;
 
             //  Invisible trigger location code (for the chest lock):
-            POS_LCKTrigger.x = twp->pos.x;
-            POS_LCKTrigger.y = twp->pos.y + 8.25f;
-            POS_LCKTrigger.z = twp->pos.z + 20.0f;
+            POS_LKCTrigger.x = twp->pos.x;
+            POS_LKCTrigger.y = twp->pos.y + 8.25f;
+            POS_LKCTrigger.z = twp->pos.z + 20.0f;
 
             twp->mode++;
 
@@ -342,7 +343,7 @@ void EXEC_ChestLid(task* tp)
 
         case 1:
         {
-            if (CheckCollisionP(&POS_LCKTrigger, 10.0f))
+            if (CheckCollisionP(&POS_LKCTrigger, 10.0f))
             {
                 if (HasKey == 0)
                 {
@@ -353,13 +354,13 @@ void EXEC_ChestLid(task* tp)
 
                 else
                 {
-                    SetChestOpen();
+                    SetLKCOpen();
 
                     Dead(tp);
 
                     tp->disp = DISPLAY_Number25;
 
-                    CreateChildrenTask(CTS_LCKDebris, tp);
+                    CreateChildrenTask(CTS_LKCDebris, tp);
 
                     //  Necessary functions to kill a dyncol early:
                     WithdrawCollisionEntry(tp, (NJS_OBJECT*)twp->counter.ptr);
@@ -403,23 +404,23 @@ void EXEC_ChestLid(task* tp)
 }
 
 
-//  Chest Key & Locked Chest - Load Assets:
+//  Locked Chest & Chest Key - Load Assets:
 
 void LOAD_LockedChest()
 {
-    MDL_ChestKey = LoadBasicModel("TreeTops_ChestKey");
     MDL_LockedChest = LoadBasicModel("TreeTops_LockedChest");
-    MDL_ChestLid = LoadBasicModel("TreeTops_ChestLid");
-    MDL_LCKDebris01 = LoadBasicModel("TreeTops_LCKDebris01");
-    MDL_LCKDebris02 = LoadBasicModel("TreeTops_LCKDebris02");
-    MDL_LCKDebris03 = LoadBasicModel("TreeTops_LCKDebris03");
-    MDL_LCKDebris04 = LoadBasicModel("TreeTops_LCKDebris04");
+    MDL_LKCLid = LoadBasicModel("TreeTops_LKCLid");
+    MDL_LKCDebris01 = LoadBasicModel("TreeTops_LKCDebris01");
+    MDL_LKCDebris02 = LoadBasicModel("TreeTops_LKCDebris02");
+    MDL_LKCDebris03 = LoadBasicModel("TreeTops_LKCDebris03");
+    MDL_LKCDebris04 = LoadBasicModel("TreeTops_LKCDebris04");
     MDL_Number25 = LoadBasicModel("TreeTops_Number25");
-    MDL_LCKColli01 = LoadBasicModel("TreeTops_LCKColli01");
-    MDL_LCKColli02 = LoadBasicModel("TreeTops_LCKColli02");
+    MDL_LKCKey = LoadBasicModel("TreeTops_LKCKey");
+    MDL_LKCColli01 = LoadBasicModel("TreeTops_LKCColli01");
+    MDL_LKCColli02 = LoadBasicModel("TreeTops_LKCColli02");
 
-    CTS_LCKDebris[0].ptr = MDL_LCKDebris01->getmodel();
-    CTS_LCKDebris[1].ptr = MDL_LCKDebris02->getmodel();
-    CTS_LCKDebris[2].ptr = MDL_LCKDebris03->getmodel();
-    CTS_LCKDebris[3].ptr = MDL_LCKDebris04->getmodel();
+    CTS_LKCDebris[0].ptr = MDL_LKCDebris01->getmodel();
+    CTS_LKCDebris[1].ptr = MDL_LKCDebris02->getmodel();
+    CTS_LKCDebris[2].ptr = MDL_LKCDebris03->getmodel();
+    CTS_LKCDebris[3].ptr = MDL_LKCDebris04->getmodel();
 }
