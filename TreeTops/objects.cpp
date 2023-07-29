@@ -70,7 +70,7 @@ _OBJ_ITEMENTRY OBJECTLIST_TreeTops_LIST[] = {
 	{ 2, 2, 1, 1000000.0f, 0, EXEC_LifeChest, "O LIFE CHEST"}, // ID 38
 	{ 2, 2, 1, 1000000.0f, 0, EXEC_LockedChest, "O LOCKED CHEST"}, // ID 39
 	{ 2, 2, 1, 1000000.0f, 0, EXEC_LKCLid, "O LOCKED CHEST LID"}, // ID 40
-	{ 2, 2, 1, 1000000.0f, 0, EXEC_LKCKey, "O CHEST KEY"}, // ID 41
+	{ 2, 2, 1, 1000000.0f, 0, EXEC_LKCKey, "O LOCKED CHEST KEY"}, // ID 41
 	{ 2, 2, 1, 1000000.0f, 0, EXEC_CrystalBase, "O CRYSTAL BASE"}, // ID 42
 	{ 2, 2, 1, 1000000.0f, 0, EXEC_CrystalStatue, "O CRYSTAL STATUE"}, // ID 43
 	{ 2, 2, 1, 1000000.0f, 0, EXEC_ExitPortal, "O EXIT PORTAL"}, // ID 44
