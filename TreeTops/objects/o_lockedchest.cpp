@@ -332,9 +332,9 @@ void EXEC_LKCLid(task* tp)
             twp->counter.ptr = object;
 
             //  Invisible trigger location code (for the chest lock):
-            POS_LKCTrigger.x = twp->pos.x;
+            POS_LKCTrigger.x = twp->pos.x + njSin(twp->ang.y) * 20.0f;
             POS_LKCTrigger.y = twp->pos.y + 8.25f;
-            POS_LKCTrigger.z = twp->pos.z + 20.0f;
+            POS_LKCTrigger.z = twp->pos.z + njCos(twp->ang.y) * 20.0f;
 
             twp->mode++;
 
