@@ -5,7 +5,7 @@
 extern bool HD_GUI;
 extern bool DC_Conversion;
 extern bool Lantern_Engine;
-extern bool Da_Wabbit;
+extern bool SA1_Cream;
 
 void CheckActiveMods(const HelperFunctions& helperFunctions);
 

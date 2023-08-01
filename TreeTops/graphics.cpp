@@ -1,37 +1,92 @@
 #include "pch.h"
 
+//  Stage Names:
+
+#define ReplaceTex(pvm, pvr, folder, pngname, gbix, x, y) helperFunctions.ReplaceTexture(pvm, pvr, (std::string(path) + "\\textures\\" folder "\\" pngname ".png").c_str(), gbix, x, y);
+
+void STAGENAMES_TreeTops(const char* path, const HelperFunctions& helperFunctions)
+{
+    if (!HD_GUI)
+    {
+        ReplaceTex("AVA_STNAM", "TX_ST11", "StageNames", "SD_SpeedTree", 365041, 128, 16);
+        ReplaceTex("AVA_STNAM_E", "TX_ST11_e", "StageNames", "SD_TreeTops", 10000419, 128, 16);
+    }    
+
+    else
+    {
+        ReplaceTex("AVA_STNAM", "TX_ST11", "StageNames", "HD_SpeedTree", 365041, 128, 16);
+        ReplaceTex("AVA_STNAM_E", "TX_ST11_e", "StageNames", "HD_TreeTops", 10000419, 128, 16);
+    }  
+}
+
+
 //	TitleCards:
 
-#define	ReplaceTitleCard(a) do { \
-		_snprintf_s(pathbuf, LengthOfArray(pathbuf), "%s\\textures\\TitleCards\\index.txt", path); \
-		helperFunctions.ReplaceFile("system\\" a ".PVR", pathbuf); \
-} while (0)
+#define ReplaceTitleCard_SD(a) _snprintf_s(pathbuf, LengthOfArray(pathbuf), "%s\\textures\\TitleCards_SD\\index.txt", path); \
+        helperFunctions.ReplaceFile("system\\" a ".PVR", pathbuf);
 
-#define	ReplaceTitleCard_Wabbit(a) do { \
-		_snprintf_s(pathbuf, LengthOfArray(pathbuf), "%s\\textures\\TitleCards_C\\index.txt", path); \
-		helperFunctions.ReplaceFile("system\\" a ".PVR", pathbuf); \
-} while (0)
+#define ReplaceCreamCard_SD(a) _snprintf_s(pathbuf, LengthOfArray(pathbuf), "%s\\textures\\TitleCards_SD\\Cream_SD\\index.txt", path); \
+        helperFunctions.ReplaceFile("system\\" a ".PVR", pathbuf);
+
+#define ReplaceTitleCard_HD(a) _snprintf_s(pathbuf, LengthOfArray(pathbuf), "%s\\textures\\TitleCards_HD\\index.txt", path); \
+        helperFunctions.ReplaceFile("system\\" a ".PVR", pathbuf);
+
+#define ReplaceCreamCard_HD(a) _snprintf_s(pathbuf, LengthOfArray(pathbuf), "%s\\textures\\TitleCards_HD\\Cream_HD\\index.txt", path); \
+        helperFunctions.ReplaceFile("system\\" a ".PVR", pathbuf);
 
 void TITLECARDS_TreeTops(const char* path, const HelperFunctions & helperFunctions)
 {
 	char pathbuf[MAX_PATH];
 
-	ReplaceTitleCard("S_STAGE08");
-	ReplaceTitleCard("S_STAGE08_E");
-    
-	ReplaceTitleCard("K_STAGE05");
-	ReplaceTitleCard("K_STAGE05_E");
-
-    if (!Da_Wabbit)
+    if (!HD_GUI)
     {
-        ReplaceTitleCard("M_STAGE04");
-        ReplaceTitleCard("M_STAGE04_E");
-    }
+        ReplaceTitleCard_SD("S_STAGE08");
+        ReplaceTitleCard_SD("S_STAGE08_E");
+        ReplaceTitleCard_SD("K_STAGE05");
+        ReplaceTitleCard_SD("K_STAGE05_E");
 
+        ReplaceTitleCard_SD("S_STAGE08_DC");
+        ReplaceTitleCard_SD("S_STAGE08_E_DC");
+        ReplaceTitleCard_SD("K_STAGE05_DC");
+        ReplaceTitleCard_SD("K_STAGE05_E_DC");
+
+        if (!SA1_Cream)
+        {
+            ReplaceTitleCard_SD("M_STAGE04");
+            ReplaceTitleCard_SD("M_STAGE04_E");
+            
+            ReplaceTitleCard_SD("M_STAGE04_DC");
+            ReplaceTitleCard_SD("M_STAGE04_E_DC");
+        }
+
+        else
+        {
+            ReplaceCreamCard_SD("M_STAGE04");
+            ReplaceCreamCard_SD("M_STAGE04_E");
+
+            ReplaceCreamCard_SD("M_STAGE04_DC");
+            ReplaceCreamCard_SD("M_STAGE04_E_DC");
+        }
+    }
+    
     else
     {
-        ReplaceTitleCard_Wabbit("M_STAGE04");
-        ReplaceTitleCard_Wabbit("M_STAGE04_E");
+        ReplaceTitleCard_HD("S_STAGE08");
+        ReplaceTitleCard_HD("S_STAGE08_E");
+        ReplaceTitleCard_HD("K_STAGE05");
+        ReplaceTitleCard_HD("K_STAGE05_E");
+
+        if (!SA1_Cream)
+        {
+            ReplaceTitleCard_HD("M_STAGE04");
+            ReplaceTitleCard_HD("M_STAGE04_E");
+        }
+
+        else
+        {
+            ReplaceCreamCard_HD("M_STAGE04");
+            ReplaceCreamCard_HD("M_STAGE04_E");
+        }
     }
 }
 

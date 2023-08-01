@@ -51,8 +51,9 @@ extern "C"
 		LANTERN_TreeTops();
 		
 		
-		//	Load TitleCards and Mission Cards:
+		//	Load StageNames, TitleCards and Mission Cards:
 
+		STAGENAMES_TreeTops(path, helperFunctions);
 		TITLECARDS_TreeTops(path, helperFunctions);
 		MISSIONCARDS_TreeTops();
 
