@@ -1,5 +1,20 @@
 #include "pch.h"
 
+//	Bools and code to check if certain mods are enabled / disabled:
+
+bool HD_GUI = false;
+bool DC_Conversion = false;
+bool Lantern_Engine = false;
+bool Da_Wabbit = false;
+
+void CheckActiveMods(const HelperFunctions& helperFunctions)
+{
+	HD_GUI = helperFunctions.Mods->find("sadx-hd-gui") != nullptr; // This needs to be called in the Init (or in a function that will be called in the Init like this), "Find" checks if the modID is present - Remember that != means "Not equal" (If HD_GUI is not nullptr)
+	DC_Conversion = helperFunctions.Mods->find("sadx-dreamcast-conversion") != nullptr;
+	Lantern_Engine = helperFunctions.Mods->find_by_dll(GetModuleHandle(L"sadx-dc-lighting")) != nullptr; // Due to Lantern Engine not having a ModID (yet), I'm finding it via it's .dll
+	Da_Wabbit = helperFunctions.Mods->find_by_dll(GetModuleHandle(L"CreamtheRabbit(SA1-Style)")) != nullptr;
+}
+
 //	Necessary functions to make LoadBasicModel work - You need to have an extern "HelperFunctions HelperFunctionsGlobal;" in a header and also #include ModelInfo.h to this current file (or in pch.h) and add ModelInfo.cpp to your source files:
 
 ModelInfo* LoadBasicModel(const char* name)

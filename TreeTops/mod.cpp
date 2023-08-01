@@ -10,6 +10,11 @@ extern "C"
 
 		HelperFunctionsGlobal = helperFunctions;
 
+		
+		//	Check Active Mods:
+
+		CheckActiveMods(helperFunctions);
+
 
 		//	Disable DC Conversion Sky Deck:
 

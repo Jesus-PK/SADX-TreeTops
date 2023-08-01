@@ -1,5 +1,14 @@
 #pragma once
 
+//	Bools and code to check if certain mods are enabled / disabled:
+
+extern bool HD_GUI;
+extern bool DC_Conversion;
+extern bool Lantern_Engine;
+extern bool Da_Wabbit;
+
+void CheckActiveMods(const HelperFunctions& helperFunctions);
+
 //	Functions to load/replace models and animations:
 
 ModelInfo* LoadBasicModel(const char* name);

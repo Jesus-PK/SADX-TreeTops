@@ -66,14 +66,11 @@ const char* RegisterLevelLight(int32_t level, int32_t act)
 
 //	Load custom Lantern Engine files and error message:
 
-bool Lantern_DLL = false;
 static int LanternErrorMessageTimer = 500;
 
 void LANTERN_TreeTops()
 {
-	Lantern_DLL = GetModuleHandle(L"sadx-dc-lighting") != NULL; // This needs to be called in the Init (or in a function that will be called in the Init like this), it checks if Lantern Engine .DLL is loaded - != means Not equal.
-
-	if (Lantern_DLL) // We check if Lantern Engine is loaded, this is important because if we try to call an API function without doing this check, the game will crash.
+	if (Lantern_Engine) // We check if Lantern Engine is loaded, this is important because if we try to call an API function without doing this check, the game will crash.
 	{
 		pl_load_register(RegisterLevelPalette); // This is an API function from Lantern Engine, it registers a custom PL file we specified in the function we made (RegisterLevelPalette)
 		sl_load_register(RegisterLevelLight); // This is an API function from Lantern Engine, it registers a custom SL file we specified in the function we made (RegisterLevelLight)
@@ -82,7 +79,7 @@ void LANTERN_TreeTops()
 
 void LANTERNERROR_TreeTops()
 {
-	if (CurrentLevel == LevelIDs_SkyDeck && !Lantern_DLL && LanternErrorMessageTimer)
+	if (CurrentLevel == LevelIDs_SkyDeck && !Lantern_Engine && LanternErrorMessageTimer)
 	{
 		SetDebugFontSize(Uint16(10.0f * (float)VerticalResolution / 480.0f));
 		SetDebugFontColor(0xFFBFBFBF);

@@ -16,15 +16,13 @@ void TITLECARDS_TreeTops(const char* path, const HelperFunctions & helperFunctio
 {
 	char pathbuf[MAX_PATH];
 
-    HMODULE DLL_daWabbit = GetModuleHandle(L"CreamtheRabbit(SA1-Style)");
-
 	ReplaceTitleCard("S_STAGE08");
 	ReplaceTitleCard("S_STAGE08_E");
     
 	ReplaceTitleCard("K_STAGE05");
 	ReplaceTitleCard("K_STAGE05_E");
 
-    if (DLL_daWabbit == nullptr)
+    if (!Da_Wabbit)
     {
         ReplaceTitleCard("M_STAGE04");
         ReplaceTitleCard("M_STAGE04_E");
