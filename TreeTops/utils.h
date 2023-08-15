@@ -1,6 +1,6 @@
 #pragma once
 
-//	Bools and code to check if certain mods are enabled / disabled:
+//	Bools and code to check if certain mods are enabled / disabled & Mod Loader API version check:
 
 extern bool HD_GUI;
 extern bool DC_Conversion;
@@ -8,6 +8,9 @@ extern bool Lantern_Engine;
 extern bool SA1_Cream;
 
 void CheckActiveMods(const HelperFunctions& helperFunctions);
+
+void CheckModLoaderVersion(const HelperFunctions& helperFunctions);
+
 
 //	Functions to load/replace models and animations:
 

@@ -11,10 +11,10 @@ extern "C"
 		HelperFunctionsGlobal = helperFunctions;
 
 		
-		//	Check Active Mods:
+		//	Check Active Mods and Mod Loader API Version:
 
 		CheckActiveMods(helperFunctions);
-
+		CheckModLoaderVersion(helperFunctions);
 
 		//	Disable DC Conversion Sky Deck:
 
@@ -55,6 +55,8 @@ extern "C"
 
 		STAGENAMES_TreeTops(path, helperFunctions);
 		TITLECARDS_TreeTops(path, helperFunctions);
+		//MULTITHUMBNAILS_TreeTops(path, helperFunctions);
+		//STAGECREDITS_TreeTops(path, helperFunctions);
 		MISSIONCARDS_TreeTops();
 
 		

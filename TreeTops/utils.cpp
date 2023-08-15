@@ -1,6 +1,6 @@
 #include "pch.h"
 
-//	Bools and code to check if certain mods are enabled / disabled:
+//	Bools and code to check if certain mods are enabled / disabled - Also a function to check for the Mod Loader API version, useful since I'm using the latest API functionalities:
 
 bool HD_GUI = false;
 bool DC_Conversion = false;
@@ -15,6 +15,17 @@ void CheckActiveMods(const HelperFunctions& helperFunctions)
 	Lantern_Engine = GetModuleHandle(L"sadx-dc-lighting") != nullptr;
 	SA1_Cream = GetModuleHandle(L"CreamtheRabbit(SA1-Style)") != nullptr;
 }
+
+void CheckModLoaderVersion(const HelperFunctions& helperFunctions)
+{
+	if (helperFunctions.Version < 16)
+	{
+		MessageBox(WindowHandle,
+			L"ERROR! Your version of the Mod Loader doesn't support API Version 16.\n\nThis will make some functionalities of the mod not available.\n\nPlease exit the game and update the Mod Loader for the best experience.",
+			L"Tree Tops Error: Mod Loader Out of Date", MB_OK | MB_ICONERROR);
+	}
+}
+
 
 //	Necessary functions to make LoadBasicModel work - You need to have an extern "HelperFunctions HelperFunctionsGlobal;" in a header and also #include ModelInfo.h to this current file (or in pch.h) and add ModelInfo.cpp to your source files:
 
