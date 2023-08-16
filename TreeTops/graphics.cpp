@@ -138,31 +138,73 @@ void STAGECREDITS_TreeTops(const char* path, const HelperFunctions& helperFuncti
 
 //	Mission Cards:
 
-NJS_TEXNAME TEX_TTMission[12] = { 0 };
+NJS_TEXNAME TEX_TTMission[36] = { 0 };
 
 DataPointer(NJS_TEXANIM, MissionSpriteAnim, 0x917784);
 
 FunctionHook<void> MissionCard_Result_t(0x457BB0);
 FunctionHook<void> LoadMissionImage_t(0x457450);
 
+//  This function is the one that will check for the current character and Rank you are playing, so they can show the proper MissionCard. It's separated into two functions (HD and SD) that I call via a HD_GUI check. There's also a language check inside each one to show EN or JP cards.
+//  GetLevelEmblemCollected checks the SaveData, CurrentChar, Level and the current Mission Rank, it's used on the GetMissionType(0x4575D0) function - Originally I tried using the int results of this function but I wasn't able to get it working as I wanted, so I ended doing my custom one following how the original function was made in IDA.
+//  Might be worth looking into why that didn't worked, but tbh I think it's better that I created a custom one since this lets me show a MissionCard when every rank is completed (Vanilla just returns a negative value to not show any card).
 
-void HD_MissionTypeCheck()
+static int character;
+
+void HD_MissionTypeCheck(int character)
 {
+    character = GetPlayerNumber();
+    
     if (Language != JAPANESE) // Use an "if it isn't JP" so the EN MissionCards work if other languages are selected.
     {
         switch (CurrentCharacter) // Sets the value to be compared, it's the X in a (if (X == Y)) for example.
         {
             case Characters_Sonic: // Case is to be compared to, it's the Y in a (if (X == Y)) for example. The way this is written also means Sonic and the Default match.
-            default: // This is where the checks will default to if it doesn't match any existing values. in this case, anyone who isn't Tails or Knuckles would end up here.                
-                MissionSpriteAnim.texid = 0;
-                break; // Breaks out of the switch case. You can skip having one of these, and it'll mean it falls into the next case to process more code.
             
-            case Characters_Tails:                
-                MissionSpriteAnim.texid = 1;               
+                if (GetLevelEmblemCollected((SaveFileData*)&SaveData, character, LevelIDs_SkyDeck, 0)) // After A-Rank Completion.
+                    MissionSpriteAnim.texid = 0;
+
+                else if (GetLevelEmblemCollected((SaveFileData*)&SaveData, character, LevelIDs_SkyDeck, 1)) // A-Rank Card.
+                    MissionSpriteAnim.texid = 2;
+
+                else if (GetLevelEmblemCollected((SaveFileData*)&SaveData, character, LevelIDs_SkyDeck, 2)) // B-Rank Card.
+                    MissionSpriteAnim.texid = 1;
+
+                else // C-Rank Card.
+                    MissionSpriteAnim.texid = 0;
+
                 break;
-            
-            case Characters_Knuckles:                
-                MissionSpriteAnim.texid = 2;               
+
+            case Characters_Tails:
+
+                if (GetLevelEmblemCollected((SaveFileData*)&SaveData, character, LevelIDs_SkyDeck, 0))
+                    MissionSpriteAnim.texid = 3;
+
+                else if (GetLevelEmblemCollected((SaveFileData*)&SaveData, character, LevelIDs_SkyDeck, 1))
+                    MissionSpriteAnim.texid = 5;
+
+                else if (GetLevelEmblemCollected((SaveFileData*)&SaveData, character, LevelIDs_SkyDeck, 2))
+                    MissionSpriteAnim.texid = 4;
+
+                else
+                    MissionSpriteAnim.texid = 3;
+
+                break;
+
+            case Characters_Knuckles:
+
+                if (GetLevelEmblemCollected((SaveFileData*)&SaveData, character, LevelIDs_SkyDeck, 0))
+                    MissionSpriteAnim.texid = 6;
+
+                else if (GetLevelEmblemCollected((SaveFileData*)&SaveData, character, LevelIDs_SkyDeck, 1))
+                    MissionSpriteAnim.texid = 8;
+
+                else if (GetLevelEmblemCollected((SaveFileData*)&SaveData, character, LevelIDs_SkyDeck, 2))
+                    MissionSpriteAnim.texid = 7;
+
+                else
+                    MissionSpriteAnim.texid = 6;
+
                 break;
         }
     }
@@ -171,39 +213,111 @@ void HD_MissionTypeCheck()
     {
         switch (CurrentCharacter)
         {
-            case Characters_Sonic:            
-            default:                
-                MissionSpriteAnim.texid = 3;                
-                break;
+            case Characters_Sonic:
             
-            case Characters_Tails:                
-                MissionSpriteAnim.texid = 4;                
+                if (GetLevelEmblemCollected((SaveFileData*)&SaveData, character, LevelIDs_SkyDeck, 0))
+                    MissionSpriteAnim.texid = 9;
+
+                else if (GetLevelEmblemCollected((SaveFileData*)&SaveData, character, LevelIDs_SkyDeck, 1))
+                    MissionSpriteAnim.texid = 11;
+
+                else if (GetLevelEmblemCollected((SaveFileData*)&SaveData, character, LevelIDs_SkyDeck, 2))
+                    MissionSpriteAnim.texid = 10;
+
+                else
+                    MissionSpriteAnim.texid = 9;
+
                 break;
-            
-            case Characters_Knuckles:                
-                MissionSpriteAnim.texid = 5;               
+
+            case Characters_Tails:
+
+                if (GetLevelEmblemCollected((SaveFileData*)&SaveData, character, LevelIDs_SkyDeck, 0))
+                    MissionSpriteAnim.texid = 12;
+
+                else if (GetLevelEmblemCollected((SaveFileData*)&SaveData, character, LevelIDs_SkyDeck, 1))
+                    MissionSpriteAnim.texid = 14;
+
+                else if (GetLevelEmblemCollected((SaveFileData*)&SaveData, character, LevelIDs_SkyDeck, 2))
+                    MissionSpriteAnim.texid = 13;
+
+                else
+                    MissionSpriteAnim.texid = 12;
+
+                break;
+
+            case Characters_Knuckles:
+
+                if (GetLevelEmblemCollected((SaveFileData*)&SaveData, character, LevelIDs_SkyDeck, 0))
+                    MissionSpriteAnim.texid = 15;
+
+                else if (GetLevelEmblemCollected((SaveFileData*)&SaveData, character, LevelIDs_SkyDeck, 1))
+                    MissionSpriteAnim.texid = 17;
+
+                else if (GetLevelEmblemCollected((SaveFileData*)&SaveData, character, LevelIDs_SkyDeck, 2))
+                    MissionSpriteAnim.texid = 16;
+
+                else
+                    MissionSpriteAnim.texid = 15;
+
                 break;
         }
     }
 }
 
-void SD_MissionTypeCheck()
+void SD_MissionTypeCheck(int character)
 {
+    character = GetPlayerNumber();
+    
     if (Language != JAPANESE)
     {
         switch (CurrentCharacter)
         {
             case Characters_Sonic:
-            default:                
-                MissionSpriteAnim.texid = 6;
-                break;
             
-            case Characters_Tails:                
-                MissionSpriteAnim.texid = 7;               
+                if (GetLevelEmblemCollected((SaveFileData*)&SaveData, character, LevelIDs_SkyDeck, 0))
+                    MissionSpriteAnim.texid = 18;
+
+                else if (GetLevelEmblemCollected((SaveFileData*)&SaveData, character, LevelIDs_SkyDeck, 1))
+                    MissionSpriteAnim.texid = 20;
+
+                else if (GetLevelEmblemCollected((SaveFileData*)&SaveData, character, LevelIDs_SkyDeck, 2))
+                    MissionSpriteAnim.texid = 19;
+
+                else
+                    MissionSpriteAnim.texid = 18;
+
                 break;
-            
-            case Characters_Knuckles:                
-                MissionSpriteAnim.texid = 8;               
+
+            case Characters_Tails:
+
+                if (GetLevelEmblemCollected((SaveFileData*)&SaveData, character, LevelIDs_SkyDeck, 0))
+                    MissionSpriteAnim.texid = 21;
+
+                else if (GetLevelEmblemCollected((SaveFileData*)&SaveData, character, LevelIDs_SkyDeck, 1))
+                    MissionSpriteAnim.texid = 23;
+
+                else if (GetLevelEmblemCollected((SaveFileData*)&SaveData, character, LevelIDs_SkyDeck, 2))
+                    MissionSpriteAnim.texid = 22;
+
+                else
+                    MissionSpriteAnim.texid = 21;
+
+                break;
+
+            case Characters_Knuckles:
+
+                if (GetLevelEmblemCollected((SaveFileData*)&SaveData, character, LevelIDs_SkyDeck, 0))
+                    MissionSpriteAnim.texid = 24;
+
+                else if (GetLevelEmblemCollected((SaveFileData*)&SaveData, character, LevelIDs_SkyDeck, 1))
+                    MissionSpriteAnim.texid = 26;
+
+                else if (GetLevelEmblemCollected((SaveFileData*)&SaveData, character, LevelIDs_SkyDeck, 2))
+                    MissionSpriteAnim.texid = 25;
+
+                else
+                    MissionSpriteAnim.texid = 24;
+
                 break;
         }
     }
@@ -212,22 +326,56 @@ void SD_MissionTypeCheck()
     {
         switch (CurrentCharacter)
         {
-            case Characters_Sonic:            
-            default:                
-                MissionSpriteAnim.texid = 9;                
-                break;
+            case Characters_Sonic:
             
-            case Characters_Tails:                
-                MissionSpriteAnim.texid = 10;                
+                if (GetLevelEmblemCollected((SaveFileData*)&SaveData, character, LevelIDs_SkyDeck, 0))
+                    MissionSpriteAnim.texid = 27;
+
+                else if (GetLevelEmblemCollected((SaveFileData*)&SaveData, character, LevelIDs_SkyDeck, 1))
+                    MissionSpriteAnim.texid = 29;
+
+                else if (GetLevelEmblemCollected((SaveFileData*)&SaveData, character, LevelIDs_SkyDeck, 2))
+                    MissionSpriteAnim.texid = 28;
+
+                else
+                    MissionSpriteAnim.texid = 27;
+
                 break;
-            
-            case Characters_Knuckles:                
-                MissionSpriteAnim.texid = 11;               
+
+            case Characters_Tails:
+
+                if (GetLevelEmblemCollected((SaveFileData*)&SaveData, character, LevelIDs_SkyDeck, 0))
+                    MissionSpriteAnim.texid = 30;
+
+                else if (GetLevelEmblemCollected((SaveFileData*)&SaveData, character, LevelIDs_SkyDeck, 1))
+                    MissionSpriteAnim.texid = 32;
+
+                else if (GetLevelEmblemCollected((SaveFileData*)&SaveData, character, LevelIDs_SkyDeck, 2))
+                    MissionSpriteAnim.texid = 31;
+
+                else
+                    MissionSpriteAnim.texid = 30;
+
+                break;
+
+            case Characters_Knuckles:
+
+                if (GetLevelEmblemCollected((SaveFileData*)&SaveData, character, LevelIDs_SkyDeck, 0))
+                    MissionSpriteAnim.texid = 33;
+
+                else if (GetLevelEmblemCollected((SaveFileData*)&SaveData, character, LevelIDs_SkyDeck, 1))
+                    MissionSpriteAnim.texid = 35;
+
+                else if (GetLevelEmblemCollected((SaveFileData*)&SaveData, character, LevelIDs_SkyDeck, 2))
+                    MissionSpriteAnim.texid = 34;
+
+                else
+                    MissionSpriteAnim.texid = 33;
+
                 break;
         }
     }
 }
-
 
 void MissionCard_Result_r()
 {
@@ -244,10 +392,10 @@ void MissionCard_Result_r()
     LoadPVM("TreeTops_MissionCards", &StageMissionTexlist);
     
     if (HD_GUI)
-        HD_MissionTypeCheck();
+        HD_MissionTypeCheck(character);
 
     else
-        SD_MissionTypeCheck();
+        SD_MissionTypeCheck(character);
 
     task* tp = CreateElementalTask(LoadObj_Data1, 6, (TaskFuncPtr)0x457B60);
     
@@ -275,10 +423,10 @@ void LoadMissionImage_r()
     LoadPVM("TreeTops_MissionCards", &StageMissionTexlist);
     
     if (HD_GUI)
-        HD_MissionTypeCheck();
+        HD_MissionTypeCheck(character);
 
     else
-        SD_MissionTypeCheck();
+        SD_MissionTypeCheck(character);
 
     task* task = CreateElementalTask(LoadObj_Data1, 6, (TaskFuncPtr)0x457B60);
     

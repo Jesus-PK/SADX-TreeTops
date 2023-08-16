@@ -106,3 +106,110 @@ void FILES_TreeTops(const HelperFunctions& helperFunctions)
 
 	helperFunctions.ReplaceFile("system\\sounddata\\bgm\\wma\\skydeck1.wma", "system\\OST_TreeTops.adx");
 }
+
+
+//	Rank Requirements:
+
+FunctionHook<bool, int, int, int> CheckMissionRequirements_t(0x426AA0);
+
+bool CheckMissionRequirements_r(int a1, int a2, int a3)
+{
+	if (CurrentLevel != LevelIDs_SkyDeck)
+    {
+        return CheckMissionRequirements_t.Original(a1, a2, a3);
+    }
+
+	a3 = GetPlayerNumber();
+	
+	switch (CurrentCharacter)
+	{
+		case Characters_Sonic:
+
+			if (GetLevelEmblemCollected((SaveFileData*)&SaveData, a3, LevelIDs_SkyDeck, 0)) // After A-Rank Completion.
+				return 1;
+
+			else if (GetLevelEmblemCollected((SaveFileData*)&SaveData, a3, LevelIDs_SkyDeck, 1))
+			{
+				if (Rings >= 20)
+					return 1;
+
+				else
+					return 0;
+			}
+
+			else if (GetLevelEmblemCollected((SaveFileData*)&SaveData, a3, LevelIDs_SkyDeck, 2))
+			{
+				if (Rings >= 5)
+					return 1;
+
+				else
+					return 0;
+			}
+
+			else
+				return 1;
+
+			break;
+
+		case Characters_Tails:
+
+			if (GetLevelEmblemCollected((SaveFileData*)&SaveData, a3, LevelIDs_SkyDeck, 0))
+				return 1;
+
+			else if (GetLevelEmblemCollected((SaveFileData*)&SaveData, a3, LevelIDs_SkyDeck, 1))
+			{
+				if (Rings >= 25)
+					return 1;
+
+				else
+					return 0;
+			}
+
+			else if (GetLevelEmblemCollected((SaveFileData*)&SaveData, a3, LevelIDs_SkyDeck, 2))
+			{
+				if (Rings >= 10)
+					return 1;
+
+				else
+					return 0;
+			}
+
+			else
+				return 1;
+
+			break;
+
+		case Characters_Knuckles:
+
+			if (GetLevelEmblemCollected((SaveFileData*)&SaveData, a3, LevelIDs_SkyDeck, 0))
+				return 1;
+
+			else if (GetLevelEmblemCollected((SaveFileData*)&SaveData, a3, LevelIDs_SkyDeck, 1))
+			{
+				if (Rings >= 30)
+					return 1;
+
+				else
+					return 0;
+			}
+
+			else if (GetLevelEmblemCollected((SaveFileData*)&SaveData, a3, LevelIDs_SkyDeck, 2))
+			{
+				if (Rings >= 15)
+					return 1;
+
+				else
+					return 0;
+			}
+
+			else
+				return 1;
+
+			break;
+	}
+}
+
+void Ranks()
+{
+	CheckMissionRequirements_t.Hook(CheckMissionRequirements_r);
+}

@@ -38,6 +38,7 @@ extern "C"
 		STARTPOSITIONS_TreeTops(helperFunctions);
 		PATHS_TreeTops(helperFunctions);
 		//FILES_TreeTops(helperFunctions);
+		Ranks();
 
 
 		//	Load Object Assets - Load Object List and Texture List:
