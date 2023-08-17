@@ -11,4 +11,4 @@ void STARTPOSITIONS_TreeTops(const HelperFunctions& helperFunctions);
 void PATHS_TreeTops(const HelperFunctions& helperFunctions);
 void FILES_TreeTops(const HelperFunctions& helperFunctions);
 
-void Ranks();
+void INIT_LevelRanks();

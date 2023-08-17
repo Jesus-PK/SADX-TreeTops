@@ -108,108 +108,98 @@ void FILES_TreeTops(const HelperFunctions& helperFunctions)
 }
 
 
-//	Rank Requirements:
+//	Level Ranks:
 
-FunctionHook<bool, int, int, int> CheckMissionRequirements_t(0x426AA0);
+Trampoline* chckmission_t = nullptr;
 
-bool CheckMissionRequirements_r(int a1, int a2, int a3)
+//	ASM function that calls the original function:
+static inline _BOOL1 CheckMissionRequirements_origin(int a1, int a2, int a3)
 {
-	if (CurrentLevel != LevelIDs_SkyDeck)
+    auto target = chckmission_t->Target();
+    _BOOL1 result;
+
+    __asm
     {
-        return CheckMissionRequirements_t.Original(a1, a2, a3);
+        mov ecx, [a3]
+        mov edx, [a2]
+        mov eax, [a1]
+        call target
+        mov result, al
     }
 
-	a3 = GetPlayerNumber();
-	
+    return result;
+}
+
+//	__cdecl function where you put your edits:
+_BOOL1 __cdecl CheckMissionRequirements_r(int a1, int a2, int a3)
+{
+	if (CurrentLevel != LevelIDs_SkyDeck)
+		return CheckMissionRequirements_origin(a1, a2, a3);
+    
+	int time;
+	time = TimeFrames + 60 * (TimeSeconds + 60 * TimeMinutes);
+
 	switch (CurrentCharacter)
 	{
 		case Characters_Sonic:
 
-			if (GetLevelEmblemCollected((SaveFileData*)&SaveData, a3, LevelIDs_SkyDeck, 0)) // After A-Rank Completion.
-				return 1;
+			if (GetLevelEmblemCollected((SaveFileData*)&SaveData, Characters_Sonic, LevelIDs_SkyDeck, 1)) // Rank A
+				return Rings >= 250 && time < 10800 ? 1 : 0; //	Finish in less than 3 minutes while having at least 250 rings.
 
-			else if (GetLevelEmblemCollected((SaveFileData*)&SaveData, a3, LevelIDs_SkyDeck, 1))
-			{
-				if (Rings >= 20)
-					return 1;
+			else if (GetLevelEmblemCollected((SaveFileData*)&SaveData, Characters_Sonic, LevelIDs_SkyDeck, 2)) // Rank B
+				return Rings >= 250 ? 1 : 0; // if Rings >= 250 -> return 1 : else return 0
 
-				else
-					return 0;
-			}
-
-			else if (GetLevelEmblemCollected((SaveFileData*)&SaveData, a3, LevelIDs_SkyDeck, 2))
-			{
-				if (Rings >= 5)
-					return 1;
-
-				else
-					return 0;
-			}
-
-			else
+			else // Rank C
 				return 1;
 
 			break;
 
 		case Characters_Tails:
 
-			if (GetLevelEmblemCollected((SaveFileData*)&SaveData, a3, LevelIDs_SkyDeck, 0))
-				return 1;
+			if (GetLevelEmblemCollected((SaveFileData*)&SaveData, Characters_Tails, LevelIDs_SkyDeck, 1)) // Rank A
+				return time < 3600 ? 1 : 0; // Finish in less than 1 minute.
 
-			else if (GetLevelEmblemCollected((SaveFileData*)&SaveData, a3, LevelIDs_SkyDeck, 1))
-			{
-				if (Rings >= 25)
-					return 1;
+			else if (GetLevelEmblemCollected((SaveFileData*)&SaveData, Characters_Tails, LevelIDs_SkyDeck, 2)) // Rank B
+				return Rings >= 250 ? 1 : 0; // Have at least 250 rings.
 
-				else
-					return 0;
-			}
-
-			else if (GetLevelEmblemCollected((SaveFileData*)&SaveData, a3, LevelIDs_SkyDeck, 2))
-			{
-				if (Rings >= 10)
-					return 1;
-
-				else
-					return 0;
-			}
-
-			else
+			else // Rank C
 				return 1;
 
 			break;
 
 		case Characters_Knuckles:
 
-			if (GetLevelEmblemCollected((SaveFileData*)&SaveData, a3, LevelIDs_SkyDeck, 0))
-				return 1;
+			if (GetLevelEmblemCollected((SaveFileData*)&SaveData, Characters_Knuckles, LevelIDs_SkyDeck, 1)) // Rank A
+				return time < 7200 ? 1 : 0; // Finish in less than 2 minutes.
 
-			else if (GetLevelEmblemCollected((SaveFileData*)&SaveData, a3, LevelIDs_SkyDeck, 1))
-			{
-				if (Rings >= 30)
-					return 1;
+			else if (GetLevelEmblemCollected((SaveFileData*)&SaveData, Characters_Knuckles, LevelIDs_SkyDeck, 2)) // Rank B
+				return Rings >= 250 ? 1 : 0; // Have at least 250 rings.
 
-				else
-					return 0;
-			}
-
-			else if (GetLevelEmblemCollected((SaveFileData*)&SaveData, a3, LevelIDs_SkyDeck, 2))
-			{
-				if (Rings >= 15)
-					return 1;
-
-				else
-					return 0;
-			}
-
-			else
+			else // Rank C
 				return 1;
 
 			break;
 	}
 }
 
-void Ranks()
+//	The entry point:
+static void __declspec(naked) CheckMissionRequirements_ASM()
 {
-	CheckMissionRequirements_t.Hook(CheckMissionRequirements_r);
+    __asm
+    {
+        push ecx // mission
+        push edx // character
+        push eax // level
+        call CheckMissionRequirements_r
+
+        add esp, 4 // level<eax> is also used for return value
+        pop edx // character
+        pop ecx // mission
+        retn
+    }
+}
+
+void INIT_LevelRanks()
+{
+    chckmission_t = new Trampoline((int)0x426AA0, (int)0x426AA5, CheckMissionRequirements_ASM);
 }
