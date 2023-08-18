@@ -110,31 +110,12 @@ void FILES_TreeTops(const HelperFunctions& helperFunctions)
 
 //	Level Ranks:
 
-Trampoline* chckmission_t = nullptr;
+UsercallFunc(_BOOL1, CheckMissionRequirements_t, (int mission, int character, int level), (mission, character, level), 0x426AA0, rAL, rEAX, rEDX, rECX);
 
-//	ASM function that calls the original function:
-static inline _BOOL1 CheckMissionRequirements_origin(int a1, int a2, int a3)
-{
-    auto target = chckmission_t->Target();
-    _BOOL1 result;
-
-    __asm
-    {
-        mov ecx, [a3]
-        mov edx, [a2]
-        mov eax, [a1]
-        call target
-        mov result, al
-    }
-
-    return result;
-}
-
-//	__cdecl function where you put your edits:
-_BOOL1 __cdecl CheckMissionRequirements_r(int a1, int a2, int a3)
+_BOOL1 CheckMissionRequirements_r(int mission, int character, int level)
 {
 	if (CurrentLevel != LevelIDs_SkyDeck)
-		return CheckMissionRequirements_origin(a1, a2, a3);
+		return CheckMissionRequirements_t.Original(mission, character, level);
     
 	int time;
 	time = TimeFrames + 60 * (TimeSeconds + 60 * TimeMinutes);
@@ -182,24 +163,7 @@ _BOOL1 __cdecl CheckMissionRequirements_r(int a1, int a2, int a3)
 	}
 }
 
-//	The entry point:
-static void __declspec(naked) CheckMissionRequirements_ASM()
-{
-    __asm
-    {
-        push ecx // mission
-        push edx // character
-        push eax // level
-        call CheckMissionRequirements_r
-
-        add esp, 4 // level<eax> is also used for return value
-        pop edx // character
-        pop ecx // mission
-        retn
-    }
-}
-
 void INIT_LevelRanks()
 {
-    chckmission_t = new Trampoline((int)0x426AA0, (int)0x426AA5, CheckMissionRequirements_ASM);
+    CheckMissionRequirements_t.Hook(CheckMissionRequirements_r);
 }
