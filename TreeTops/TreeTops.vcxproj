@@ -89,7 +89,7 @@
       <DelayLoadDLLs>sadx-dc-lighting.dll;%(DelayLoadDLLs)</DelayLoadDLLs>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy "$(SolutionDir)Release\*.dll" "D:\Juegos\Retail\SADX\SonicAdventureDX\mods\Tree Tops\*.dll" /Y</Command>
+      <Command>xcopy "$(SolutionDir)Release\*.dll" "D:\Juegos\Retail\SONICADVENTUREDX\mods\Tree Tops\*.dll" /Y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -115,7 +115,7 @@
       <DelayLoadDLLs>sadx-dc-lighting.dll;%(DelayLoadDLLs)</DelayLoadDLLs>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy "$(SolutionDir)Release\*.dll" "D:\Juegos\Retail\SADX\SonicAdventureDX\mods\Tree Tops\*.dll" /Y</Command>
+      <Command>xcopy "$(SolutionDir)Release\*.dll" "D:\Juegos\Retail\SONICADVENTUREDX\mods\Tree Tops\*.dll" /Y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
