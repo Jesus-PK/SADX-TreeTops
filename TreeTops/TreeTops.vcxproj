@@ -159,6 +159,7 @@
     <ClInclude Include="hud.h" />
     <ClInclude Include="level.h" />
     <ClInclude Include="levelobj.h" />
+    <ClInclude Include="levelranks.h" />
     <ClInclude Include="mod.h" />
     <ClInclude Include="objects.h" />
     <ClInclude Include="objects\o_basicchest.h" />
@@ -185,6 +186,7 @@
     <ClCompile Include="hud.cpp" />
     <ClCompile Include="level.cpp" />
     <ClCompile Include="levelobj.cpp" />
+    <ClCompile Include="levelranks.cpp" />
     <ClCompile Include="mod.cpp" />
     <ClCompile Include="objects.cpp" />
     <ClCompile Include="objects\o_basicchest.cpp" />

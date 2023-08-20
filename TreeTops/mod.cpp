@@ -37,7 +37,12 @@ extern "C"
 		DEATHZONES_TreeTops();
 		STARTPOSITIONS_TreeTops(helperFunctions);
 		PATHS_TreeTops(helperFunctions);
-		//FILES_TreeTops(helperFunctions);
+		//FILES_TreeTops(helperFunctions);		
+
+
+		//	Load Custom Ranks and Mission Cards:
+		
+		MISSIONCARDS_TreeTops();
 		INIT_LevelRanks();
 
 
@@ -58,8 +63,7 @@ extern "C"
 		TITLECARDS_TreeTops(path, helperFunctions);
 		//MULTITHUMBNAILS_TreeTops(path, helperFunctions);
 		//STAGECREDITS_TreeTops(path, helperFunctions);
-		MISSIONCARDS_TreeTops();
-
+		
 		
 		//	Level Destructor Trampoline:
 		

@@ -90,6 +90,9 @@
     <ClInclude Include="objects\o_dragons.h">
       <Filter>Objects</Filter>
     </ClInclude>
+    <ClInclude Include="levelranks.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -174,6 +177,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="programming\Trampoline.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="levelranks.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
