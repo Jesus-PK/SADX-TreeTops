@@ -114,53 +114,46 @@ UsercallFunc(_BOOL1, CheckMissionRequirements_t, (int mission, int character, in
 
 _BOOL1 CheckMissionRequirements_r(int mission, int character, int level)
 {
-	if (CurrentLevel != LevelIDs_SkyDeck)
-		return CheckMissionRequirements_t.Original(mission, character, level);
-    
-	int time;
-	time = TimeFrames + 60 * (TimeSeconds + 60 * TimeMinutes);
+    if (CurrentLevel != LevelIDs_SkyDeck)
+        return CheckMissionRequirements_t.Original(mission, character, level);
 
-	switch (CurrentCharacter)
-	{
-		case Characters_Sonic:
+    int missionBool;
+    int time;
 
-			if (GetLevelEmblemCollected((SaveFileData*)&SaveData, Characters_Sonic, LevelIDs_SkyDeck, 1)) // Rank A
-				return Rings >= 250 && time < 10800 ? 1 : 0; //	Finish in less than 3 minutes while having at least 250 rings.
+    if (mission)
+    {
+        missionBool = mission - 1;
 
-			else if (GetLevelEmblemCollected((SaveFileData*)&SaveData, Characters_Sonic, LevelIDs_SkyDeck, 2)) // Rank B
-				return Rings >= 250 ? 1 : 0; // if Rings >= 250 -> return 1 : else return 0
+        if (missionBool)
+            return missionBool == 1;
 
-			else // Rank C
-				return 1;
+        else
+            return Rings >= 5 ? 1 : 0;
+    }
 
-			break;
+    else
+    {
+        time = TimeFrames + 60 * (TimeSeconds + 60 * TimeMinutes);
 
-		case Characters_Tails:
+        switch (character)
+        {
+            case Characters_Sonic:
+                return Rings >= 1 && time < 180 ? 1 : 0;
+                break;
 
-			if (GetLevelEmblemCollected((SaveFileData*)&SaveData, Characters_Tails, LevelIDs_SkyDeck, 1)) // Rank A
-				return time < 3600 ? 1 : 0; // Finish in less than 1 minute.
+            case Characters_Tails:
+                return time < 240 ? 1 : 0;
+                break;
 
-			else if (GetLevelEmblemCollected((SaveFileData*)&SaveData, Characters_Tails, LevelIDs_SkyDeck, 2)) // Rank B
-				return Rings >= 250 ? 1 : 0; // Have at least 250 rings.
+            case Characters_Knuckles:
+                return time < 300 ? 1 : 0;
+                break;
 
-			else // Rank C
-				return 1;
-
-			break;
-
-		case Characters_Knuckles:
-
-			if (GetLevelEmblemCollected((SaveFileData*)&SaveData, Characters_Knuckles, LevelIDs_SkyDeck, 1)) // Rank A
-				return time < 7200 ? 1 : 0; // Finish in less than 2 minutes.
-
-			else if (GetLevelEmblemCollected((SaveFileData*)&SaveData, Characters_Knuckles, LevelIDs_SkyDeck, 2)) // Rank B
-				return Rings >= 250 ? 1 : 0; // Have at least 250 rings.
-
-			else // Rank C
-				return 1;
-
-			break;
-	}
+            default:
+                return 1;
+                break;
+        }
+    }
 }
 
 void INIT_LevelRanks()
