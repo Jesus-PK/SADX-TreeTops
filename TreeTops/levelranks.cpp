@@ -7,7 +7,7 @@ NJS_TEXNAME TEX_TTMission[36] = { 0 };
 DataPointer(NJS_TEXANIM, MissionSpriteAnim, 0x917784);
 
 FunctionHook<void> LoadStageMissionImage_t(0x457450);
-FunctionHook<void> MissionCard_Result_t(0x457BB0);
+FunctionHook<void> LoadMissionCardResult_t(0x457BB0);
 
 void HD_GetMissionTypeCheck()
 {
@@ -23,28 +23,22 @@ void HD_GetMissionTypeCheck()
 	{
 		switch (CurrentCharacter)
 		{
-			case Characters_Sonic: // Case is to be compared to, it's the Y in a (if (X == Y)) for example. The way this is written also means Sonic and the Default match.
-            
-                if (missionType == 0) // Level Clear Card.
-                    MissionSpriteAnim.texid = 0;
+			case Characters_Sonic:
 
-                else if (missionType == 47) // A-Rank Card.
+                if (missionType == 47) // Rank A Card
                     MissionSpriteAnim.texid = 2;
 
-                else if (missionType == 1) // B-Rank Card.
+                else if (missionType == 1) // Rank B Card
                     MissionSpriteAnim.texid = 1;
 
-                else // C-Rank Card.
+                else // Rank C Card - LevelClear
                     MissionSpriteAnim.texid = 0;
 
                 break;
 
             case Characters_Tails:
 
-                if (missionType == 3)
-                    MissionSpriteAnim.texid = 3;
-
-                else if (missionType == 5)
+                if (missionType == 5)
                     MissionSpriteAnim.texid = 5;
 
                 else if (missionType == 4)
@@ -57,10 +51,7 @@ void HD_GetMissionTypeCheck()
 
             case Characters_Knuckles:
 
-                if (missionType == 6)
-                    MissionSpriteAnim.texid = 6;
-
-                else if (missionType == 48)
+                if (missionType == 48)
                     MissionSpriteAnim.texid = 8;
 
                 else if (missionType == 7)
@@ -71,10 +62,8 @@ void HD_GetMissionTypeCheck()
 
                 break;
 
-            default:
-                
-                MissionSpriteAnim.texid = 0;
-                
+            default:               
+                MissionSpriteAnim.texid = 0;                
                 break;
 		}
 	}
@@ -84,11 +73,8 @@ void HD_GetMissionTypeCheck()
         switch (CurrentCharacter)
 		{
 			case Characters_Sonic:
-            
-                if (missionType == 0)
-                    MissionSpriteAnim.texid = 9;
 
-                else if (missionType == 47)
+                if (missionType == 47)
                     MissionSpriteAnim.texid = 11;
 
                 else if (missionType == 1)
@@ -101,10 +87,7 @@ void HD_GetMissionTypeCheck()
 
             case Characters_Tails:
 
-                if (missionType == 3)
-                    MissionSpriteAnim.texid = 12;
-
-                else if (missionType == 5)
+                if (missionType == 5)
                     MissionSpriteAnim.texid = 14;
 
                 else if (missionType == 4)
@@ -117,10 +100,7 @@ void HD_GetMissionTypeCheck()
 
             case Characters_Knuckles:
 
-                if (missionType == 6)
-                    MissionSpriteAnim.texid = 15;
-
-                else if (missionType == 48)
+                if (missionType == 48)
                     MissionSpriteAnim.texid = 17;
 
                 else if (missionType == 7)
@@ -131,10 +111,8 @@ void HD_GetMissionTypeCheck()
 
                 break;
 
-            default:
-                
-                MissionSpriteAnim.texid = 9;
-                
+            default:                
+                MissionSpriteAnim.texid = 9;                
                 break;
 		}
     }
@@ -155,11 +133,8 @@ void SD_GetMissionTypeCheck()
 		switch (CurrentCharacter)
 		{
 			case Characters_Sonic:
-            
-                if (missionType == 0)
-                    MissionSpriteAnim.texid = 18;
 
-                else if (missionType == 47)
+                if (missionType == 47)
                     MissionSpriteAnim.texid = 20;
 
                 else if (missionType == 1)
@@ -172,10 +147,7 @@ void SD_GetMissionTypeCheck()
 
             case Characters_Tails:
 
-                if (missionType == 3)
-                    MissionSpriteAnim.texid = 21;
-
-                else if (missionType == 5)
+                if (missionType == 5)
                     MissionSpriteAnim.texid = 23;
 
                 else if (missionType == 4)
@@ -188,10 +160,7 @@ void SD_GetMissionTypeCheck()
 
             case Characters_Knuckles:
 
-                if (missionType == 6)
-                    MissionSpriteAnim.texid = 24;
-
-                else if (missionType == 48)
+                if (missionType == 48)
                     MissionSpriteAnim.texid = 26;
 
                 else if (missionType == 7)
@@ -202,10 +171,8 @@ void SD_GetMissionTypeCheck()
 
                 break;
 
-            default:
-                
-                MissionSpriteAnim.texid = 18;
-                
+            default:                
+                MissionSpriteAnim.texid = 18;               
                 break;
 		}
 	}
@@ -215,11 +182,8 @@ void SD_GetMissionTypeCheck()
         switch (CurrentCharacter)
 		{
 			case Characters_Sonic:
-            
-                if (missionType == 0)
-                    MissionSpriteAnim.texid = 27;
 
-                else if (missionType == 47)
+                if (missionType == 47)
                     MissionSpriteAnim.texid = 29;
 
                 else if (missionType == 1)
@@ -232,10 +196,7 @@ void SD_GetMissionTypeCheck()
 
             case Characters_Tails:
 
-                if (missionType == 3)
-                    MissionSpriteAnim.texid = 30;
-
-                else if (missionType == 5)
+                if (missionType == 5)
                     MissionSpriteAnim.texid = 32;
 
                 else if (missionType == 4)
@@ -248,10 +209,7 @@ void SD_GetMissionTypeCheck()
 
             case Characters_Knuckles:
 
-                if (missionType == 6)
-                    MissionSpriteAnim.texid = 33;
-
-                else if (missionType == 48)
+                if (missionType == 48)
                     MissionSpriteAnim.texid = 35;
 
                 else if (missionType == 7)
@@ -262,10 +220,8 @@ void SD_GetMissionTypeCheck()
 
                 break;
 
-            default:
-                
-                MissionSpriteAnim.texid = 27;
-                
+            default:                
+                MissionSpriteAnim.texid = 27;                
                 break;
 		}
     }
@@ -301,12 +257,12 @@ void LoadStageMissionImage_r()
     task->dest = (TaskFuncPtr)FreeStageMissionImage;
 }
 
-void MissionCard_Result_r()
+void LoadMissionCardResult_r()
 {
     if (CurrentLevel != LevelIDs_SkyDeck)
     {
         MissionSpriteAnim.texid = 0;
-        return MissionCard_Result_t.Original();
+        return LoadMissionCardResult_t.Original();
     }
 
     StageMissionTexlist.textures = TEX_TTMission;
@@ -334,55 +290,51 @@ void MissionCard_Result_r()
 void MISSIONCARDS_TreeTops()
 {
     LoadStageMissionImage_t.Hook(LoadStageMissionImage_r);
-    MissionCard_Result_t.Hook(MissionCard_Result_r);
+    LoadMissionCardResult_t.Hook(LoadMissionCardResult_r);
 }
 
 
 //  Level Ranks:
 
-UsercallFunc(_BOOL1, CheckMissionRequirements_t, (int mission, int character, int level), (mission, character, level), 0x426AA0, rAL, rEAX, rEDX, rECX);
+UsercallFunc(BOOL, CheckMissionRequirements_t, (int mission, int character, int level), (mission, character, level), 0x426AA0, rAL, rEAX, rEDX, rECX);
 
-_BOOL1 CheckMissionRequirements_r(int mission, int character, int level)
+BOOL CheckMissionRequirements_r(int mission, int character, int level)
 {
     if (CurrentLevel != LevelIDs_SkyDeck)
         return CheckMissionRequirements_t.Original(mission, character, level);
 
-    int missionBool;
-    int time;
-
-    if (mission)
+    switch (mission)
     {
-        missionBool = mission - 1;
-
-        if (missionBool)
-            return missionBool == 1;
-
-        else
-            return Rings >= 5 ? 1 : 0;
-    }
-
-    else
-    {
-        time = TimeFrames + 60 * (TimeSeconds + 60 * TimeMinutes);
-
-        switch (character)
+        case 0: // Rank A
         {
-            case Characters_Sonic:
-                return Rings >= 1 && time < 180 ? 1 : 0;
-                break;
+            int time = TimeFrames + 60 * (TimeSeconds + 60 * TimeMinutes); // Due to declaring the "int time" inside the switch case, curly braces are needed at case 0 with braces due to the "Initialization of 'time' is skipped by 'case' label" error.
+            switch (character)
+            {
+                case Characters_Sonic:
+                    return Rings >= 1 && time < 180 ? 1 : 0;
+                    break;
 
-            case Characters_Tails:
-                return time < 240 ? 1 : 0;
-                break;
+                case Characters_Tails:
+                    return time < 240 ? 1 : 0;
+                    break;
 
-            case Characters_Knuckles:
-                return time < 300 ? 1 : 0;
-                break;
+                case Characters_Knuckles:
+                    return time < 300 ? 1 : 0;
+                    break;
 
-            default:
-                return 1;
-                break;
+                default:
+                    return 1;
+                    break;
+            }
+            break;
         }
+        case 1: // Rank B
+            return Rings >= 5 ? 1 : 0;
+            break;
+
+        default: // Rank C
+            return 1;
+            break;
     }
 }
 
