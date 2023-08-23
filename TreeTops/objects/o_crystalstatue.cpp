@@ -151,11 +151,9 @@ childtaskset CTS_CSDebris[] = {
 
 void SetDragonRescued()
 {
-    uint16_t score = 1000;
-    AddEnemyScore(score);
-
+    AddEnemyScore(1000);
     dsPlay_oneshot(SE_BOMB, 0, 0, 0);
-
+    AddNumRing(20);
     DragonCount++;
 }
 

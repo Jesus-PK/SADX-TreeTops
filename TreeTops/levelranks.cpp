@@ -133,11 +133,7 @@ void LoadStageMissionImage_r()
     
     LoadPVM("TreeTops_MissionCards", &StageMissionTexlist);
     
-    if (HD_GUI)
-        HD_GetMissionTypeCheck();
-
-    else
-        SD_GetMissionTypeCheck();
+    HD_GUI ? HD_GetMissionTypeCheck() : SD_GetMissionTypeCheck(); // If HD_GUI is enabled, load HD cards : else load SD cards.
 
     task* task = CreateElementalTask(LoadObj_Data1, 6, (TaskFuncPtr)0x457B60);
     
@@ -162,12 +158,8 @@ void LoadMissionCardResult_r()
     StageMissionTexlist.nbTexture = 1;
     
     LoadPVM("TreeTops_MissionCards", &StageMissionTexlist);
-    
-    if (HD_GUI)
-        HD_GetMissionTypeCheck();
 
-    else
-        SD_GetMissionTypeCheck();
+    HD_GUI ? HD_GetMissionTypeCheck() : SD_GetMissionTypeCheck();
 
     task* tp = CreateElementalTask(LoadObj_Data1, 6, (TaskFuncPtr)0x457B60);
     

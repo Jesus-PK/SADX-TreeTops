@@ -84,12 +84,9 @@ childtaskset CTS_BCDebris[] = {
 
 void SetBCDestroyed()
 {
-    uint16_t score = 50;
-    AddEnemyScore(score);
-
+    AddEnemyScore(50);
     dsPlay_oneshot(SE_BOMB, 0, 0, 0);
-
-    Rings += 5;
+    AddNumRing(5);
 }
 
 void DISPLAY_Number5(task* tp)

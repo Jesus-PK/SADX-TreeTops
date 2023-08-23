@@ -30,9 +30,7 @@ const char* MSG_LockedChest[] = {
 
 void KeyPickup()
 {
-    uint16_t score = 100;
-    AddEnemyScore(score);
-
+    AddEnemyScore(100);
     HasKey = 1;
 }
 
@@ -260,15 +258,9 @@ void DISPLAY_Number25(task* tp)
 
 void SetLKCOpen()
 {
-    uint16_t score = 1000;
-    AddEnemyScore(score);
-
+    AddEnemyScore(2000);
     dsPlay_oneshot(SE_BOMB, 0, 0, 0);
-    
-    Rings += 25;
-    Lives += 1;
-    GiveMagneticBarrier(CurrentCharacter);
-
+    AddNumRing(50);
     HasKey = 0;
 }
 

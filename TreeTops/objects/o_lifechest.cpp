@@ -87,13 +87,9 @@ childtaskset CTS_LCDebris[] = {
 
 void SetLCDestroyed()
 {
-    uint16_t score = 250;
-    AddEnemyScore(score);
-
+    AddEnemyScore(250);
     dsPlay_oneshot(SE_BOMB, 0, 0, 0);
-    dsPlay_oneshot(743, 0, 0, 0);
-
-    Lives += 1;
+    GiveLives(1);
 }
 
 void DISPLAY_LCStatue(task* tp)

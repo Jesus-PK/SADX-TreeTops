@@ -84,12 +84,9 @@ childtaskset CTS_MCDebris[] = {
 
 void SetMCDestroyed()
 {
-    uint16_t score = 100;
-    AddEnemyScore(score);
-
+    AddEnemyScore(100);
     dsPlay_oneshot(SE_BOMB, 0, 0, 0);
-
-    Rings += 10;
+    AddNumRing(10);
 }
 
 void DISPLAY_Number10(task* tp)
