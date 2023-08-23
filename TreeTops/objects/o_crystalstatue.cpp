@@ -210,6 +210,7 @@ void EXEC_CrystalStatue(task* tp)
                     EnemyBounceAndRumble(hit_tp->twp->counter.b[0]);
                     
                     SetDragonRescued();
+                    Knuckles_KakeraGame_Set_PutEme(twp->ang.z, &twp->pos); // This gives an emerald shard upon destroying the object, the emerald ID is dictated by the Z Angle value.
                     
                     Dead(tp); // This sets the object to not respawn, DeadOut on the other hand, will set the flag and instantly destroy the object. In this case I use Dead since I need to run more code afterwards (the Child Tasks)
                     
@@ -258,6 +259,8 @@ void EXEC_CrystalStatue(task* tp)
 
             break;
     }
+
+    Knuckles_KakeraGame_Set_CheckEme(twp->ang.z, &twp->pos); // This checks if the emerald ID exists and let's the radar track it, needs to be called every frame.
 
     tp->disp(tp);
 }
