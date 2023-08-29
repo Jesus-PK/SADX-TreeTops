@@ -40,18 +40,18 @@ void DrawDragonCountHUD()
 {   
     SpriteQuality();
     
-    SPRITE_DragonIcon.p.x = 591.0f;
+    SPRITE_DragonIcon.p.x = 592.0f;
     SPRITE_DragonIcon.p.y = 416.0f;
     late_DrawSprite2D(&SPRITE_DragonIcon, ArrayID, 22046.496f, NJD_SPRITE_ALPHA, LATE_LIG); // This draws the custom dragon icon.
 
     if (DragonCount >= 5) // This changes the sprite color to green when the condition is met (wrote if equal or greater than the value as a failsafe) - The sprite needs to have the NJD_SPRITE_COLOR flag.
         SetMaterial(1.0f, 0.0f, 1.0f, 0.0f);
     
-    SPRITE_DragonCounter.p.x = 574.0f;
+    SPRITE_DragonCounter.p.x = 576.0f;
     SPRITE_DragonCounter.p.y = 424.0f; // It's enough calling the height once unless we need a different height for the other sprites.
     late_DrawSprite2D(&SPRITE_DragonCounter, 5, 22046.496f, NJD_SPRITE_ALPHA, LATE_LIG); // This draws the right number - Static, put manual ID from the array (In this case 5 since the max amount is gonna be 5 dragons).
     
-    SPRITE_DragonCounter.p.x -= 16.0f; // Doing "-=" makes it so it uses the substracted value from the one that was used previously (SPRITE_Counter.p.x at the very top).
+    SPRITE_DragonCounter.p.x -= 16.0f; // Doing "-=" makes it so it uses the substracted value from the one that was used previously (SPRITE_DragonCounter.p.x at the very top).
     late_DrawSprite2D(&SPRITE_DragonCounter, 6, 22046.496f, NJD_SPRITE_ALPHA, LATE_LIG); // This draws the slash character - ID 6 from the array.
 
     SPRITE_DragonCounter.p.x -= 16.0f;
@@ -61,7 +61,6 @@ void DrawDragonCountHUD()
 void DrawDragonHUD()
 {
     ScaleUI(uiscale::Align_Automatic);
-
     SetSpriteParam();
 
     DrawDragonCountHUD();
@@ -74,8 +73,8 @@ void DrawDragonHUD()
 //  Key HUD:
 
 static NJS_TEXANIM TEXANIM_ChestKey[] = {
-    { 75, 75, 0, 0, 0, 0, 0x100, 0x100, 26, 0x20 }, // ID 0 - TexID 26
-    { 75, 75, 0, 0, 0, 0, 0x100, 0x100, 27, 0x20 }, // ID 1 - TexID 27
+    { 0x20, 0x20, 0, 0, 0, 0, 0x100, 0x100, 26, 0x20 }, // ID 0 - TexID 26
+    { 0x20, 0x20, 0, 0, 0, 0, 0x100, 0x100, 27, 0x20 }, // ID 1 - TexID 27
 };
 
 static NJS_SPRITE SPRITE_ChestKey = { { 0.0f, 0.0f, 0.0f }, 1.0f, 1.0f, 0, &TEXLIST_TTObjects, TEXANIM_ChestKey };
@@ -84,8 +83,8 @@ void DrawKeyCountHUD()
 {
     SpriteQuality();
     
-    SPRITE_ChestKey.p.x = 565.0f;
-    SPRITE_ChestKey.p.y = 405.0f;
+    SPRITE_ChestKey.p.x = 592.0f;
+    SPRITE_ChestKey.p.y = 376.0f;
     
     if (HasKey == 0)
         return;
@@ -97,7 +96,6 @@ void DrawKeyCountHUD()
 void DrawKeyHUD()
 {
     ScaleUI(uiscale::Align_Automatic);
-
     SetSpriteParam();
 
     DrawKeyCountHUD();
