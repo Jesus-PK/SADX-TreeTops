@@ -15,7 +15,7 @@ void DISPLAY_TreeTops(task* tp)
 	if (CurrentCharacter == Characters_Tails)
 		DrawDragonHUD();
 
-	else
+	
 		DrawKeyHUD();
 }
 

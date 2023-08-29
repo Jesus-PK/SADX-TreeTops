@@ -22,9 +22,6 @@ NJS_TEXLIST TEXLIST_TTObjects = { arrayptrandlength(TEX_TTObjects) };
 NJS_TEXNAME TEX_TTDragons[11] = { 0 };
 NJS_TEXLIST TEXLIST_TTDragons = { arrayptrandlength(TEX_TTDragons) };
 
-NJS_TEXNAME TEX_TTHud[1] = { 0 };
-NJS_TEXLIST TEXLIST_TTHUD = { arrayptrandlength(TEX_TTHud) };
-
 
 //	Object Lists:
 
@@ -103,7 +100,6 @@ TEX_PVMTABLE TEXTURELIST_TreeTops[] = {
 
 	{ "TreeTops_Objects", &TEXLIST_TTObjects },
 	{ "TreeTops_Dragons", &TEXLIST_TTDragons },
-	{ "TreeTops_HUD", &TEXLIST_TTHUD },
 	{ "UNI_C_UNIBODY", (TexList*)0x96DC48 },
 	{ "E_SARU", (TexList*)0x962560 },
 	{ "E_BOMB", (TexList*)0x96B464 },	

@@ -1,10 +1,27 @@
 #include "pch.h"
 
+//  HD GUI check for sprites:
+
+//  I basically declare a integer, then create a simple function with a ternary operator that will check for HD GUI then return either 0 or 1.
+//  Then on both icons DrawSprite calls, instead of specifing the texID, I just specify my int "ArrayID" and call the function I made above.
+//  This will fill that with the result of the function above: Either Array 0 or 1 of my TEXANIM array. The TexID assigned to these two will vary depending if it is the Dragon or Key counter.
+
+int ArrayID;
+
+void SpriteQuality()
+{ 
+    HD_GUI ? ArrayID = 1 : ArrayID = 0;
+}
+
+
 //  Dragon HUD:
 
-static NJS_TEXANIM TEXANIM_DragonIcon = { 0x20, 0x20, 0, 0, 0, 0, 0x100, 0x100, 0, 0x20 };
+static NJS_TEXANIM TEXANIM_DragonIcon[] = {
+    { 0x20, 0x20, 0, 0, 0, 0, 0x100, 0x100, 28, 0x20 }, // ID 0 - TexID 28
+    { 0x20, 0x20, 0, 0, 0, 0, 0x100, 0x100, 29, 0x20 }, // ID 1 - TexID 29
+};
 
-static NJS_SPRITE SPRITE_DragonIcon = { { 0.0f, 0.0f, 0.0f }, 1.0f, 1.0f, 0, &TEXLIST_TTHUD, &TEXANIM_DragonIcon };
+static NJS_SPRITE SPRITE_DragonIcon = { { 0.0f, 0.0f, 0.0f }, 1.0f, 1.0f, 0, &TEXLIST_TTObjects, TEXANIM_DragonIcon };
 
 
 static NJS_TEXANIM TEXANIM_DragonCounter[] = {
@@ -21,11 +38,12 @@ static NJS_SPRITE SPRITE_DragonCounter = { { 0.0f, 0.0f, 0.0f }, 1.0f, 1.0f, 0, 
 
 void DrawDragonCountHUD()
 {   
+    SpriteQuality();
+    
     SPRITE_DragonIcon.p.x = 591.0f;
     SPRITE_DragonIcon.p.y = 416.0f;
-    late_DrawSprite2D(&SPRITE_DragonIcon, 0, 22046.496f, NJD_SPRITE_ALPHA, LATE_LIG); // This draws the custom dragon icon.
+    late_DrawSprite2D(&SPRITE_DragonIcon, ArrayID, 22046.496f, NJD_SPRITE_ALPHA, LATE_LIG); // This draws the custom dragon icon.
 
-    
     if (DragonCount >= 5) // This changes the sprite color to green when the condition is met (wrote if equal or greater than the value as a failsafe) - The sprite needs to have the NJD_SPRITE_COLOR flag.
         SetMaterial(1.0f, 0.0f, 1.0f, 0.0f);
     
@@ -55,12 +73,17 @@ void DrawDragonHUD()
 
 //  Key HUD:
 
-static NJS_TEXANIM TEXANIM_ChestKey = { 75, 75, 0, 0, 0, 0, 0x100, 0x100, 31, 0x20 };
+static NJS_TEXANIM TEXANIM_ChestKey[] = {
+    { 75, 75, 0, 0, 0, 0, 0x100, 0x100, 26, 0x20 }, // ID 0 - TexID 26
+    { 75, 75, 0, 0, 0, 0, 0x100, 0x100, 27, 0x20 }, // ID 1 - TexID 27
+};
 
-static NJS_SPRITE SPRITE_ChestKey = { { 0.0f, 0.0f, 0.0f }, 1.0f, 1.0f, 0, &TEXLIST_TTObjects, &TEXANIM_ChestKey };
+static NJS_SPRITE SPRITE_ChestKey = { { 0.0f, 0.0f, 0.0f }, 1.0f, 1.0f, 0, &TEXLIST_TTObjects, TEXANIM_ChestKey };
 
 void DrawKeyCountHUD()
 {
+    SpriteQuality();
+    
     SPRITE_ChestKey.p.x = 565.0f;
     SPRITE_ChestKey.p.y = 405.0f;
     
@@ -68,7 +91,7 @@ void DrawKeyCountHUD()
         return;
     
     else
-        late_DrawSprite2D(&SPRITE_ChestKey, 0, 22046.496f, NJD_SPRITE_ALPHA, LATE_LIG);
+        late_DrawSprite2D(&SPRITE_ChestKey, ArrayID, 22046.496f, NJD_SPRITE_ALPHA, LATE_LIG);
 }
 
 void DrawKeyHUD()

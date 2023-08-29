@@ -34,7 +34,7 @@ void DISPLAY_SpottedChicken(task* tp)
     njPopMatrix(1u);
 }
 
-void EXEC_SpottedChicken(task* tp)
+void MAIN_SpottedChicken(task* tp)
 {
     if (CheckRangeOut(tp))
         return;
@@ -45,7 +45,7 @@ void EXEC_SpottedChicken(task* tp)
     {
         case 0:
 
-            tp->disp = DISPLAY_SpottedChicken;
+            //tp->disp = DISPLAY_SpottedChicken;
             CCL_Init(tp, &COLLI_SpottedChicken, 1, 4u);
 
             twp->mode++;
@@ -54,7 +54,9 @@ void EXEC_SpottedChicken(task* tp)
 
         case 1:
 
+            
             SPEED_SpottedChicken += 0.075f;
+            
 
             break;
     }
@@ -62,6 +64,15 @@ void EXEC_SpottedChicken(task* tp)
     EntryColliList(twp);
 
     tp->disp(tp);
+}
+
+void EXEC_SpottedChicken(task* tp)
+{
+    auto twp = tp->twp;
+
+    twp->scl.x = rand();
+    tp->exec = MAIN_SpottedChicken;
+    tp->disp = DISPLAY_SpottedChicken;
 }
 
 
