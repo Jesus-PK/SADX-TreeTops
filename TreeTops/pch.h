@@ -10,6 +10,8 @@
 	#include "LandTableInfo.h"
 	#include "AnimationFile.h"
 	#include "UsercallFunctionHandler.h"
+
+	#include "IniFile.hpp"
 	
 	#include "lanternapi.h"
 
