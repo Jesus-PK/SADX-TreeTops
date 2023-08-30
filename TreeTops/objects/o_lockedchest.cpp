@@ -20,8 +20,15 @@ CCL_INFO COLLI_LKCKey = { 0, CollisionShape_Sphere, 0xF0, 0, 0, { 0.0f, 4.625f, 
 
 NJS_VECTOR POS_LKCTrigger = { 0, 0, 0 };
 
-const char* MSG_LockedChest[] = {
+const char** MSG_LockedChest;
+
+const char* MSG_LockedChest_EN[] = {
     "You need a key to open this chest!",
+    NULL,
+};
+
+const char* MSG_LockedChest_JP[] = {
+    "\a\202\261\202\314\225\363\224\240\202\360\212\112\202\257\202\351\202\311\202\315\214\256\202\252\225\113\227\166\202\305\202\267\201\111",
     NULL,
 };
 
@@ -339,6 +346,7 @@ void EXEC_LKCLid(task* tp)
             {
                 if (HasKey == 0)
                 {
+                    MSG_LockedChest = (Language != JAPANESE) ? MSG_LockedChest_EN : MSG_LockedChest_JP;
                     DisplayHintText(MSG_LockedChest, 100);
 
                     twp->mode = 2;
