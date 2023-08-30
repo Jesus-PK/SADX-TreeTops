@@ -1,6 +1,6 @@
 #pragma once
 
-void OBJ_TreeTops(task* tp);
+void RD_TreeTops(task* tp);
 void LANTERN_TreeTops();
 void LANTERNERROR_TreeTops();
 

@@ -2,42 +2,32 @@
 #include "hud.h"
 #include "ramps.h"
 
-//	Custom LevelOBJ - Custom code for Sky Deck levelOBJ function (0x5F02E0).
-//	Due to Lantern Engine hooking SkyDeck OBJ for the special effects in this level, I used RoundMasterList instead of WriteJump to call my custom OBJ, this made my changes always work regardless of mod order:
+//	Custom LevelTask - Custom code for Sky Deck leveltask function (0x5F02E0).
+//	Due to Lantern Engine hooking SkyDeck leveltask for the special effects in this level, I used RoundMasterList instead of WriteJump to call my custom OBJ, this made my changes always work regardless of mod order:
 
-void DISPLAY_TreeTops(task* tp)
-{
-	if (MissedFrames)
-		return;
-	
-	if (CurrentCharacter == Characters_Tails)
-		DrawDragonHUD();
-	
-	DrawKeyHUD();
-}
-
-void OBJ_TreeTops(task* tp)
+void RD_TreeTops(task* tp)
 {
 	auto twp = tp->twp;
 
 	if (!twp->mode)
 	{
-		tp->disp = DISPLAY_TreeTops;
-			
 		ADXTaskInit();
 		PlayMusic(MusicIDs_skydeck1);
 
 		CreateElementalTask(2, 2, ANIM_WoodenRamp);
 		CreateElementalTask(2, 2, ANIM_GrassRamp);
 
+		SETVIEWDATA_TreeTops(); // I think I don't need to call this every frame anymore, I believe the problem I used to have in Gnorc Cove was the Skybox task setting up their own values and overriding mine. This shouldn't be an issue anymore since I do custom RD and BG tasks.
+		
 		EnableFreeCamera(1); // Forces FreeCam on level start, pending removal.
 
 		twp->mode++;
 	}
 
-	SETVIEWDATA_TreeTops();
-	
-	tp->disp(tp);
+	if (CurrentCharacter == Characters_Tails)
+		DrawDragonHUD();
+
+	DrawKeyHUD();
 }
 
 

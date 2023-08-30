@@ -69,7 +69,7 @@
     <ClInclude Include="level.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="levelobj.h">
+    <ClInclude Include="leveltask.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="mod.h">
@@ -146,7 +146,7 @@
     <ClCompile Include="level.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="levelobj.cpp">
+    <ClCompile Include="leveltask.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="mod.cpp">

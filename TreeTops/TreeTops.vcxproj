@@ -158,7 +158,7 @@
     <ClInclude Include="graphics.h" />
     <ClInclude Include="hud.h" />
     <ClInclude Include="level.h" />
-    <ClInclude Include="levelobj.h" />
+    <ClInclude Include="leveltask.h" />
     <ClInclude Include="levelranks.h" />
     <ClInclude Include="mod.h" />
     <ClInclude Include="objects.h" />
@@ -187,7 +187,7 @@
     <ClCompile Include="graphics.cpp" />
     <ClCompile Include="hud.cpp" />
     <ClCompile Include="level.cpp" />
-    <ClCompile Include="levelobj.cpp" />
+    <ClCompile Include="leveltask.cpp" />
     <ClCompile Include="levelranks.cpp" />
     <ClCompile Include="mod.cpp" />
     <ClCompile Include="objects.cpp" />

@@ -23,12 +23,12 @@ extern "C"
 		
 		//	Custom LevelOBJ:
 
-		RoundMasterList[LevelIDs_SkyDeck] = OBJ_TreeTops;
+		RoundMasterList[LevelIDs_SkyDeck] = RD_TreeTops;
 		
 		
 		//	Custom Skybox:
 
-		WriteJump((void*)0x5F0340, EXEC_TTSkybox);
+		ScrollMasterList[LevelIDs_SkyDeck] = BG_TreeTops;
 
 
 		//	Load Level Stuff:
