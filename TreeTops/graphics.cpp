@@ -100,8 +100,8 @@ void TITLECARDS_TreeTops(const char* path, const HelperFunctions& helperFunction
 
 void MULTITHUMBNAILS_TreeTops(const char* path, const HelperFunctions& helperFunctions)
 {
-	ReplaceTex("AVA_MULTI", "multistg0600", "MultiThumbnails", "Multi_HillTopS", 54926007, 128, 72);
-	ReplaceTex("AVA_MULTI", "multistg0602", "MultiThumbnails", "Multi_HillTopK", 71757015, 128, 72);
+	ReplaceTex("AVA_MULTI", "multistg0600", "MultiThumbnails", "Multi_TreeTopsS", 54926007, 128, 72);
+	ReplaceTex("AVA_MULTI", "multistg0602", "MultiThumbnails", "Multi_TreeTopsK", 71757015, 128, 72);
 }
 
 

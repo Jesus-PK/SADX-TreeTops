@@ -9,14 +9,11 @@ void DISPLAY_TreeTops(task* tp)
 {
 	if (MissedFrames)
 		return;
-
-	SETVIEWDATA_TreeTops();
 	
-	
+	if (CurrentCharacter == Characters_Tails)
 		DrawDragonHUD();
-
 	
-		DrawKeyHUD();
+	DrawKeyHUD();
 }
 
 void OBJ_TreeTops(task* tp)
@@ -38,6 +35,8 @@ void OBJ_TreeTops(task* tp)
 		twp->mode++;
 	}
 
+	SETVIEWDATA_TreeTops();
+	
 	tp->disp(tp);
 }
 

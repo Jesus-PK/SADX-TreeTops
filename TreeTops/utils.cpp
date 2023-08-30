@@ -4,14 +4,36 @@
 
 bool HD_GUI = false;
 bool DC_Conversion = false;
+bool HUD_Plus = false;
 bool Lantern_Engine = false;
 bool SA1_Cream = false;
+
+bool DC_HudTweaks = false; // Checks if Dreamcast Conversion "Adjust HUD Position" config option is enabled.
+
+void CheckDCConfig(const HelperFunctions& helperFunctions)
+{
+	// To not check for DC Conv twice, I use a different identifier via auto (due to the bool I had not being compatible with reading the config) and then after I check for the mod, I simply return "true" to my original bool if the game finds it enabled.
+	
+	auto DC_Mod = helperFunctions.Mods->find("sadx-dreamcast-conversion");
+
+	if (DC_Mod)
+	{
+		DC_Conversion = true;
+
+		const IniFile* DC_Config = new IniFile(std::string(DC_Mod->Folder) + "\\config.ini"); // Allocates the .ini file, we search for it from DC Conv folder.
+
+		DC_HudTweaks = DC_Config->getBool("Branding", "HUDTweak", true); // We specify the bool we want to check from the config.ini.
+
+		delete DC_Config; // Since we don't need the .ini anymore, we delete it - Basically if you ever use "new", you will have to use "delete" too.
+	}
+}
 
 void CheckActiveMods(const HelperFunctions& helperFunctions)
 {
 	HD_GUI = helperFunctions.Mods->find("sadx-hd-gui") != nullptr; // This needs to be called in the Init (or in a function that will be called in the Init like this), "Find" checks if the modID is present - Remember that != means "Not equal" (If HD_GUI is not nullptr)
-	DC_Conversion = helperFunctions.Mods->find("sadx-dreamcast-conversion") != nullptr;
+	CheckDCConfig(helperFunctions); // I call here the DC Conversion check + it's config option check to group it alongside everything else.
 	
+	HUD_Plus = GetModuleHandle(L"sadx-hud-plus") != nullptr;
 	Lantern_Engine = GetModuleHandle(L"sadx-dc-lighting") != nullptr;
 	SA1_Cream = GetModuleHandle(L"CreamtheRabbit(SA1-Style)") != nullptr;
 }
