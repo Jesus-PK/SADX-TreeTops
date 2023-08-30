@@ -7,9 +7,9 @@
 //  This will fill that with the result of the function above: Either Array 0 or 1 of my TEXANIM array. The TexID assigned to these two will vary depending if it is the Dragon or Key counter.
 
 int ArrayID;
-float SpriteHeight_Dragon;
+float SpriteHeight_Icon;
 float SpriteHeight_Counter;
-float SpriteHeight_Key;
+float SpriteWidth_Key;
 
 void SetSpriteSettings()
 { 
@@ -18,35 +18,27 @@ void SetSpriteSettings()
     HD_GUI ? ArrayID = 1 : ArrayID = 0;
 
 
-    //  Set Sprite Height Positions:
+    //  Set sprite Height and Width values:
     
     if (HUD_Plus) // Currently HUD+ hardcodes the lifeicon to the same pos as vanilla and overrides DC Conv options, so I check it first.
     {
-        SpriteHeight_Dragon = 416.0f;
-        SpriteHeight_Counter = 424.0f;
-        
-        SpriteHeight_Key = (CurrentCharacter == Characters_Tails) ? 376.0f : 416.0f; // If current characters is Tails, set SpriteHeight_Key to 376.0f, else to 416.0f
+        SpriteHeight_Icon = 416.0f; // Dragon and key counter icon positions, they will share the same height float.
+        SpriteHeight_Counter = 424.0f; // Counter (numbers) of the dragon counter.
     }
 
     else if (DC_Conversion) // If HUD+ isn't enabled, check for DC Conversion.
     {
-        SpriteHeight_Dragon = (DC_HudTweaks) ? 400.0f : 416.0f; // If DC_HudTweaks is enabled, set SpriteHeight_Dragon to 400.0f, else to 416.0f
+        SpriteHeight_Icon = (DC_HudTweaks) ? 400.0f : 416.0f; // If DC_HudTweaks is enabled, set SpriteHeight_Icon to 400.0f, else to 416.0f
         SpriteHeight_Counter = (DC_HudTweaks) ? 416.0f : 424.0f;
-
-        if (DC_HudTweaks) // This checks if the "Adjust HUD Position" config option from DC Conv is enabled.
-            SpriteHeight_Key = (CurrentCharacter == Characters_Tails) ? 360.0f : 400.0f;
-
-        else
-            SpriteHeight_Key = (CurrentCharacter == Characters_Tails) ? 376.0f : 416.0f;
     }
 
     else // If neither HUD+ or DC Conv is enabled.
     {
-        SpriteHeight_Dragon = 416.0f;
+        SpriteHeight_Icon = 416.0f;
         SpriteHeight_Counter = 424.0f;
-        
-        SpriteHeight_Key = (CurrentCharacter == Characters_Tails) ? 376.0f : 416.0f;
     }
+
+    SpriteWidth_Key = (CurrentCharacter == Characters_Tails) ? 304.0f : 592.0f; // If currentchar is Tails, the key counter will be displayed at the middle of the screen (304.0f). Else it will be displayed on the side (592.0f)
 }
 
 
@@ -77,7 +69,7 @@ void DrawDragonCountHUD()
     SetSpriteSettings();
     
     SPRITE_DragonIcon.p.x = 592.0f;
-    SPRITE_DragonIcon.p.y = SpriteHeight_Dragon;
+    SPRITE_DragonIcon.p.y = SpriteHeight_Icon;
     late_DrawSprite2D(&SPRITE_DragonIcon, ArrayID, 22046.496f, NJD_SPRITE_ALPHA, LATE_LIG); // This draws the custom dragon icon.
 
     if (DragonCount >= 5) // This changes the sprite color to green when the condition is met (wrote if equal or greater than the value as a failsafe) - The sprite needs to have the NJD_SPRITE_COLOR flag.
@@ -119,8 +111,8 @@ void DrawKeyCountHUD()
 {
     SetSpriteSettings();
     
-    SPRITE_ChestKey.p.x = 592.0f;
-    SPRITE_ChestKey.p.y = SpriteHeight_Key;
+    SPRITE_ChestKey.p.x = SpriteWidth_Key;
+    SPRITE_ChestKey.p.y = SpriteHeight_Icon;
     
     if (HasKey == 0)
         return;
