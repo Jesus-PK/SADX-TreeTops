@@ -33,6 +33,17 @@ const char* MSG_LockedChest_JP[] = {
 };
 
 
+//  Locked Chest - Rewards:
+
+void SetLKCOpen()
+{
+    AddEnemyScore(2000);
+    dsPlay_oneshot(SE_BOMB, 0, 0, 0);
+    AddNumRing(50);
+    HasKey = 0;
+}
+
+
 //  Locked Chest Key - Main:
 
 void KeyPickup()
@@ -260,16 +271,40 @@ void DISPLAY_Number50(task* tp)
     njPopMatrix(1u);
 }
 
+void EXEC_Number50(task* tp)
+{
+    if (!CheckRangeOutWithR(tp, 96100.0))
+    {
+        auto twp = tp->twp;
+
+        switch (twp->mode)
+        {
+            case 0:
+                
+                tp->disp = DISPLAY_Number50;
+                
+                twp->mode++;
+                
+                break;
+           
+            case 1:
+                
+                twp->ang.y += 750;
+                
+                break;
+        }
+
+        tp->disp(tp);
+    }
+}
+
+childtaskset CTS_Number50[] = {
+    { EXEC_Number50, 2, 0, {0}, {0}, 0 },
+    { 0 }
+};
+
 
 //  Chest Lid - Main:
-
-void SetLKCOpen()
-{
-    AddEnemyScore(2000);
-    dsPlay_oneshot(SE_BOMB, 0, 0, 0);
-    AddNumRing(50);
-    HasKey = 0;
-}
 
 void DISPLAY_LKCLid(task* tp)
 {
@@ -358,9 +393,8 @@ void EXEC_LKCLid(task* tp)
 
                     Dead(tp);
 
-                    tp->disp = DISPLAY_Number50;
-
                     CreateChildrenTask(CTS_LKCDebris, tp);
+                    CreateChildrenTask(CTS_Number50, tp);
 
                     //  Necessary functions to kill a dyncol early:
                     WithdrawCollisionEntry(tp, (NJS_OBJECT*)twp->counter.ptr);
@@ -387,8 +421,6 @@ void EXEC_LKCLid(task* tp)
 
         case 3:
         {            
-            twp->ang.y += 750;
-
             if (++twp->wtimer > 120)
                 FreeTask(tp);
 
