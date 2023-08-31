@@ -9,7 +9,7 @@ ModelInfo* MDL_TTSkybox = nullptr;
 
 //  I create a entiretely custom BG task with the same format the game does it (disp, exec, init) then slap the init (bg) in ScrollMasterList:
 
-void DISP_TTSkybox(task* tp)
+void DISPLAY_TTSkybox(task* tp)
 {
     auto twp = tp->twp;
     
@@ -46,7 +46,7 @@ void EXEC_TTSkybox(task* tp)
 void BG_TreeTops(task* tp)
 {
     tp->exec = EXEC_TTSkybox;
-    tp->disp = DISP_TTSkybox;
+    tp->disp = DISPLAY_TTSkybox;
 }
 
 

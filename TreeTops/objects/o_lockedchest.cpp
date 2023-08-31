@@ -9,7 +9,7 @@ ModelInfo* MDL_LKCDebris01 = nullptr;
 ModelInfo* MDL_LKCDebris02 = nullptr;
 ModelInfo* MDL_LKCDebris03 = nullptr;
 ModelInfo* MDL_LKCDebris04 = nullptr;
-ModelInfo* MDL_Number25 = nullptr;
+ModelInfo* MDL_Number50 = nullptr;
 
 ModelInfo* MDL_LKCKey = nullptr;
 
@@ -241,7 +241,7 @@ childtaskset CTS_LKCDebris[] = {
 
 //  Locked Chest - Value Number:
 
-void DISPLAY_Number25(task* tp)
+void DISPLAY_Number50(task* tp)
 {
     if (MissedFrames)
         return;
@@ -255,7 +255,7 @@ void DISPLAY_Number25(task* tp)
     njTranslateV(0, &twp->pos);
     njRotateXYZ(0, twp->ang.x, twp->ang.y, twp->ang.z);
     
-    dsDrawObject(MDL_Number25->getmodel());
+    dsDrawObject(MDL_Number50->getmodel());
     
     njPopMatrix(1u);
 }
@@ -358,7 +358,7 @@ void EXEC_LKCLid(task* tp)
 
                     Dead(tp);
 
-                    tp->disp = DISPLAY_Number25;
+                    tp->disp = DISPLAY_Number50;
 
                     CreateChildrenTask(CTS_LKCDebris, tp);
 
@@ -414,7 +414,7 @@ void LOAD_LockedChest()
     MDL_LKCDebris02 = LoadBasicModel("TreeTops_LKCDebris02");
     MDL_LKCDebris03 = LoadBasicModel("TreeTops_LKCDebris03");
     MDL_LKCDebris04 = LoadBasicModel("TreeTops_LKCDebris04");
-    MDL_Number25 = LoadBasicModel("TreeTops_Number25");
+    MDL_Number50 = LoadBasicModel("TreeTops_Number50");
     MDL_LKCKey = LoadBasicModel("TreeTops_LKCKey");
     MDL_LKCColli01 = LoadBasicModel("TreeTops_LKCColli01");
     MDL_LKCColli02 = LoadBasicModel("TreeTops_LKCColli02");
