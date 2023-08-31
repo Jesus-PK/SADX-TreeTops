@@ -45,6 +45,7 @@ void LANDTABLE_TreeTops()
 	LoadLandTable(&MDL_TTLandtable, "TreeTops_Landtable", HelperFunctionsGlobal, &TEXLIST_TreeTops);
 
 	GeoLists[LevelIDs_SkyDeck * 8] = MDL_TTLandtable->getlandtable();
+	GeoLists[LevelIDs_SkyDeck * 8 + 1] = MDL_TTLandtable->getlandtable();
 	GeoLists[LevelIDs_SkyDeck * 8 + 2] = MDL_TTLandtable->getlandtable();
 }
 
@@ -54,6 +55,7 @@ void LANDTABLE_TreeTops()
 void DEATHZONES_TreeTops()
 {
 	KillingCollisionModelsListList[LevelIDs_SkyDeck][0] = TTDeathzones00;
+	KillingCollisionModelsListList[LevelIDs_SkyDeck][1] = TTDeathzones00;
 	KillingCollisionModelsListList[LevelIDs_SkyDeck][2] = TTDeathzones01;
 }
 
@@ -61,7 +63,8 @@ void DEATHZONES_TreeTops()
 //	Start Positions:
 
 StartPosition TreeTops00 = { LevelIDs_SkyDeck, 0, { 707.124f, 75.0f, 861.509f }, 0x9500 };
-StartPosition TreeTops01 = { LevelIDs_SkyDeck, 2, { 707.124f, 75.0f, 861.509f }, 0x9500 };
+StartPosition TreeTops01 = { LevelIDs_SkyDeck, 1, { 707.124f, 75.0f, 861.509f }, 0x9500 };
+StartPosition TreeTops02 = { LevelIDs_SkyDeck, 2, { 707.124f, 75.0f, 861.509f }, 0x9500 };
 
 void STARTPOSITIONS_TreeTops(const HelperFunctions& helperFunctions)
 {
@@ -69,6 +72,7 @@ void STARTPOSITIONS_TreeTops(const HelperFunctions& helperFunctions)
 	{
 		helperFunctions.RegisterStartPosition(i, TreeTops00);
 		helperFunctions.RegisterStartPosition(i, TreeTops01);
+		helperFunctions.RegisterStartPosition(i, TreeTops02);
 	}
 }
 
@@ -79,6 +83,7 @@ void PATHS_TreeTops(const HelperFunctions& helperFunctions)
 {
 	helperFunctions.RegisterPathList(PATHDATA_TreeTops00);
 	helperFunctions.RegisterPathList(PATHDATA_TreeTops01);
+	helperFunctions.RegisterPathList(PATHDATA_TreeTops02);
 }
 
 
@@ -91,6 +96,7 @@ void FILES_TreeTops(const HelperFunctions& helperFunctions)
 	// SET Replacement:
 
 	ReplaceBIN("SET0600S", "SET_TreeTopsS");
+	ReplaceBIN("SET0601S", "SET_TreeTopsS");
 	ReplaceBIN("SET0600M", "SET_TreeTopsM");
 	ReplaceBIN("SET0602K", "SET_TreeTopsK");
 
@@ -98,6 +104,7 @@ void FILES_TreeTops(const HelperFunctions& helperFunctions)
 	// CAM Replacement:
 
 	ReplaceBIN("CAM0600S", "CAM_TreeTopsS");
+	ReplaceBIN("CAM0601S", "CAM_TreeTopsS");
 	ReplaceBIN("CAM0600M", "CAM_TreeTopsM");
 	ReplaceBIN("CAM0602K", "CAM_TreeTopsK");
 

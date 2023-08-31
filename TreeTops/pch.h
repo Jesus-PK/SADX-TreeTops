@@ -19,10 +19,10 @@
 
 	#include "graphics.h"
 	#include "level.h"
-	#include "leveltask.h"
 	#include "levelranks.h"
-	#include "o_skybox.h"
+	#include "leveltask.h"	
 	#include "objects.h"
+	#include "o_skybox.h"
 	#include "utils.h"
 
 #endif

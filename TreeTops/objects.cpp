@@ -1,4 +1,5 @@
 #include "pch.h"
+
 #include "o_basicchest.h"
 #include "o_crystalstatue.h"
 #include "o_dragons.h"
@@ -84,25 +85,21 @@ _OBJ_ITEMTABLE OBJECTLIST_TreeTops = { LengthOfArray(OBJECTLIST_TreeTops_LIST), 
 //	Texture List:
 
 TEX_PVMTABLE TEXTURELIST_TreeTops[] = {
-	{ "OBJ_SKYDECK", (TexList*)0x214BE40 },
-	{ "E_AIRCRAFT", (TexList*)0x9620F0 },
-	{ "OUM", (TexList*)0x9334EC },
-	{ "KUJA", (TexList*)0x93142C },
-	{ "MILESRACE", (TexList*)0x91BFC0 },
-	{ "SUPI_SUPI", (TexList*)0x96F518 },
-	{ "TUBA", (TexList*)0x92F2BC },
-	{ "LION", (TexList*)0x944094 },
-	{ "AIR_SIGNAL", (TexList*)0x96236C },
-	{ "SUKA", (TexList*)0x94789C },
-	{ "UNI_A_UNIBODY", (TexList*)0x96CB5C },
-	{ "TOGEBALL_TOGEBALL", (TexList*)0x96BC54 },
-	{ NULL, (TexList*)0x214B41C },
-
+	{ "OUM", (TexList*)0x9334EC }, // Parrot
+	{ "KUJA", (TexList*)0x93142C }, // Peacock
+	{ "TUBA", (TexList*)0x92F2BC }, // Swallow
+	{ "LION", (TexList*)0x944094 }, // Leooooooooon, help!
+	{ "SUKA", (TexList*)0x94789C }, // Skunk
+	{ "E_SARU", (TexList*)0x962560 }, // Kiki
+	{ "E_BOMB", (TexList*)0x96B464 }, // Kiki Bomb
+	{ "SUPI_SUPI", (TexList*)0x96F518 }, // Spinner
+	{ "UNI_A_UNIBODY", (TexList*)0x96CB5C }, // Unidus Black
+	{ "UNI_C_UNIBODY", (TexList*)0x96DC48 }, // Unidus Red
+	{ "TOGEBALL_TOGEBALL", (TexList*)0x96BC54 }, // Spiked Ball 
+	{ "MILESRACE", (TexList*)0x91BFC0 }, // Tails Race Icons
+	
 	{ "TreeTops_Objects", &TEXLIST_TTObjects },
-	{ "TreeTops_Dragons", &TEXLIST_TTDragons },
-	{ "UNI_C_UNIBODY", (TexList*)0x96DC48 },
-	{ "E_SARU", (TexList*)0x962560 },
-	{ "E_BOMB", (TexList*)0x96B464 },	
+	{ "TreeTops_Dragons", &TEXLIST_TTDragons },	
 	{ 0 }
 };
 
@@ -131,7 +128,8 @@ void LOADOBJECTS_TreeTops()
 void INITOBJECTS_TreeTops()
 {
 	ListofPvmList[LevelIDs_SkyDeck] = TEXTURELIST_TreeTops;
-
+	
 	objItemTable[LevelIDs_SkyDeck * 8] = &OBJECTLIST_TreeTops;
+	objItemTable[LevelIDs_SkyDeck * 8 + 1] = &OBJECTLIST_TreeTops;
 	objItemTable[LevelIDs_SkyDeck * 8 + 2] = &OBJECTLIST_TreeTops;
 }

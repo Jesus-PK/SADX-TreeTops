@@ -1,5 +1,60 @@
 #include "pch.h"
 
+//  Level Ranks:
+
+UsercallFunc(BOOL, CheckMissionRequirements_t, (int mission, int character, int level), (mission, character, level), 0x426AA0, rAL, rEAX, rEDX, rECX);
+
+//  This is a more "faithful" decompilation of the CheckMissionRequirements function. Now instead of the "v3 / missionBool" calculation to check for a particular rank, it just boils down to a simple switch statement that will check for the current mission value (LevelClear and A-Rank = 0 / B-Rank = 1 / C-Rank = 2) - Fully compatible with Metal Sonic ranks.
+//  Worth nothing: For C-Rank I opted to call it as the default case of the switch rather than case 2, doing this fixed a "Not all control paths return a value" compiler warning.
+
+BOOL CheckMissionRequirements_r(int mission, int character, int level)
+{
+    if (CurrentLevel != LevelIDs_SkyDeck)
+        return CheckMissionRequirements_t.Original(mission, character, level);
+
+    switch (mission)
+    {
+        case 0: // Rank A - LevelClear
+        {
+            int time = TimeFrames + 60 * (TimeSeconds + 60 * TimeMinutes); // Due to declaring the "int time" inside the switch case, curly braces are needed at case 0 with braces due to the "Initialization of 'time' is skipped by 'case' label" error.
+            
+            switch (character)
+            {
+                case Characters_Sonic:
+                    return (Rings >= 1 && time < 180) ? 1 : 0;
+                    break;
+
+                case Characters_Tails:
+                    return (time < 240) ? 1 : 0;
+                    break;
+
+                case Characters_Knuckles:
+                    return (time < 300) ? 1 : 0;
+                    break;
+
+                default:
+                    return 1;
+                    break;
+            }
+            
+            break;
+        }       
+        case 1: // Rank B           
+            return (Rings >= 5) ? 1 : 0;           
+            break;
+
+        default: // Rank C           
+            return 1;
+            break;
+    }
+}
+
+void INIT_LevelRanks()
+{
+    CheckMissionRequirements_t.Hook(CheckMissionRequirements_r);
+}
+
+
 //	Mission Cards:
 
 NJS_TEXNAME TEX_TTMission[36] = { 0 };
@@ -176,57 +231,4 @@ void MISSIONCARDS_TreeTops()
 {
     LoadStageMissionImage_t.Hook(LoadStageMissionImage_r);
     LoadMissionCardResult_t.Hook(LoadMissionCardResult_r);
-}
-
-
-//  Level Ranks:
-
-UsercallFunc(BOOL, CheckMissionRequirements_t, (int mission, int character, int level), (mission, character, level), 0x426AA0, rAL, rEAX, rEDX, rECX);
-
-//  This is a more "faithful" decompilation of the CheckMissionRequirements function. Now instead of the "v3 / missionBool" calculation to check for a particular rank, it just boils down to a simple switch statement that will check for the current mission value (LevelClear and A-Rank = 0 / B-Rank = 1 / C-Rank = 2) - Fully compatible with Metal Sonic ranks.
-//  Worth nothing: For C-Rank I opted to call it as the default case of the switch rather than case 2, doing this fixed a "Not all control paths return a value" compiler warning.
-
-BOOL CheckMissionRequirements_r(int mission, int character, int level)
-{
-    if (CurrentLevel != LevelIDs_SkyDeck)
-        return CheckMissionRequirements_t.Original(mission, character, level);
-
-    switch (mission)
-    {
-        case 0: // Rank A - LevelClear
-        {
-            int time = TimeFrames + 60 * (TimeSeconds + 60 * TimeMinutes); // Due to declaring the "int time" inside the switch case, curly braces are needed at case 0 with braces due to the "Initialization of 'time' is skipped by 'case' label" error.
-            switch (character)
-            {
-                case Characters_Sonic:
-                    return (Rings >= 1 && time < 180) ? 1 : 0;
-                    break;
-
-                case Characters_Tails:
-                    return (time < 240) ? 1 : 0;
-                    break;
-
-                case Characters_Knuckles:
-                    return (time < 300) ? 1 : 0;
-                    break;
-
-                default:
-                    return 1;
-                    break;
-            }
-            break;
-        }
-        case 1: // Rank B
-            return (Rings >= 5) ? 1 : 0;
-            break;
-
-        default: // Rank C
-            return 1;
-            break;
-    }
-}
-
-void INIT_LevelRanks()
-{
-    CheckMissionRequirements_t.Hook(CheckMissionRequirements_r);
 }
