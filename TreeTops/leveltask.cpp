@@ -31,6 +31,17 @@ void RD_TreeTops(task* tp)
 }
 
 
+//	Event Cutscene Fixes:
+
+//	I discovered that Knux cutscene after finishing Sky Deck for the first time results in him dying (if you don't skip it) and literally softlocking the game + breaking your savefile...
+//	So yeah, this is just a simple WriteCall with this function below to set a particular position for Knux at the start of the event (so he doesn't fall to the void). On this particular one, the CAM works great, so no need for tweaking that for now.
+
+void EV0095_PositionFix(task* tp, float x, float y, float z) // The arguments in here need to be the same as EV_SetPos (check them on IDA)
+{
+    EV_SetPos(tp, 1228.0f, 12.0f, -692.0f); // Just mentioning the task as tp is enough in here, since we are just replacing the line that does this in the event. So the rest of the vanilla code handles the rest.
+}
+
+
 //	Lantern Engine API - Custom Palette and Light files.
 //	These functions are custom (any name works), we need to make an individual function for every file we are gonna register down below on the Lantern API:
 

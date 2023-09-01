@@ -39,6 +39,8 @@ extern "C"
 		PATHS_TreeTops(helperFunctions);
 		//FILES_TreeTops(helperFunctions);		
 
+		WriteCall((void*)0x689172, EV0095_PositionFix); // Tweak Knux position in his story mode cutscene.
+
 
 		//	Load Custom Ranks and Mission Cards:
 		
