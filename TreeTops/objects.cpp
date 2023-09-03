@@ -76,7 +76,9 @@ _OBJ_ITEMENTRY OBJECTLIST_TreeTops_LIST[] = {
 	{ 2, 2, 1, 1000000.0f, 0, INIT_Firewood, "O FIREWOOD"}, // ID 46
 	{ 2, 2, 1, 1000000.0f, 0, INIT_LargeTorch, "O LARGE TORCH"}, // ID 47
 	{ 2, 2, 1, 1000000.0f, 0, INIT_SpottedChicken, "O SPOTTED CHICKEN"}, // ID 48
-	{ 2, 2, 1, 1000000.0f, 0, EXEC_Spyro, "O SPYRO LEDGE"} // ID 49
+	{ 2, 2, 1, 1000000.0f, 0, EXEC_Spyro, "O SPYRO LEDGE"}, // ID 49
+	{ 2, 2, 1, 4000000, 0, (TaskFuncPtr)0x4B8DC0, "O JUMP PANEL" }, // ID 50 - Don't touch the float, a lower value breaks the jump panel lol
+	{ 2, 2, 1, 1000000.0f, 0, (TaskFuncPtr)0x4E4C10, "O PLAYER UP WIND" } // ID 51
 };
 
 _OBJ_ITEMTABLE OBJECTLIST_TreeTops = { LengthOfArray(OBJECTLIST_TreeTops_LIST), 0, OBJECTLIST_TreeTops_LIST };
@@ -85,6 +87,7 @@ _OBJ_ITEMTABLE OBJECTLIST_TreeTops = { LengthOfArray(OBJECTLIST_TreeTops_LIST), 
 //	Texture List:
 
 TEX_PVMTABLE TEXTURELIST_TreeTops[] = {
+	{ "OBJ_WINDY", (TexList*)0xC055D4 }, // Needs to be called at the start of the list due to PU Wind setting up it's texlist from the first .PVM on the PVMTABLE.
 	{ "OUM", (TexList*)0x9334EC }, // Parrot
 	{ "KUJA", (TexList*)0x93142C }, // Peacock
 	{ "TUBA", (TexList*)0x92F2BC }, // Swallow
