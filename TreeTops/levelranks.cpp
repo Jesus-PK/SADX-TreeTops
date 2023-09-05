@@ -16,20 +16,20 @@ BOOL CheckMissionRequirements_r(int mission, int character, int level)
     {
         case 0: // Rank A - LevelClear
         {
-            int time = TimeFrames + 60 * (TimeSeconds + 60 * TimeMinutes); // Due to declaring the "int time" inside the switch case, curly braces are needed at case 0 with braces due to the "Initialization of 'time' is skipped by 'case' label" error.
+            int time = TimeFrames + 60 * (TimeSeconds + 60 * TimeMinutes); // 60 Frames - Due to declaring the "int time" inside the switch case, curly braces are needed at case 0 with braces due to the "Initialization of 'time' is skipped by 'case' label" error.
             
             switch (character)
             {
                 case Characters_Sonic:
-                    return (Rings >= 1 && time < 180) ? 1 : 0;
+                    return (time <= 7200 && Rings >= 375) ? 1 : 0; // 2 Minutes and 375 Rings
                     break;
 
                 case Characters_Tails:
-                    return (time < 240) ? 1 : 0;
+                    return (time < 3600) ? 1 : 0; // 1 Minute
                     break;
 
                 case Characters_Knuckles:
-                    return (time < 300) ? 1 : 0;
+                    return (time < 5400) ? 1 : 0; // 1:30 Minutes
                     break;
 
                 default:
@@ -40,7 +40,7 @@ BOOL CheckMissionRequirements_r(int mission, int character, int level)
             break;
         }       
         case 1: // Rank B           
-            return (Rings >= 5) ? 1 : 0;           
+            return (Rings >= 375) ? 1 : 0; // 75% of total rings
             break;
 
         default: // Rank C           

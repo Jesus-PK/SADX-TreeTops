@@ -18,8 +18,6 @@ void RD_TreeTops(task* tp)
 		CreateElementalTask(2, 2, ANIM_GrassRamp);
 
 		SETVIEWDATA_TreeTops(); // I think I don't need to call this every frame anymore, I believe the problem I used to have in Gnorc Cove was the Skybox task setting up their own values and overriding mine. This shouldn't be an issue anymore since I do custom RD and BG tasks.
-		
-		EnableFreeCamera(1); // Forces FreeCam on level start, pending removal.
 
 		twp->mode++;
 	}
