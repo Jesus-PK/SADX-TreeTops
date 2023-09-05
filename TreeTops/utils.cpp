@@ -6,7 +6,6 @@ bool HD_GUI = false;
 bool DC_Conversion = false;
 bool HUD_Plus = false;
 bool Lantern_Engine = false;
-bool SA1_Cream = false;
 
 bool DC_HudTweaks = false; // Checks if Dreamcast Conversion "Adjust HUD Position" config option is enabled.
 
@@ -35,7 +34,6 @@ void CheckActiveMods(const HelperFunctions& helperFunctions)
 	
 	HUD_Plus = GetModuleHandle(L"sadx-hud-plus") != nullptr;
 	Lantern_Engine = GetModuleHandle(L"sadx-dc-lighting") != nullptr;
-	SA1_Cream = GetModuleHandle(L"CreamtheRabbit(SA1-Style)") != nullptr;
 }
 
 void CheckModLoaderVersion(const HelperFunctions& helperFunctions)

@@ -6,7 +6,6 @@ extern bool HD_GUI;
 extern bool DC_Conversion;
 extern bool HUD_Plus;
 extern bool Lantern_Engine;
-extern bool SA1_Cream;
 
 extern bool DC_HudTweaks;
 

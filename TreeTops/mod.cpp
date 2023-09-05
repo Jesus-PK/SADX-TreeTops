@@ -63,8 +63,8 @@ extern "C"
 
 		STAGENAMES_TreeTops(path, helperFunctions);
 		TITLECARDS_TreeTops(path, helperFunctions);
-		//MULTITHUMBNAILS_TreeTops(path, helperFunctions);
-		//STAGECREDITS_TreeTops(path, helperFunctions);
+		MULTITHUMBNAILS_TreeTops(path, helperFunctions);
+		STAGECREDITS_TreeTops(path, helperFunctions);
 		
 		
 		//	Level Destructor Trampoline:

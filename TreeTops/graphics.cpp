@@ -29,7 +29,6 @@ void STAGENAMES_TreeTops(const char* path, const HelperFunctions& helperFunction
 void TITLECARDS_TreeTops(const char* path, const HelperFunctions& helperFunctions)
 {
     std::string index = path;
-    std::string index_cream = path;
 
     if (HD_GUI)
     {
@@ -38,23 +37,10 @@ void TITLECARDS_TreeTops(const char* path, const HelperFunctions& helperFunction
 
         ReplacePVR("S_STAGE08", HD_Index);
         ReplacePVR("S_STAGE08_E", HD_Index);
+        ReplacePVR("M_STAGE04", HD_Index);
+        ReplacePVR("M_STAGE04_E", HD_Index);
         ReplacePVR("K_STAGE05", HD_Index);
         ReplacePVR("K_STAGE05_E", HD_Index);
-
-        if (SA1_Cream)
-        {
-            index_cream += "\\textures\\TitleCards_HD\\Cream_HD\\index.txt";
-            const char* CreamHD_Index = index_cream.c_str();
-
-            ReplacePVR("M_STAGE04", CreamHD_Index);
-            ReplacePVR("M_STAGE04_E", CreamHD_Index);
-        }
-
-        else
-        {
-            ReplacePVR("M_STAGE04", HD_Index);
-            ReplacePVR("M_STAGE04_E", HD_Index);
-        }
     }
 
     else
@@ -64,34 +50,17 @@ void TITLECARDS_TreeTops(const char* path, const HelperFunctions& helperFunction
 
         ReplacePVR("S_STAGE08", SD_Index);
         ReplacePVR("S_STAGE08_E", SD_Index);
+        ReplacePVR("M_STAGE04", SD_Index);
+        ReplacePVR("M_STAGE04_E", SD_Index);
         ReplacePVR("K_STAGE05", SD_Index);
         ReplacePVR("K_STAGE05_E", SD_Index);
 
         ReplacePVR("S_STAGE08_DC", SD_Index);
         ReplacePVR("S_STAGE08_E_DC", SD_Index);
+        ReplacePVR("M_STAGE04_DC", SD_Index);
+        ReplacePVR("M_STAGE04_E_DC", SD_Index);
         ReplacePVR("K_STAGE05_DC", SD_Index);
         ReplacePVR("K_STAGE05_E_DC", SD_Index);
-
-        if (SA1_Cream)
-        {
-            index_cream += "\\textures\\TitleCards_SD\\Cream_SD\\index.txt";
-            const char* CreamSD_Index = index_cream.c_str();
-
-            ReplacePVR("M_STAGE04", CreamSD_Index);
-            ReplacePVR("M_STAGE04_E", CreamSD_Index);
-
-            ReplacePVR("M_STAGE04_DC", CreamSD_Index);
-            ReplacePVR("M_STAGE04_E_DC", CreamSD_Index);
-        }
-
-        else
-        {
-            ReplacePVR("M_STAGE04", SD_Index);
-            ReplacePVR("M_STAGE04_E", SD_Index);
-
-            ReplacePVR("M_STAGE04_DC", SD_Index);
-            ReplacePVR("M_STAGE04_E_DC", SD_Index);
-        }
     }
 }
 
@@ -100,8 +69,8 @@ void TITLECARDS_TreeTops(const char* path, const HelperFunctions& helperFunction
 
 void MULTITHUMBNAILS_TreeTops(const char* path, const HelperFunctions& helperFunctions)
 {
-	ReplaceTex("AVA_MULTI", "multistg0600", "MultiThumbnails", "Multi_TreeTopsS", 54926007, 128, 72);
-	ReplaceTex("AVA_MULTI", "multistg0602", "MultiThumbnails", "Multi_TreeTopsK", 71757015, 128, 72);
+	ReplaceTex("AVA_MULTI", "multistg0600", "MultiThumbnails", "Multi_TreeTops-S", 54926007, 128, 72);
+	ReplaceTex("AVA_MULTI", "multistg0602", "MultiThumbnails", "Multi_TreeTops-K", 71757015, 128, 72);
 }
 
 
@@ -111,20 +80,20 @@ void STAGECREDITS_TreeTops(const char* path, const HelperFunctions& helperFuncti
 {
     if (HD_GUI)
     {
-        ReplaceTex("ENDBG_SUPERSONIC_0_HD", "ss_ev006", "StageCredits", "HD_TreeTops-S00", 366154, 256, 256);
-        ReplaceTex("ENDBG_SUPERSONIC_0_HD", "ss_ev007", "StageCredits", "HD_TreeTops-S01", 366155, 256, 256);
-        ReplaceTex("ENDBG_TAILS_1_HD", "t_ev015", "StageCredits", "HD_TreeTops-T00", 366141, 256, 256);
-        ReplaceTex("ENDBG_KNUCKLES_2_HD", "k_ev021", "StageCredits", "HD_TreeTops-K00", 366070, 256, 256);
-        ReplaceTex("ENDBG_KNUCKLES_2_HD", "k_ev022", "StageCredits", "HD_TreeTops-K01", 366071, 256, 256);
+        ReplaceTex("ENDBG_SUPERSONIC_0", "ss_ev006", "StageCredits", "HD_TreeTops-S00", 366154, 256, 256);
+        ReplaceTex("ENDBG_SUPERSONIC_0", "ss_ev007", "StageCredits", "HD_TreeTops-S01", 366155, 256, 256);
+        ReplaceTex("ENDBG_TAILS_1", "t_ev015", "StageCredits", "HD_TreeTops-T00", 366141, 256, 256);
+        ReplaceTex("ENDBG_KNUCKLES_2", "k_ev021", "StageCredits", "HD_TreeTops-K00", 366070, 256, 256);
+        ReplaceTex("ENDBG_KNUCKLES_2", "k_ev022", "StageCredits", "HD_TreeTops-K01", 366071, 256, 256);
     }
 
     else if (DC_Conversion)
     {
-        ReplaceTex("ENDBG_SUPERSONIC_0_HD", "ss_ev006", "StageCredits", "DC_TreeTops-S00", 366154, 256, 256);
-        ReplaceTex("ENDBG_SUPERSONIC_0_HD", "ss_ev007", "StageCredits", "DC_TreeTops-S01", 366155, 256, 256);
-        ReplaceTex("ENDBG_TAILS_1_HD", "t_ev015", "StageCredits", "DC_TreeTops-T00", 366141, 256, 256);
-        ReplaceTex("ENDBG_KNUCKLES_2_HD", "k_ev021", "StageCredits", "DC_TreeTops-K00", 366070, 256, 256);
-        ReplaceTex("ENDBG_KNUCKLES_2_HD", "k_ev022", "StageCredits", "DC_TreeTops-K01", 366071, 256, 256);
+        ReplaceTex("ENDBG_SUPERSONIC_0", "ss_ev006", "StageCredits", "DC_TreeTops-S00", 366154, 256, 256);
+        ReplaceTex("ENDBG_SUPERSONIC_0", "ss_ev007", "StageCredits", "DC_TreeTops-S01", 366155, 256, 256);
+        ReplaceTex("ENDBG_TAILS_1", "t_ev015", "StageCredits", "DC_TreeTops-T00", 366141, 256, 256);
+        ReplaceTex("ENDBG_KNUCKLES_2", "k_ev021", "StageCredits", "DC_TreeTops-K00", 366070, 256, 256);
+        ReplaceTex("ENDBG_KNUCKLES_2", "k_ev022", "StageCredits", "DC_TreeTops-K01", 366071, 256, 256);
     }
 
     else
