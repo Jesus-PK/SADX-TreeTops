@@ -18,10 +18,10 @@
 NJS_TEXNAME TEX_TreeTops[79] = { 0 };
 NJS_TEXLIST TEXLIST_TreeTops = { arrayptrandlength(TEX_TreeTops) };
 
-NJS_TEXNAME TEX_TTObjects[32] = { 0 };
+NJS_TEXNAME TEX_TTObjects[35] = { 0 };
 NJS_TEXLIST TEXLIST_TTObjects = { arrayptrandlength(TEX_TTObjects) };
 
-NJS_TEXNAME TEX_TTDragons[11] = { 0 };
+NJS_TEXNAME TEX_TTDragons[12] = { 0 };
 NJS_TEXLIST TEXLIST_TTDragons = { arrayptrandlength(TEX_TTDragons) };
 
 
@@ -129,7 +129,7 @@ void LOAD_OBJECTS_TreeTops()
 
 //	Init Objects:
 
-void INIT_Objects()
+void INIT_Objects(const HelperFunctions& helperFunctions)
 {
 	ListofPvmList[LevelIDs_SkyDeck] = TEXTURELIST_TreeTops;
 	
@@ -138,4 +138,7 @@ void INIT_Objects()
 	objItemTable[LevelIDs_SkyDeck * 8 + 2] = &OBJECTLIST_TreeTops;
 
 	LOAD_OBJECTS_TreeTops();
+
+	for (Uint32 i = 506002000; i < 506002011; i++)
+		helperFunctions.MipmapBlacklistGBIX(i);
 }

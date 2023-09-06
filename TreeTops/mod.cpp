@@ -19,7 +19,7 @@ extern "C"
 		INIT_Level(helperFunctions);
 		INIT_LevelTask();
 		INIT_LevelRanks();
-		INIT_Objects();
+		INIT_Objects(helperFunctions);
 		INIT_Graphics(path, helperFunctions);
 	}
 
