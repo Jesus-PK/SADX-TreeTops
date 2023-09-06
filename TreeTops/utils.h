@@ -95,8 +95,3 @@ FunctionPointer(void, CreateChildrenTask, (childtaskset* ctsp, task* tp), 0x40B9
 //	FunctionPointer for IsThisTaskPlayer function:
 
 FunctionPointer(Bool, IsThisTaskPlayer, (task* tp), 0x441AD0);
-
-
-//	FunctionPointer for SetFlagNoRespawn function:
-
-TaskFunc(SetFlagNoRespawn, 0x46C100);

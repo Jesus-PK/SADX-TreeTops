@@ -82,7 +82,7 @@ void EXEC_LKCKey(task* tp)
     {
         case 0:
 
-            SetFlagNoRespawn(tp);
+            SetNoRevive(tp);
             
             tp->disp = DISPLAY_LKCKey;
             CCL_Init(tp, &COLLI_LKCKey, 1, 4u);
@@ -339,7 +339,7 @@ void EXEC_LKCLid(task* tp)
     {
         case 0:
         {
-            SetFlagNoRespawn(tp);
+            SetNoRevive(tp);
 
             auto object = GetMobileLandObject();
 
