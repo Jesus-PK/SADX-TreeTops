@@ -103,3 +103,14 @@ void STAGECREDITS_TreeTops(const char* path, const HelperFunctions& helperFuncti
         ReplaceTex("ENDBG_KNUCKLES_2", "knuckles_24", "StageCredits", "DX_TreeTops-K00", 366073, 512, 512);
     }
 }
+
+
+//  Init Graphics:
+
+void INIT_Graphics(const char* path, const HelperFunctions& helperFunctions)
+{
+    STAGENAMES_TreeTops(path, helperFunctions);
+    TITLECARDS_TreeTops(path, helperFunctions);
+    MULTITHUMBNAILS_TreeTops(path, helperFunctions);
+    STAGECREDITS_TreeTops(path, helperFunctions);
+}

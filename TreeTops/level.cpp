@@ -95,21 +95,37 @@ void FILES_TreeTops(const HelperFunctions& helperFunctions)
 {
 	// SET Replacement:
 
-	ReplaceBIN("SET0600S", "SET_TreeTopsS");
-	ReplaceBIN("SET0601S", "SET_TreeTopsS");
-	ReplaceBIN("SET0600M", "SET_TreeTopsM");
-	ReplaceBIN("SET0602K", "SET_TreeTopsK");
+	ReplaceBIN("SET0600S", "SET_TreeTops-S");
+	ReplaceBIN("SET0601S", "SET_TreeTops-S");
+	ReplaceBIN("SET0602S", "SET_TreeTops-S");
+	ReplaceBIN("SET0600M", "SET_TreeTops-M");
+	ReplaceBIN("SET0602K", "SET_TreeTops-K");
 
 
 	// CAM Replacement:
 
-	ReplaceBIN("CAM0600S", "CAM_TreeTopsS");
-	ReplaceBIN("CAM0601S", "CAM_TreeTopsS");
-	ReplaceBIN("CAM0600M", "CAM_TreeTopsM");
-	ReplaceBIN("CAM0602K", "CAM_TreeTopsK");
+	ReplaceBIN("CAM0600S", "CAM_TreeTops-S");
+	ReplaceBIN("CAM0601S", "CAM_TreeTops-S");
+	ReplaceBIN("SET0602S", "SET_TreeTops-S");
+	ReplaceBIN("CAM0600M", "CAM_TreeTops-M");
+	ReplaceBIN("CAM0602K", "CAM_TreeTops-K");
 
 
 	// OST Replacement:
 
 	helperFunctions.ReplaceFile("system\\sounddata\\bgm\\wma\\skydeck1.wma", "system\\OST_TreeTops.adx");
+}
+
+
+//	Init Level:
+
+void INIT_Level(const HelperFunctions& helperFunctions)
+{
+	WriteData<5>((void*)0x422D84, 0x90); // Disable DC Conversion Sky Deck
+	
+	LANDTABLE_TreeTops();
+	DEATHZONES_TreeTops();
+	STARTPOSITIONS_TreeTops(helperFunctions);
+	PATHS_TreeTops(helperFunctions);
+	//FILES_TreeTops(helperFunctions);
 }

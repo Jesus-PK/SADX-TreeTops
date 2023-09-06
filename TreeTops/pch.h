@@ -22,7 +22,6 @@
 	#include "levelranks.h"
 	#include "leveltask.h"	
 	#include "objects.h"
-	#include "o_skybox.h"
 	#include "utils.h"
 
 #endif

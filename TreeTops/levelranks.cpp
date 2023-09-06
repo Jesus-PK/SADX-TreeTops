@@ -49,11 +49,6 @@ BOOL CheckMissionRequirements_r(int mission, int character, int level)
     }
 }
 
-void INIT_LevelRanks()
-{
-    CheckMissionRequirements_t.Hook(CheckMissionRequirements_r);
-}
-
 
 //	Mission Cards:
 
@@ -227,8 +222,13 @@ void LoadMissionCardResult_r()
     tp->dest = (TaskFuncPtr)FreeStageMissionImage;
 }
 
-void MISSIONCARDS_TreeTops()
+
+//  Init LevelRanks:
+
+void INIT_LevelRanks()
 {
-    LoadStageMissionImage_t.Hook(LoadStageMissionImage_r);
-    LoadMissionCardResult_t.Hook(LoadMissionCardResult_r);
+    CheckMissionRequirements_t.Hook(CheckMissionRequirements_r); // Init level ranks hook.
+    
+    LoadStageMissionImage_t.Hook(LoadStageMissionImage_r); // Init mission cards (Level Start) hook.
+    LoadMissionCardResult_t.Hook(LoadMissionCardResult_r); // Init mission cards (Level Result) hook.
 }

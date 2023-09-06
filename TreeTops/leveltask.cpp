@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "hud.h"
 #include "ramps.h"
+#include "o_skybox.h"
 
 //	Custom LevelTask - Custom code for Sky Deck leveltask function (0x5F02E0).
 //	Due to Lantern Engine hooking SkyDeck leveltask for the special effects in this level, I used RoundMasterList instead of WriteJump to call my custom OBJ, this made my changes always work regardless of mod order:
@@ -29,17 +30,6 @@ void RD_TreeTops(task* tp)
 }
 
 
-//	Event Cutscene Fixes:
-
-//	I discovered that Knux cutscene after finishing Sky Deck for the first time results in him dying (if you don't skip it) and literally softlocking the game + breaking your savefile...
-//	So yeah, this is just a simple WriteCall with this function below to set a particular position for Knux at the start of the event (so he doesn't fall to the void). On this particular one, the CAM works great, so no need for tweaking that for now.
-
-void EV0095_PositionFix(task* tp, float x, float y, float z) // The arguments in here need to be the same as EV_SetPos (check them on IDA)
-{
-    EV_SetPos(tp, 1228.0f, 12.0f, -692.0f); // Just mentioning the task as tp is enough in here, since we are just replacing the line that does this in the event. So the rest of the vanilla code handles the rest.
-}
-
-
 //	Lantern Engine API - Custom Palette and Light files.
 //	These functions are custom (any name works), we need to make an individual function for every file we are gonna register down below on the Lantern API:
 
@@ -64,7 +54,7 @@ const char* RegisterLevelLight(int32_t level, int32_t act)
 
 //	Load custom Lantern Engine files and error message:
 
-static int LanternErrorMessageTimer = 500;
+//static int LanternErrorMessageTimer = 500;
 
 void LANTERN_TreeTops()
 {
@@ -75,7 +65,8 @@ void LANTERN_TreeTops()
 	}
 }
 
-void LANTERNERROR_TreeTops()
+/*
+void LANTERN_ERROR_TreeTops()
 {
 	if (CurrentLevel == LevelIDs_SkyDeck && !Lantern_Engine && LanternErrorMessageTimer)
 	{
@@ -89,6 +80,7 @@ void LANTERNERROR_TreeTops()
 		LanternErrorMessageTimer--;
 	}
 }
+*/
 
 
 //	Level Destructor - I trampoline the level destructor function so I can reset the rescued dragons counter and other counters only when exiting, completing the level or SA2Restarting, this saves the counter when dying or SA1Restarting.
@@ -112,16 +104,10 @@ void __cdecl RunLevelDestructor_r(int heap)
 	origin(heap);
 }
 
-void INIT_LevelDestructor()
-{
-	RunLevelDestructor_t = new Trampoline((intptr_t)RunLevelDestructor, (intptr_t)RunLevelDestructor + 0x6, RunLevelDestructor_r);
-}
 
+//	Disable Tails AI Race (Currently not compatible with CharSel mod, using BetterTailsAI does override that and makes it work again though):
 
-//	Disable Tails AI Race:
-
-void LoadTailsOpponent_r(__int16 character, __int16 loop, __int16 level);
-FunctionHook <void, __int16, __int16, __int16> LoadTailsOpponent_t(0x47D940, LoadTailsOpponent_r);
+FunctionHook<void, __int16, __int16, __int16> LoadTailsOpponent_t(0x47D940);
 
 void LoadTailsOpponent_r(__int16 character, __int16 loop, __int16 level)
 {
@@ -130,4 +116,32 @@ void LoadTailsOpponent_r(__int16 character, __int16 loop, __int16 level)
 
     else
 		return LoadTailsOpponent_t.Original(character, loop, level);
+}
+
+
+//	Event Cutscene Fixes:
+
+//	I discovered that Knux cutscene after finishing Sky Deck for the first time results in him dying (if you don't skip it) and literally softlocking the game + breaking your savefile...
+//	So yeah, this is just a simple WriteCall with this function below to set a particular position for Knux at the start of the event (so he doesn't fall to the void). On this particular one, the CAM works great, so no need for tweaking that for now.
+
+void EV0095_PositionFix(task* tp, float x, float y, float z) // The arguments in here need to be the same as EV_SetPos (check them on IDA)
+{
+    EV_SetPos(tp, 1228.0f, 12.0f, -692.0f); // Just mentioning the task as tp is enough in here, since we are just replacing the line that does this in the event. So the rest of the vanilla code handles the rest.
+}
+
+
+//	Init LevelTask:
+
+void INIT_LevelTask()
+{
+	RoundMasterList[LevelIDs_SkyDeck] = RD_TreeTops; // Level Task.
+	ScrollMasterList[LevelIDs_SkyDeck] = BG_TreeTops; // Skybox Task.
+	
+	LANTERN_TreeTops(); // Register Lantern Engine files.
+	
+	RunLevelDestructor_t = new Trampoline((intptr_t)RunLevelDestructor, (intptr_t)RunLevelDestructor + 0x6, RunLevelDestructor_r); // Init level destructor Trampoline.
+	
+	LoadTailsOpponent_t.Hook(LoadTailsOpponent_r); // Remove Tails Race AI.
+	
+	WriteCall((void*)0x689172, EV0095_PositionFix); // Fix Knuckles Sky Deck cutscene.
 }

@@ -10,6 +10,7 @@
 #include "o_lifechest.h"
 #include "o_lockedchest.h"
 #include "o_metalchest.h"
+#include "o_skybox.h"
 #include "o_spottedchicken.h"
 
 //  Custom Textures:
@@ -109,7 +110,7 @@ TEX_PVMTABLE TEXTURELIST_TreeTops[] = {
 
 //	Load Object Assets:
 
-void LOADOBJECTS_TreeTops()
+void LOAD_OBJECTS_TreeTops()
 {
 	LOAD_BasicChest();
 	LOAD_CrystalStatue();
@@ -126,13 +127,15 @@ void LOADOBJECTS_TreeTops()
 }
 
 
-//	Load Object List and Texture List:
+//	Init Objects:
 
-void INITOBJECTS_TreeTops()
+void INIT_Objects()
 {
 	ListofPvmList[LevelIDs_SkyDeck] = TEXTURELIST_TreeTops;
 	
 	objItemTable[LevelIDs_SkyDeck * 8] = &OBJECTLIST_TreeTops;
 	objItemTable[LevelIDs_SkyDeck * 8 + 1] = &OBJECTLIST_TreeTops;
 	objItemTable[LevelIDs_SkyDeck * 8 + 2] = &OBJECTLIST_TreeTops;
+
+	LOAD_OBJECTS_TreeTops();
 }
