@@ -119,6 +119,20 @@ void LoadTailsOpponent_r(__int16 character, __int16 loop, __int16 level)
 }
 
 
+//	Disable Tails flight camera adjustment:
+
+//	Basically this function is called on every Tails level except Casinopolis, what it does is that when you fly as Tails, it will swap the CAM mode for a Relative3 Knuckles CAM (and it will stick afterwards if there was no collider).
+//	This overrides current CAM mode / collider you are in, so making this function not run in Sky Deck makes it so Tails still follows the current CAM mode while flying.
+//	Currently this is only a hack with WriteCall, it doesn't work in Multiplayer and other mod can't do the same for other level - So this is pending an update.
+//	I basically make the "original" code run if the level ISN'T Sky Deck, else it will return (making the function not run and getting rid of that):
+
+void CameraSetEventCameraFunc_Hack(CamFuncPtr fnCamera, Sint8 ucAdjustType, Sint8 scCameraDirect)
+{
+	if (CurrentLevel != LevelIDs_SkyDeck)
+		CameraSetEventCameraFunc(fnCamera, ucAdjustType, scCameraDirect);
+}
+
+
 //	Event Cutscene Fixes:
 
 //	I discovered that Knux cutscene after finishing Sky Deck for the first time results in him dying (if you don't skip it) and literally softlocking the game + breaking your savefile...
@@ -142,6 +156,8 @@ void INIT_LevelTask()
 	RunLevelDestructor_t = new Trampoline((intptr_t)RunLevelDestructor, (intptr_t)RunLevelDestructor + 0x6, RunLevelDestructor_r); // Init level destructor Trampoline.
 	
 	LoadTailsOpponent_t.Hook(LoadTailsOpponent_r); // Remove Tails Race AI.
+	
+	WriteCall((void*)0x45EE82, CameraSetEventCameraFunc_Hack); // Remove Tails flight CAM adjustment.
 	
 	WriteCall((void*)0x689172, EV0095_PositionFix); // Fix Knuckles Sky Deck cutscene.
 }
