@@ -13,6 +13,8 @@ void DISPLAY_TTSkybox(task* tp)
 {
     auto twp = tp->twp;
     
+    njSetTexture(&TEXLIST_TTObjects); // Just setting a texture fix the blinking issue lol, even if I don't really use any visible textures on the model.
+    
     Direct3D_SetNearFarPlanes(SkyboxDrawDistance.Minimum, SkyboxDrawDistance.Maximum);
 
     DisableFog();
