@@ -107,6 +107,13 @@ void FILES_TreeTops(const HelperFunctions& helperFunctions)
 	ReplaceBIN("CAM0602K", "CAM_TreeTops-K");
 
 
+	//	PL Replacement:
+
+	ReplaceBIN("PL_60B", "PL_TreeTops");
+	ReplaceBIN("PL_61B", "PL_TreeTops");
+	ReplaceBIN("SL_60B", "SL_TreeTops");
+
+
 	// OST Replacement:
 
 	helperFunctions.ReplaceFile("system\\sounddata\\bgm\\wma\\skydeck1.wma", "system\\OST_TreeTops.adx");
