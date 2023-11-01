@@ -7,6 +7,12 @@
 #define ReplacePVR(a, b) HelperFunctionsGlobal.ReplaceFile("system\\" a ".PVR", b);
 
 
+//	Counters:
+
+extern bool HasKey;
+extern uint8_t DragonCount;
+
+
 //	Bools and code to check if certain mods are enabled / disabled & Mod Loader API version check:
 
 extern bool HD_GUI;

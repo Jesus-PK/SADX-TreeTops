@@ -1,5 +1,11 @@
 #include "pch.h"
 
+//	Counters:
+
+bool HasKey = 0;
+uint8_t DragonCount{ 0 };
+
+
 //	Bools and code to check if certain mods or config options are enabled:
 
 bool HD_GUI = false;

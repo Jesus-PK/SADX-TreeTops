@@ -2,13 +2,7 @@
 #include "deathzones.h"
 #include "paths.h"
 
-//	Counters:
-
-bool HasKey = 0;
-uint8_t DragonCount{ 0 };
-
-
-//	Custom FogData, DrawDistance and SkyboxDrawDistance values - Due to creating a custom LevelOBJ, it's necessary to setup these values via ___stcFog / ___stcClip.
+//	Custom FogData, DrawDistance and SkyboxDrawDistance values - Due to creating a custom level task, it's necessary to setup these values via ___stcFog / ___stcClip:
 
 ___stcFog FOGDATA_TreeTops[] = {
 	{ 100.0f, 1000.0f, 0xFFFFFF, 0 },
@@ -42,7 +36,7 @@ LandTableInfo* MDL_TTLandtable = nullptr;
 
 void LANDTABLE_TreeTops()
 {
-	LoadLandTable(&MDL_TTLandtable, "TreeTops_Landtable", HelperFunctionsGlobal, &TEXLIST_TreeTops);
+	LoadLandTable(&MDL_TTLandtable, "Landtable_TreeTops", HelperFunctionsGlobal, &TEXLIST_TreeTops);
 
 	GeoLists[LevelIDs_SkyDeck * 8] = MDL_TTLandtable->getlandtable();
 	GeoLists[LevelIDs_SkyDeck * 8 + 1] = MDL_TTLandtable->getlandtable();
@@ -62,73 +56,88 @@ void DEATHZONES_TreeTops()
 
 //	Start Positions:
 
-StartPosition TreeTops00 = { LevelIDs_SkyDeck, 0, { 707.124f, 75.0f, 861.509f }, 0x9500 };
-StartPosition TreeTops01 = { LevelIDs_SkyDeck, 1, { 707.124f, 75.0f, 861.509f }, 0x9500 };
-StartPosition TreeTops02 = { LevelIDs_SkyDeck, 2, { 707.124f, 75.0f, 861.509f }, 0x9500 };
+StartPosition STARTPOS_TreeTops00 = { LevelIDs_SkyDeck, 0, { 707.124f, 75.0f, 861.509f }, 0x9500 };
+StartPosition STARTPOS_TreeTops01 = { LevelIDs_SkyDeck, 1, { 707.124f, 75.0f, 861.509f }, 0x9500 };
+StartPosition STARTPOS_TreeTops02 = { LevelIDs_SkyDeck, 2, { 707.124f, 75.0f, 861.509f }, 0x9500 };
 
-void STARTPOSITIONS_TreeTops(const HelperFunctions& helperFunctions)
+void STARTPOSITIONS_TreeTops()
 {
 	for (unsigned char i = 0; i < Characters_MetalSonic; ++i)
 	{
-		helperFunctions.RegisterStartPosition(i, TreeTops00);
-		helperFunctions.RegisterStartPosition(i, TreeTops01);
-		helperFunctions.RegisterStartPosition(i, TreeTops02);
+		HelperFunctionsGlobal.RegisterStartPosition(i, STARTPOS_TreeTops00);
+		HelperFunctionsGlobal.RegisterStartPosition(i, STARTPOS_TreeTops01);
+		HelperFunctionsGlobal.RegisterStartPosition(i, STARTPOS_TreeTops02);
 	}
 }
 
 
 //	Paths:
 
-void PATHS_TreeTops(const HelperFunctions& helperFunctions)
+void PATHS_TreeTops()
 {
-	helperFunctions.RegisterPathList(PATHDATA_TreeTops00);
-	helperFunctions.RegisterPathList(PATHDATA_TreeTops01);
-	helperFunctions.RegisterPathList(PATHDATA_TreeTops02);
+	HelperFunctionsGlobal.RegisterPathList(PATHDATA_TreeTops00);
+	HelperFunctionsGlobal.RegisterPathList(PATHDATA_TreeTops01);
+	HelperFunctionsGlobal.RegisterPathList(PATHDATA_TreeTops02);
 }
 
 
 //	File Replacements:
 
-#define ReplaceBIN(a, b) helperFunctions.ReplaceFile("system\\" a ".BIN", "system\\" b ".BIN");
-
-void FILES_TreeTops(const HelperFunctions& helperFunctions)
+void FILES_TreeTops()
 {
 	// SET Replacement:
 
-	ReplaceBIN("SET0600S", "SET_TreeTops-S");
-	ReplaceBIN("SET0600M", "SET_TreeTops-M");
-	ReplaceBIN("SET0602K", "SET_TreeTops-K");
+	ReplaceBIN("SET0600S", "SET_TreeTops-S"); // Target
+	ReplaceBIN("SET0601S", "SET_TreeTops-S");
+	ReplaceBIN("SET0602S", "SET_TreeTops-S");
+
+	ReplaceBIN("SET0600M", "SET_TreeTops-M"); // Target
+	ReplaceBIN("SET0601M", "SET_TreeTops-M");
+	ReplaceBIN("SET0602M", "SET_TreeTops-M");
+
+	ReplaceBIN("SET0600K", "SET_TreeTops-K");
+	ReplaceBIN("SET0601K", "SET_TreeTops-K");
+	ReplaceBIN("SET0602K", "SET_TreeTops-K"); // Target
 
 
 	// CAM Replacement:
 
-	ReplaceBIN("CAM0600S", "CAM_TreeTops-S");
-	ReplaceBIN("CAM0600M", "CAM_TreeTops-M");
-	ReplaceBIN("CAM0602K", "CAM_TreeTops-K");
+	ReplaceBIN("CAM0600S", "CAM_TreeTops-S"); // Target
+	ReplaceBIN("CAM0601S", "CAM_TreeTops-S");
+	ReplaceBIN("CAM0602S", "CAM_TreeTops-S");
+
+	ReplaceBIN("CAM0600M", "CAM_TreeTops-M"); // Target
+	ReplaceBIN("CAM0601M", "CAM_TreeTops-M");
+	ReplaceBIN("CAM0602M", "CAM_TreeTops-M");
+
+	ReplaceBIN("CAM0600K", "CAM_TreeTops-K");
+	ReplaceBIN("CAM0601K", "CAM_TreeTops-K");
+	ReplaceBIN("CAM0602K", "CAM_TreeTops-K"); // Target
 
 
 	//	PL Replacement:
 
 	ReplaceBIN("PL_60B", "PL_TreeTops");
 	ReplaceBIN("PL_61B", "PL_TreeTops");
+	
 	ReplaceBIN("SL_60B", "SL_TreeTops");
 
 
 	// OST Replacement:
 
-	helperFunctions.ReplaceFile("system\\sounddata\\bgm\\wma\\skydeck1.wma", "system\\OST_TreeTops.adx");
+	HelperFunctionsGlobal.ReplaceFile("system\\sounddata\\bgm\\wma\\skydeck1.wma", "system\\OST_TreeTops.adx");
 }
 
 
 //	Init Level:
 
-void INIT_Level(const HelperFunctions& helperFunctions)
+void INIT_Level()
 {
 	WriteData<5>((void*)0x422D84, 0x90); // Disable DC Conversion Sky Deck
 	
 	LANDTABLE_TreeTops();
 	DEATHZONES_TreeTops();
-	STARTPOSITIONS_TreeTops(helperFunctions);
-	PATHS_TreeTops(helperFunctions);
-	FILES_TreeTops(helperFunctions);
+	STARTPOSITIONS_TreeTops();
+	PATHS_TreeTops();
+	FILES_TreeTops();
 }
