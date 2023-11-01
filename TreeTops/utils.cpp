@@ -1,6 +1,6 @@
 #include "pch.h"
 
-//	Bools and code to check if certain mods are enabled / disabled - Also a function to check for the Mod Loader API version, useful since I'm using the latest API functionalities:
+//	Bools and code to check if certain mods or config options are enabled:
 
 bool HD_GUI = false;
 bool DC_Conversion = false;
@@ -9,11 +9,11 @@ bool Lantern_Engine = false;
 
 bool DC_HudTweaks = false; // Checks if Dreamcast Conversion "Adjust HUD Position" config option is enabled.
 
-void CheckDCConfig(const HelperFunctions& helperFunctions)
+void CheckDCConfig()
 {
 	// To not check for DC Conv twice, I use a different identifier via auto (due to the bool I had not being compatible with reading the config) and then after I check for the mod, I simply return "true" to my original bool if the game finds it enabled.
 	
-	auto DC_Mod = helperFunctions.Mods->find("sadx-dreamcast-conversion");
+	auto DC_Mod = HelperFunctionsGlobal.Mods->find("sadx-dreamcast-conversion");
 
 	if (DC_Mod)
 	{
@@ -27,23 +27,13 @@ void CheckDCConfig(const HelperFunctions& helperFunctions)
 	}
 }
 
-void CheckActiveMods(const HelperFunctions& helperFunctions)
+void CheckActiveMods()
 {
-	HD_GUI = helperFunctions.Mods->find("sadx-hd-gui") != nullptr; // This needs to be called in the Init (or in a function that will be called in the Init like this), "Find" checks if the modID is present - Remember that != means "Not equal" (If HD_GUI is not nullptr)
-	CheckDCConfig(helperFunctions); // I call here the DC Conversion check + it's config option check to group it alongside everything else.
+	HD_GUI = HelperFunctionsGlobal.Mods->find("sadx-hd-gui") != nullptr; // This needs to be called in the Init (or in a function that will be called in the Init like this), "Find" checks if the modID is present - Remember that != means "Not equal" (If HD_GUI is not nullptr)
+	CheckDCConfig(); // I call here the DC Conversion check + it's config option check to group it alongside everything else.
 	
 	HUD_Plus = GetModuleHandle(L"sadx-hud-plus") != nullptr;
 	Lantern_Engine = GetModuleHandle(L"sadx-dc-lighting") != nullptr;
-}
-
-void CheckModLoaderVersion(const HelperFunctions& helperFunctions)
-{
-	if (helperFunctions.Version < 16)
-	{
-		MessageBox(WindowHandle,
-			L"ERROR! Your version of the Mod Loader doesn't support API Version 16.\n\nThis will make some functionalities of the mod not available.\n\nPlease exit the game and update the Mod Loader for the best experience.",
-			L"Tree Tops Error: Mod Loader Out of Date", MB_OK | MB_ICONERROR);
-	}
 }
 
 

@@ -1,5 +1,12 @@
 #pragma once
 
+//	Macros:
+
+#define ReplaceTEX(pvm, tex_name, folder, png_name, gbix, width, height) HelperFunctionsGlobal.ReplaceTexture(pvm, tex_name, (std::string(path) + "\\textures\\" folder "\\" png_name ".png").c_str(), gbix, width, height);
+#define ReplaceBIN(a, b) HelperFunctionsGlobal.ReplaceFile("system\\" a ".BIN", "system\\" b ".BIN");
+#define ReplacePVR(a, b) HelperFunctionsGlobal.ReplaceFile("system\\" a ".PVR", b);
+
+
 //	Bools and code to check if certain mods are enabled / disabled & Mod Loader API version check:
 
 extern bool HD_GUI;
@@ -9,9 +16,7 @@ extern bool Lantern_Engine;
 
 extern bool DC_HudTweaks;
 
-void CheckActiveMods(const HelperFunctions& helperFunctions);
-
-void CheckModLoaderVersion(const HelperFunctions& helperFunctions);
+void CheckActiveMods();
 
 
 //	Functions to load/replace models and animations:
@@ -24,6 +29,7 @@ ModelInfo* LoadChunkModel(const char* name);
 
 inline AnimationFile* LoadANM(const char* type, const char* name);
 AnimationFile* LoadObjectAnim(const char* name);
+
 
 //	Chunk-display related functions:
 
@@ -56,27 +62,6 @@ enum CollisionShapes
 };
 
 
-//	Init modes for the first field of an object in the custom objectlist:
-
-enum INITMODEMD : Sint8
-{
-	IM_MWK = 0x1,
-	IM_TWK = 0x2,
-	IM_FWK = 0x4,
-	IM_AWK = 0x8
-};
-
-
-//	ssAtributes for the third field of an object in the custom objectlist:
-
-enum ITEMATTR
-{
-	ITEM_ATTR_DIST = 0x1,
-	ITEM_ATTR_LOAD = 0x2,
-	ITEM_ATTR_ONCE = 0x4,
-};
-
-
 //	ChildTaskSet (CTS) struct and FunctionPointer for custom CTS and replacements:
 
 struct childtaskset
@@ -95,3 +80,8 @@ FunctionPointer(void, CreateChildrenTask, (childtaskset* ctsp, task* tp), 0x40B9
 //	FunctionPointer for IsThisTaskPlayer function:
 
 FunctionPointer(Bool, IsThisTaskPlayer, (task* tp), 0x441AD0);
+
+
+//	DataArray for all the entries in Sound Test - Action Stage:
+
+DataArray(SoundTestEntry, Soundtest_ActionStage, 0x7EFBE0, 40);

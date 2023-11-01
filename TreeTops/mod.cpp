@@ -12,8 +12,7 @@ extern "C"
 
 		HelperFunctionsGlobal = helperFunctions;
 
-		CheckActiveMods(helperFunctions);
-		CheckModLoaderVersion(helperFunctions);
+		CheckActiveMods();
 
 
 		//	Expand Draw Queue Memory Pool (Applies to the entire game):
@@ -29,7 +28,7 @@ extern "C"
 		INIT_LevelTask();
 		INIT_LevelRanks();
 		INIT_Objects(helperFunctions);
-		INIT_Graphics(path, helperFunctions);
+		INIT_Graphics(path);
 	}
 
 	__declspec(dllexport) ModInfo SADXModInfo = { ModLoaderVer };
