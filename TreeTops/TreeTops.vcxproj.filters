@@ -167,15 +167,6 @@
     <ClCompile Include="objects\o_dragons.cpp">
       <Filter>Objects</Filter>
     </ClCompile>
-    <ClCompile Include="programming\AnimationFile.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="programming\LandTableInfo.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="programming\ModelInfo.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="programming\Trampoline.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -186,6 +177,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="config\TextConv.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="programming\AnimationFile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="programming\ModelInfo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="programming\LandTableInfo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
