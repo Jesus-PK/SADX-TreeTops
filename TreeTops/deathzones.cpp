@@ -68,12 +68,12 @@ NJS_OBJECT TTDeathzone02 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BR
 
 //	Deathzones Array:
 
-PL_KILLCOLLI TTDeathzones00[] = {
+PL_KILLCOLLI DEATHZONES_TreeTops00[] = {
 	{ CharacterFlags_Sonic | CharacterFlags_Tails | CharacterFlags_Knuckles | CharacterFlags_Amy | CharacterFlags_Big | CharacterFlags_Gamma , &TTDeathzone01 },
 	{ 0 }
 };
 
-PL_KILLCOLLI TTDeathzones01[] = {
+PL_KILLCOLLI DEATHZONES_TreeTops01[] = {
 	{ CharacterFlags_Sonic | CharacterFlags_Tails | CharacterFlags_Knuckles | CharacterFlags_Amy | CharacterFlags_Big | CharacterFlags_Gamma , &TTDeathzone02 },
 	{ 0 }
 };

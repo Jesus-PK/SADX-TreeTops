@@ -102,6 +102,11 @@ void STAGECREDITS_TreeTops(const char* path)
 }
 
 
+//	Sound Test Entries:
+
+SoundTestEntry SoundTestEntry_TreeTops = { "Tree Tops:  Spyro the Dragon", 81 };
+
+
 //  Init Graphics:
 
 void INIT_Graphics(const char* path)
@@ -110,4 +115,6 @@ void INIT_Graphics(const char* path)
     TITLECARDS_TreeTops(path);
     MULTITHUMBNAILS_TreeTops(path);
     STAGECREDITS_TreeTops(path);
+
+    Soundtest_ActionStage[12] = SoundTestEntry_TreeTops;
 }

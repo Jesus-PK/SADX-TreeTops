@@ -48,9 +48,9 @@ void LANDTABLE_TreeTops()
 
 void DEATHZONES_TreeTops()
 {
-	KillingCollisionModelsListList[LevelIDs_SkyDeck][0] = TTDeathzones00;
-	KillingCollisionModelsListList[LevelIDs_SkyDeck][1] = TTDeathzones00;
-	KillingCollisionModelsListList[LevelIDs_SkyDeck][2] = TTDeathzones01;
+	KillingCollisionModelsListList[LevelIDs_SkyDeck][0] = DEATHZONES_TreeTops00;
+	KillingCollisionModelsListList[LevelIDs_SkyDeck][1] = DEATHZONES_TreeTops00;
+	KillingCollisionModelsListList[LevelIDs_SkyDeck][2] = DEATHZONES_TreeTops01;
 }
 
 
