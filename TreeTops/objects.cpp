@@ -129,7 +129,7 @@ void LOAD_OBJECTS_TreeTops()
 
 //	Init Objects:
 
-void INIT_Objects(const HelperFunctions& helperFunctions)
+void INIT_Objects()
 {
 	ListofPvmList[LevelIDs_SkyDeck] = TEXTURELIST_TreeTops;
 	
@@ -140,5 +140,5 @@ void INIT_Objects(const HelperFunctions& helperFunctions)
 	LOAD_OBJECTS_TreeTops();
 
 	for (Uint32 i = 506002000; i < 506002011; i++)
-		helperFunctions.MipmapBlacklistGBIX(i);
+		HelperFunctionsGlobal.MipmapBlacklistGBIX(i);
 }

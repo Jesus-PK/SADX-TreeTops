@@ -2,7 +2,7 @@
 
 //  Stage Names:
 
-void STAGENAMES_TreeTops(const char* path)
+void STAGENAMES_TreeTops()
 {
     if (HD_GUI)
     {
@@ -20,9 +20,9 @@ void STAGENAMES_TreeTops(const char* path)
 
 //  TitleCards:
 
-void TITLECARDS_TreeTops(const char* path)
+void TITLECARDS_TreeTops()
 {
-    std::string index = path;
+    std::string index = ModPath;
 
     if (HD_GUI)
     {
@@ -64,7 +64,7 @@ void TITLECARDS_TreeTops(const char* path)
 
 //  Multiplayer Thumbnails:
 
-void MULTITHUMBNAILS_TreeTops(const char* path)
+void MULTITHUMBNAILS_TreeTops()
 {
 	ReplaceTEX("AVA_MULTI", "multistg0600", "MultiThumbnails", "Multi_TreeTops-S", 54926007, 128, 72);
 	ReplaceTEX("AVA_MULTI", "multistg0602", "MultiThumbnails", "Multi_TreeTops-K", 71757015, 128, 72);
@@ -73,7 +73,7 @@ void MULTITHUMBNAILS_TreeTops(const char* path)
 
 //  Stage Credits:
 
-void STAGECREDITS_TreeTops(const char* path)
+void STAGECREDITS_TreeTops()
 {
     if (HD_GUI)
     {
@@ -109,12 +109,12 @@ SoundTestEntry SoundTestEntry_TreeTops = { "Tree Tops:  Spyro the Dragon", 81 };
 
 //  Init Graphics:
 
-void INIT_Graphics(const char* path)
+void INIT_Graphics()
 {
-    STAGENAMES_TreeTops(path);
-    TITLECARDS_TreeTops(path);
-    MULTITHUMBNAILS_TreeTops(path);
-    STAGECREDITS_TreeTops(path);
+    STAGENAMES_TreeTops();
+    TITLECARDS_TreeTops();
+    MULTITHUMBNAILS_TreeTops();
+    STAGECREDITS_TreeTops();
 
     Soundtest_ActionStage[12] = SoundTestEntry_TreeTops;
 }
