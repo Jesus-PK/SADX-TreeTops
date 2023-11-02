@@ -74,10 +74,10 @@ void DISPLAY_LKCKey(task* tp)
 
 void EXEC_LKCKey(task* tp)
 {
-    auto twp = tp->twp;
-
     if (CheckRangeOut(tp))
         return;
+    
+    auto twp = tp->twp;
 
     switch (twp->mode)
     {
@@ -331,11 +331,11 @@ void DISPLAY_LKCLid(task* tp)
 
 void EXEC_LKCLid(task* tp)
 {
-    auto twp = tp->twp;
-    
     if (CheckRangeOut(tp))
         return;
-
+    
+    auto twp = tp->twp;
+    
     switch (twp->mode)
     {
         case 0:
