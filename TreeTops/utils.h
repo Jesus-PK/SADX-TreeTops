@@ -29,7 +29,7 @@ void CheckActiveMods();
 
 ModelInfo* LoadBasicModel(const char* name);
 
-void LoadLandTable(LandTableInfo** info, const char* name, const HelperFunctions& helperFunctions, NJS_TEXLIST* texlist);
+void LoadLandTable(LandTableInfo** info, const char* name, NJS_TEXLIST* texlist);
 
 ModelInfo* LoadChunkModel(const char* name);
 

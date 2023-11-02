@@ -70,12 +70,12 @@ ModelInfo* LoadBasicModel(const char* name)
 
 //  Necessary functions to make LoadLandTable work - You need to have an extern "HelperFunctions HelperFunctionsGlobal;" in a header, #include LandTableInfo.h to this current file (or in pch.h) and add LandTableInfo.cpp to your source files:
 
-void LoadLandTable(LandTableInfo** info, const char* name, const HelperFunctions& helperFunctions, NJS_TEXLIST* texlist)
+void LoadLandTable(LandTableInfo** info, const char* name, NJS_TEXLIST* texlist)
 {
 	std::string fullPath = "system\\landtables\\";
 	fullPath = fullPath + name + ".sa1lvl";
 
-	LandTableInfo* land = new LandTableInfo(helperFunctions.GetReplaceablePath(fullPath.c_str()));
+	LandTableInfo* land = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath(fullPath.c_str()));
 
 	if (land->getlandtable() == nullptr)
 	{
