@@ -43,6 +43,16 @@ void CheckActiveMods()
 }
 
 
+//	Expand Draw Queue Memory Pool (Applies to the entire game):
+
+void ExpandDrawQueueMemoryPool()
+{
+	WriteData((Uint32*)0x408643, 0x100000ui32);
+	WriteData((Uint32*)0x40864D, 0x100000ui32);
+	WriteData((Uint32*)0x40866B, 0x100000ui32);
+}
+
+
 //	Necessary functions to make LoadBasicModel work - You need to have an extern "HelperFunctions HelperFunctionsGlobal;" in a header and also #include ModelInfo.h to this current file (or in pch.h) and add ModelInfo.cpp to your source files:
 
 ModelInfo* LoadBasicModel(const char* name)

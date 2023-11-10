@@ -25,6 +25,11 @@ extern bool DC_HudTweaks;
 void CheckActiveMods();
 
 
+//	Expand Draw Queue Memory Pool (Applies to the entire game):
+
+void ExpandDrawQueueMemoryPool();
+
+
 //	Functions to load/replace models and animations:
 
 ModelInfo* LoadBasicModel(const char* name);
