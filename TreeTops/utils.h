@@ -13,7 +13,7 @@ extern bool HasKey;
 extern uint8_t DragonCount;
 
 
-//	Bools and code to check if certain mods are enabled / disabled & Mod Loader API version check:
+//	Bools and code to check if certain mods or config options are enabled:
 
 extern bool HD_GUI;
 extern bool DC_Conversion;
@@ -30,7 +30,7 @@ void CheckActiveMods();
 void ExpandDrawQueueMemoryPool();
 
 
-//	Functions to load/replace models and animations:
+//	Functions for loading Models and Animations:
 
 ModelInfo* LoadBasicModel(const char* name);
 
@@ -42,7 +42,7 @@ inline AnimationFile* LoadANM(const char* type, const char* name);
 AnimationFile* LoadObjectAnim(const char* name);
 
 
-//	Chunk-display related functions:
+//	Functions for rendering Chunk Models:
 
 void SetupWorldMatrix();
 void SetupChunkModelRender();
@@ -51,7 +51,7 @@ void ResetChunkModelRender();
 void njCnkAction(NJS_ACTION* action, float frame);
 
 
-//	Sprite-rendering related functions:
+//	Functions for rendering Sprites:
 
 void SetSpriteParam();
 void ResetSpriteParam();
@@ -59,7 +59,7 @@ void ScaleUI(uiscale::Align type);
 void ResetScaleUI();
 
 
-//	CollisionShapes enum to be able to write the name of the collision instead of the HEX number:
+//	CollisionShapes enums:
 
 enum CollisionShapes
 {
@@ -73,7 +73,7 @@ enum CollisionShapes
 };
 
 
-//	ChildTaskSet (CTS) struct and FunctionPointer for custom CTS and replacements:
+//	ChildTaskSet (CTS) struct and FunctionPointer for custom CTS:
 
 struct childtaskset
 {

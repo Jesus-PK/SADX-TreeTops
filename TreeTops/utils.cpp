@@ -53,7 +53,7 @@ void ExpandDrawQueueMemoryPool()
 }
 
 
-//	Necessary functions to make LoadBasicModel work - You need to have an extern "HelperFunctions HelperFunctionsGlobal;" in a header and also #include ModelInfo.h to this current file (or in pch.h) and add ModelInfo.cpp to your source files:
+//	Function for loading Basic Models - You need to have an extern "HelperFunctions HelperFunctionsGlobal;" in a header and also #include ModelInfo.h to this current file (or in pch.h) and add ModelInfo.cpp to your source files:
 
 ModelInfo* LoadBasicModel(const char* name)
 {
@@ -78,7 +78,7 @@ ModelInfo* LoadBasicModel(const char* name)
 }
 
 
-//  Necessary functions to make LoadLandTable work - You need to have an extern "HelperFunctions HelperFunctionsGlobal;" in a header, #include LandTableInfo.h to this current file (or in pch.h) and add LandTableInfo.cpp to your source files:
+//  Function for loading LandTables - You need to have an extern "HelperFunctions HelperFunctionsGlobal;" in a header, #include LandTableInfo.h to this current file (or in pch.h) and add LandTableInfo.cpp to your source files:
 
 void LoadLandTable(LandTableInfo** info, const char* name, NJS_TEXLIST* texlist)
 {
@@ -105,7 +105,7 @@ void LoadLandTable(LandTableInfo** info, const char* name, NJS_TEXLIST* texlist)
 }
 
 
-//	Neccesary functions to make LoadChunkModel work and display-related chunk functions that are neeeded to correctly write a display code for the chunk object:
+//	Function for loading Chunk Models:
 
 ModelInfo* LoadChunkModel(const char* name)
 {
@@ -128,6 +128,9 @@ ModelInfo* LoadChunkModel(const char* name)
 	
 	return mdl;
 }
+
+
+//	Functions for rendering Chunk Models:
 
 void SetupWorldMatrix() // SetupChunkModelRender calls SetupWorldMatrix, that's why we need this function dependency.
 {
@@ -160,7 +163,7 @@ void njCnkAction(NJS_ACTION* action, float frame)
 }
 
 
-//	Necessary functions to make LoadObjectAnim work - You need to have an extern "HelperFunctions HelperFunctionsGlobal;" in a header and also #include AnimationFile.h to this current file (or in pch.h) and add AnimationFile.cpp to your source files:
+//	Functions for loading Animations - You need to have an extern "HelperFunctions HelperFunctionsGlobal;" in a header and also #include AnimationFile.h to this current file (or in pch.h) and add AnimationFile.cpp to your source files:
 
 inline AnimationFile* LoadANM(const char* type, const char* name)
 {	
@@ -193,7 +196,7 @@ AnimationFile* LoadObjectAnim(const char* name)
 }
 
 
-//	Functions to make sprites render correctly:
+//	Functions for rendering Sprites:
 
 void SetSpriteParam()
 {
