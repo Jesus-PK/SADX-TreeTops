@@ -18,16 +18,16 @@
 NJS_TEXNAME TEX_TreeTops[79] = { 0 };
 NJS_TEXLIST TEXLIST_TreeTops = { arrayptrandlength(TEX_TreeTops) };
 
-NJS_TEXNAME TEX_TTObjects[35] = { 0 };
-NJS_TEXLIST TEXLIST_TTObjects = { arrayptrandlength(TEX_TTObjects) };
+NJS_TEXNAME TEX_TreeTops_Objects[35] = { 0 };
+NJS_TEXLIST TEXLIST_TreeTops_Objects = { arrayptrandlength(TEX_TreeTops_Objects) };
 
-NJS_TEXNAME TEX_TTDragons[12] = { 0 };
-NJS_TEXLIST TEXLIST_TTDragons = { arrayptrandlength(TEX_TTDragons) };
+NJS_TEXNAME TEX_TreeTops_Dragons[12] = { 0 };
+NJS_TEXLIST TEXLIST_TreeTops_Dragons = { arrayptrandlength(TEX_TreeTops_Dragons) };
 
 
 //	Object Lists:
 
-_OBJ_ITEMENTRY OBJECTLIST_TreeTops_LIST[] = {
+_OBJ_ITEMENTRY OBJECTLIST_TreeTops_Entries[] = {
 	{ 2, 3, 1, 4000000.0f, 0, (TaskFuncPtr)0x450370, "O RING" }, // ID 0
 	{ 2, 3, 1, 4000000.0f, 0, (TaskFuncPtr)0x79B2F0, "O RING GROUP" }, // ID 1
 	{ 2, 2, 1, 4000000.0f, 0, (TaskFuncPtr)0x7A4C30, "O SPRING GROUND" }, // ID 2
@@ -82,7 +82,7 @@ _OBJ_ITEMENTRY OBJECTLIST_TreeTops_LIST[] = {
 	{ 2, 2, 1, 4000000.0f, 0, (TaskFuncPtr)0x4E4C10, "O PLAYER UP WIND" } // ID 51
 };
 
-_OBJ_ITEMTABLE OBJECTLIST_TreeTops = { LengthOfArray(OBJECTLIST_TreeTops_LIST), 0, OBJECTLIST_TreeTops_LIST };
+_OBJ_ITEMTABLE OBJECTLIST_TreeTops = { LengthOfArray(OBJECTLIST_TreeTops_Entries), 0, OBJECTLIST_TreeTops_Entries };
 
 
 //	Texture List:
@@ -102,15 +102,15 @@ TEX_PVMTABLE TEXTURELIST_TreeTops[] = {
 	{ "TOGEBALL_TOGEBALL", (TexList*)0x96BC54 }, // Spiked Ball 
 	{ "MILESRACE", (TexList*)0x91BFC0 }, // Tails Race Icons
 	
-	{ "TreeTops_Objects", &TEXLIST_TTObjects },
-	{ "TreeTops_Dragons", &TEXLIST_TTDragons },	
+	{ "TreeTops_Objects", &TEXLIST_TreeTops_Objects },
+	{ "TreeTops_Dragons", &TEXLIST_TreeTops_Dragons },	
 	{ 0 }
 };
 
 
 //	Load Object Assets:
 
-void LOAD_OBJECTS_TreeTops()
+void LOAD_Objects()
 {
 	LOAD_BasicChest();
 	LOAD_CrystalStatue();
@@ -122,7 +122,7 @@ void LOAD_OBJECTS_TreeTops()
 	LOAD_LifeChest();
 	LOAD_LockedChest();
 	LOAD_MetalChest();
-	LOAD_TTSkybox();
+	LOAD_TreeTops_Skybox();
 	LOAD_SpottedChicken();
 }
 
@@ -137,7 +137,7 @@ void INIT_Objects()
 	objItemTable[LevelIDs_SkyDeck * 8 + 1] = &OBJECTLIST_TreeTops;
 	objItemTable[LevelIDs_SkyDeck * 8 + 2] = &OBJECTLIST_TreeTops;
 
-	LOAD_OBJECTS_TreeTops();
+	LOAD_Objects();
 
 	for (Uint32 i = 506002000; i < 506002011; i++)
 		HelperFunctionsGlobal.MipmapBlacklistGBIX(i);

@@ -27,7 +27,7 @@ void DISPLAY_BCDebris(task* tp)
 {
     auto twp = tp->twp;
 
-    njSetTexture(&TEXLIST_TTObjects);
+    njSetTexture(&TEXLIST_TreeTops_Objects);
     
     njPushMatrix(0);
     
@@ -99,7 +99,7 @@ void DISPLAY_Number5(task* tp)
 
     auto twp = tp->twp;
 
-    njSetTexture(&TEXLIST_TTObjects);
+    njSetTexture(&TEXLIST_TreeTops_Objects);
     
     njPushMatrix(0);
     
@@ -155,7 +155,7 @@ void DISPLAY_BasicChest(task* tp)
     if (twp->mode == 2)
         return;
 
-    njSetTexture(&TEXLIST_TTObjects);
+    njSetTexture(&TEXLIST_TreeTops_Objects);
     
     njPushMatrix(0);
     

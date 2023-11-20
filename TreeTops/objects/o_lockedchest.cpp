@@ -60,7 +60,7 @@ void DISPLAY_LKCKey(task* tp)
 
     auto twp = tp->twp;
 
-    njSetTexture(&TEXLIST_TTObjects);
+    njSetTexture(&TEXLIST_TreeTops_Objects);
     
     njPushMatrix(0);
     
@@ -128,7 +128,7 @@ void DISPLAY_LockedChest(task* tp)
 
     auto twp = tp->twp;
 
-    njSetTexture(&TEXLIST_TTObjects);
+    njSetTexture(&TEXLIST_TreeTops_Objects);
     
     njPushMatrix(0);
     
@@ -187,7 +187,7 @@ void DISPLAY_LKCDebris(task* tp)
 {
     auto twp = tp->twp;
 
-    njSetTexture(&TEXLIST_TTObjects);
+    njSetTexture(&TEXLIST_TreeTops_Objects);
     
     njPushMatrix(0);
     
@@ -260,7 +260,7 @@ void DISPLAY_Number50(task* tp)
 
     auto twp = tp->twp;
 
-    njSetTexture(&TEXLIST_TTObjects);
+    njSetTexture(&TEXLIST_TreeTops_Objects);
     
     njPushMatrix(0);
     
@@ -317,7 +317,7 @@ void DISPLAY_LKCLid(task* tp)
     if (twp->mode == 3)
         return;
 
-    njSetTexture(&TEXLIST_TTObjects);
+    njSetTexture(&TEXLIST_TreeTops_Objects);
     
     njPushMatrix(0);
     

@@ -2,18 +2,18 @@
 
 //  Model:
 
-ModelInfo* MDL_TTSkybox = nullptr;
+ModelInfo* MDL_TreeTops_Skybox = nullptr;
 
 
 //  Skybox - Main:
 
 //  I create a entiretely custom BG task with the same format the game does it (disp, exec, init) then slap the init (bg) in ScrollMasterList:
 
-void DISPLAY_TTSkybox(task* tp)
+void DISPLAY_TreeTops_Skybox(task* tp)
 {
     auto twp = tp->twp;
     
-    njSetTexture(&TEXLIST_TTObjects); // Just setting a texture fix the blinking issue lol, even if I don't really use any visible textures on the model.
+    njSetTexture(&TEXLIST_TreeTops_Objects); // Just setting a texture fix the blinking issue lol, even if I don't really use any visible textures on the model.
     
     Direct3D_SetNearFarPlanes(SkyboxDrawDistance.Minimum, SkyboxDrawDistance.Maximum);
 
@@ -23,7 +23,7 @@ void DISPLAY_TTSkybox(task* tp)
     njTranslate(0, 0.0f, 0.0f, 0.0f);
     njScale(0, 20.0f, 20.0f, 20.0f);
 
-    DrawModel(MDL_TTSkybox->getmodel()->basicdxmodel);
+    DrawModel(MDL_TreeTops_Skybox->getmodel()->basicdxmodel);
 
     njPopMatrix(1u);
     ToggleStageFog();
@@ -31,7 +31,7 @@ void DISPLAY_TTSkybox(task* tp)
     Direct3D_SetNearFarPlanes(LevelDrawDistance.Minimum, LevelDrawDistance.Maximum);
 }
 
-void EXEC_TTSkybox(task* tp)
+void EXEC_TreeTops_Skybox(task* tp)
 {
     auto twp = tp->twp;
 
@@ -47,14 +47,14 @@ void EXEC_TTSkybox(task* tp)
 
 void BG_TreeTops(task* tp)
 {
-    tp->exec = EXEC_TTSkybox;
-    tp->disp = DISPLAY_TTSkybox;
+    tp->exec = EXEC_TreeTops_Skybox;
+    tp->disp = DISPLAY_TreeTops_Skybox;
 }
 
 
 //  Skybox - Load Assets:
 
-void LOAD_TTSkybox()
+void LOAD_TreeTops_Skybox()
 {
-    MDL_TTSkybox = LoadBasicModel("TreeTops_Skybox");
+    MDL_TreeTops_Skybox = LoadBasicModel("TreeTops_Skybox");
 }

@@ -24,7 +24,7 @@ void DISPLAY_LargeTorch(task* tp)
     
     NJS_MOTION* MOTION_LargeTorch = ANIM_LargeTorch->getmotion();
 
-    njSetTexture(&TEXLIST_TTObjects);
+    njSetTexture(&TEXLIST_TreeTops_Objects);
     
     njPushMatrix(0);
     

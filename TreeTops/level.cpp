@@ -32,15 +32,15 @@ void SETVIEWDATA_TreeTops()
 
 //	Load Landtable:
 
-LandTableInfo* MDL_TTLandtable = nullptr;
+LandTableInfo* LAND_TreeTops00 = nullptr;
 
 void LANDTABLE_TreeTops()
 {
-	LoadLandTable(&MDL_TTLandtable, "TreeTops_Landtable", &TEXLIST_TreeTops);
+	LoadLandTable(&LAND_TreeTops00, "TreeTops_Landtable", &TEXLIST_TreeTops);
 
-	GeoLists[LevelIDs_SkyDeck * 8] = MDL_TTLandtable->getlandtable();
-	GeoLists[LevelIDs_SkyDeck * 8 + 1] = MDL_TTLandtable->getlandtable();
-	GeoLists[LevelIDs_SkyDeck * 8 + 2] = MDL_TTLandtable->getlandtable();
+	GeoLists[LevelIDs_SkyDeck * 8] = LAND_TreeTops00->getlandtable();
+	GeoLists[LevelIDs_SkyDeck * 8 + 1] = LAND_TreeTops00->getlandtable();
+	GeoLists[LevelIDs_SkyDeck * 8 + 2] = LAND_TreeTops00->getlandtable();
 }
 
 

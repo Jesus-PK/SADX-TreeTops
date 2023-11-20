@@ -21,7 +21,7 @@ void DISPLAY_SpottedChicken(task* tp)
     
     NJS_MOTION* MOTION_SpottedChicken = ANIM_SpottedChicken->getmotion();
 
-    njSetTexture(&TEXLIST_TTObjects);
+    njSetTexture(&TEXLIST_TreeTops_Objects);
     
     njPushMatrix(0);
     

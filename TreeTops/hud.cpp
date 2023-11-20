@@ -49,7 +49,7 @@ static NJS_TEXANIM TEXANIM_DragonIcon[] = {
     { 0x20, 0x20, 0, 0, 0, 0, 0x100, 0x100, 29, 0x20 }, // ID 1 - TexID 29
 };
 
-static NJS_SPRITE SPRITE_DragonIcon = { { 0.0f, 0.0f, 0.0f }, 1.0f, 1.0f, 0, &TEXLIST_TTObjects, TEXANIM_DragonIcon };
+static NJS_SPRITE SPRITE_DragonIcon = { { 0.0f, 0.0f, 0.0f }, 1.0f, 1.0f, 0, &TEXLIST_TreeTops_Objects, TEXANIM_DragonIcon };
 
 
 static NJS_TEXANIM TEXANIM_DragonCounter[] = {
@@ -105,7 +105,7 @@ static NJS_TEXANIM TEXANIM_ChestKey[] = {
     { 0x20, 0x20, 0, 0, 0, 0, 0x100, 0x100, 27, 0x20 }, // ID 1 - TexID 27
 };
 
-static NJS_SPRITE SPRITE_ChestKey = { { 0.0f, 0.0f, 0.0f }, 1.0f, 1.0f, 0, &TEXLIST_TTObjects, TEXANIM_ChestKey };
+static NJS_SPRITE SPRITE_ChestKey = { { 0.0f, 0.0f, 0.0f }, 1.0f, 1.0f, 0, &TEXLIST_TreeTops_Objects, TEXANIM_ChestKey };
 
 void DrawKeyCountHUD()
 {

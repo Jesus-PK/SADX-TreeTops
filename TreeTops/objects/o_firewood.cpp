@@ -24,7 +24,7 @@ void DISPLAY_Firewood(task* tp)
     
     NJS_MOTION* MOTION_Firewood = ANIM_Firewood->getmotion();
 
-    njSetTexture(&TEXLIST_TTObjects);
+    njSetTexture(&TEXLIST_TreeTops_Objects);
     
     njPushMatrix(0);
     

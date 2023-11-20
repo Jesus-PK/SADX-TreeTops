@@ -53,7 +53,7 @@ void DISPLAY_Spyro(task* tp)
     
     NJS_ACTION ACTION_Spyro = { MDL_Spyro->getmodel(), ANIM_Spyro->getmotion() };
 
-    njSetTexture(&TEXLIST_TTDragons);
+    njSetTexture(&TEXLIST_TreeTops_Dragons);
     
     njPushMatrix(0);
     
@@ -110,7 +110,7 @@ void DISPLAY_Isaak(task* tp)
 
     NJS_ACTION ACTION_Isaak = { MDL_Isaak->getmodel(), ANIM_Isaak->getmotion() };
 
-    njSetTexture(&TEXLIST_TTDragons);
+    njSetTexture(&TEXLIST_TreeTops_Dragons);
     
     njPushMatrix(0);
     
@@ -134,7 +134,7 @@ void DISPLAY_Lyle(task* tp)
 
     NJS_ACTION ACTION_Lyle = { MDL_Lyle->getmodel(), ANIM_Lyle->getmotion() };
 
-    njSetTexture(&TEXLIST_TTDragons);
+    njSetTexture(&TEXLIST_TreeTops_Dragons);
 
     njPushMatrix(0);
 
@@ -158,7 +158,7 @@ void DISPLAY_Jed(task* tp)
 
     NJS_ACTION ACTION_Jed = { MDL_Jed->getmodel(), ANIM_Jed->getmotion() };
 
-    njSetTexture(&TEXLIST_TTDragons);
+    njSetTexture(&TEXLIST_TreeTops_Dragons);
 
     njPushMatrix(0);
 
@@ -182,7 +182,7 @@ void DISPLAY_Bruno(task* tp)
 
     NJS_ACTION ACTION_Bruno = { MDL_Bruno->getmodel(), ANIM_Bruno->getmotion() };
 
-    njSetTexture(&TEXLIST_TTDragons);
+    njSetTexture(&TEXLIST_TreeTops_Dragons);
 
     njPushMatrix(0);
 
@@ -206,7 +206,7 @@ void DISPLAY_Cleetus(task* tp)
 
     NJS_ACTION ACTION_Cleetus = { MDL_Cleetus->getmodel(), ANIM_Cleetus->getmotion() };
 
-    njSetTexture(&TEXLIST_TTDragons);
+    njSetTexture(&TEXLIST_TreeTops_Dragons);
 
     njPushMatrix(0);
 

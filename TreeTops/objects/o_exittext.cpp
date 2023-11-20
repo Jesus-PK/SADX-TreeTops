@@ -14,7 +14,7 @@ void DISPLAY_ExitText(task* tp)
 
     auto twp = tp->twp;
 
-    njSetTexture(&TEXLIST_TTObjects);
+    njSetTexture(&TEXLIST_TreeTops_Objects);
     
     njPushMatrix(0);
     

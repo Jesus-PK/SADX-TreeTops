@@ -30,7 +30,7 @@ void DISPLAY_LCDebris(task* tp)
 {
     auto twp = tp->twp;
 
-    njSetTexture(&TEXLIST_TTObjects);
+    njSetTexture(&TEXLIST_TreeTops_Objects);
     
     njPushMatrix(0);
     
@@ -102,7 +102,7 @@ void DISPLAY_LCStatue(task* tp)
 
     auto twp = tp->twp;
 
-    njSetTexture(&TEXLIST_TTObjects);
+    njSetTexture(&TEXLIST_TreeTops_Objects);
     
     njPushMatrix(0);
     
@@ -161,7 +161,7 @@ void DISPLAY_LifeChest(task* tp)
 
     NJS_MOTION* MOTION_LifeChest = ANIM_LifeChest->getmotion();
     
-    njSetTexture(&TEXLIST_TTObjects);
+    njSetTexture(&TEXLIST_TreeTops_Objects);
     
     njPushMatrix(0);
     

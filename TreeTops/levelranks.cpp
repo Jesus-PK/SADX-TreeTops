@@ -52,7 +52,7 @@ BOOL CheckMissionRequirements_r(int mission, int character, int level)
 
 //	Mission Cards:
 
-NJS_TEXNAME TEX_TTMission[36] = { 0 };
+NJS_TEXNAME TEX_TreeTops_MissionCards[36] = { 0 };
 
 DataPointer(NJS_TEXANIM, MissionSpriteAnim, 0x917784);
 
@@ -178,7 +178,7 @@ void LoadStageMissionImage_r()
         return LoadStageMissionImage_t.Original();
     }
 
-    StageMissionTexlist.textures = TEX_TTMission;
+    StageMissionTexlist.textures = TEX_TreeTops_MissionCards;
     StageMissionTexlist.nbTexture = 1;
     
     LoadPVM("TreeTops_MissionCards", &StageMissionTexlist);
@@ -204,7 +204,7 @@ void LoadMissionCardResult_r()
         return LoadMissionCardResult_t.Original();
     }
 
-    StageMissionTexlist.textures = TEX_TTMission;
+    StageMissionTexlist.textures = TEX_TreeTops_MissionCards;
     StageMissionTexlist.nbTexture = 1;
     
     LoadPVM("TreeTops_MissionCards", &StageMissionTexlist);
