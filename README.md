@@ -6,12 +6,15 @@ This mod features the original level geometry and skybox with vertex colors alon
 * Fully fledged SET and CAM layouts for Sonic, Tails and Knuckles.
 * Full GUI support: Titlecards, stage names, mission cards, credits images, multiplayer thumbnails... All with full EN / JP support and SD / HD variants depending if you are using HD GUI or not.
 * Custom level objectives, including new A / B missions requirements.
+* For more details, please check the [GameBanana](https://gamebanana.com/mods/467594) page of this mod.
 
 ## Overview:
 
-This repository hosts the code I used for this mod. If you are looking for the latest playable release, you can download it from [GameBanana - Tree Tops](https://gamebanana.com/mods/467594), but you can also download both the current and previous release of this mod in here.
+You can find on this repository both the code I wrote for this mod and all playable versions that I've released so far.
 
-The purpose of this repository is to backup my code on the cloud and to serve as public resource for other modders, I think some of this code might serve as helpful examples for other people working on level mods.
+The purpose of this repository is to backup my code in the cloud and to serve as public resource for other modders, I think some of this code might serve as helpful examples for other people working on level mods.
+
+This repository also acts as a mean to archive previous releases of this mod since in GameBanana I only offer the latest playable release.
 
 ## Repository Notes:
 
@@ -21,16 +24,16 @@ Cloning this repository should result in a buildable .dll project of this mod wi
 * The project uses custom include paths, the project settings already have setup the necessary additional include directories in **Project > Properties > C/C++ > General > Additional Include Directories** for both **Release - x86** and **Debug - x86** (All Configurations - Win32) - These are the include directories:
 
   * `$(ProjectDir)`
+  * `$(ProjectDir)config`
+  * `$(ProjectDir)lantern`
   * `$(ProjectDir)objects`
   * `$(ProjectDir)programming`
-  * `$(ProjectDir)lantern`
-  * `$(ProjectDir)config`
 
-* The files in the `programming` folder are the same ones encountered in the `programming` folder that is shipped with the SADX Mod Loader. I copy these files manually at the time of creating my project and I also update them manually, so remember that you might need to replace them with "fresh" ones from the latest Mod Loader release from time to time when those includes get updated.
-
-* The files in the `config` folder are the neccesary files to read a configuration form (`IniFile.cpp`, `IniFile.hpp`, `TextConv.cpp`, `TextConv.h`, `Utils.hpp`) - You can get them [HERE](https://github.com/sonicretro/mod-loader-common/tree/master/ModLoaderCommon)
+* The files in the `config` folder are the neccesary files to read a configuration form (`IniFile.cpp`, `IniFile.hpp`, `TextConv.cpp`, `TextConv.h`, `Utils.hpp`) - You can get them [HERE](https://github.com/sonicretro/mod-loader-common/tree/master/ModLoaderCommon).
 
 * The files in the `lantern` folder are the Lantern Engine API necessary files (`lanternapi.h` and `sadx-dc-lighting.lib`)
+
+* The files in the `programming` folder are the same ones encountered in the `programming` folder that is shipped with the SADX Mod Loader. I copy these files manually at the time of creating my project and I also update them manually, so remember that you might need to replace them with "fresh" ones from the latest Mod Loader release from time to time when those files get updated.
 
 * Adding to this, the following files need to be added to the existing **Source Files** of this project via the Project Properties window (**Source Files > Right Click > Add Existing Item**):
   * `AnimationFile.cpp`
