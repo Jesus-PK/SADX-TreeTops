@@ -104,6 +104,7 @@ TEX_PVMTABLE TEXTURELIST_TreeTops[] = {
 	
 	{ "TreeTops_Objects", &TEXLIST_TreeTops_Objects },
 	{ "TreeTops_Dragons", &TEXLIST_TreeTops_Dragons },	
+	
 	{ 0 }
 };
 
@@ -112,6 +113,8 @@ TEX_PVMTABLE TEXTURELIST_TreeTops[] = {
 
 void LOAD_Objects()
 {
+	LOAD_TreeTops_Skybox();
+	
 	LOAD_BasicChest();
 	LOAD_CrystalStatue();
 	LOAD_Dragons();
@@ -122,7 +125,6 @@ void LOAD_Objects()
 	LOAD_LifeChest();
 	LOAD_LockedChest();
 	LOAD_MetalChest();
-	LOAD_TreeTops_Skybox();
 	LOAD_SpottedChicken();
 }
 
