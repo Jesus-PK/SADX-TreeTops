@@ -39,14 +39,9 @@ void RD_TreeTops(task* tp)
 }
 
 
-//	Level Destructor - I trampoline the level destructor function so I can reset the rescued dragons counter and other counters only when exiting, completing the level or SA2Restarting, this saves the counter when dying or SA1Restarting.
-//	Originally I funchooked this, but doing that causes a weird texture issue with DC Conversion in Hot Shelter and made this mod crash with Jet Set Sonk (since it did the same workaround).
-//	Basically funchook can rarely not work correctly for some functions, this seems to be one of them so it's better to just trampoline it.
+//	Level Destructor - I funchook the level destructor function so I can reset the rescued dragons counter and other counters only when exiting, completing the level or SA2Restarting, this saves the counter when dying or SA1Restarting.
 
-//	To make these functions work correctly, it's necessary to #include "Trampoline.h" to this current file (or in pch.h) and to add "Trampoline.cpp" to your source files.
-//	Also remember to change #include "stdafx.h" for #include "pch.h" and to change #include <MemAccess.h> for #include "MemAccess.h" (if you have your programming folder files alongside the others, shouldn't be necessary if you have them on another include location:
-
-static Trampoline* RunLevelDestructor_t = nullptr;
+static FunctionHook<void, int>RunLevelDestructor_t(RunLevelDestructor);
 
 void __cdecl RunLevelDestructor_r(int heap)
 {
@@ -56,8 +51,7 @@ void __cdecl RunLevelDestructor_r(int heap)
 		HasKey = 0;
 	}
 
-	FunctionPointer(void, origin, (int heap), RunLevelDestructor_t->Target());
-	origin(heap);
+	return RunLevelDestructor_t.Original(heap);
 }
 
 
@@ -107,7 +101,7 @@ void INIT_LevelTask()
 	Rd_Skydeck_t = new Trampoline(0x005F02E0, 0x005F02E5, RD_TreeTops); // Init Level Task Trampoline.
 	ScrollMasterList[LevelIDs_SkyDeck] = BG_TreeTops; // Skybox Task.
 	
-	RunLevelDestructor_t = new Trampoline((intptr_t)RunLevelDestructor, (intptr_t)RunLevelDestructor + 0x6, RunLevelDestructor_r); // Init Level Destructor Trampoline.
+	RunLevelDestructor_t.Hook(RunLevelDestructor_r); // Init Level Destructor Trampoline.
 	
 	LoadTailsOpponent_t.Hook(LoadTailsOpponent_r); // Remove Tails Race AI.
 	
