@@ -1,22 +1,32 @@
 # SADX - Tree Tops
 
-A level port of Tree Tops from Spyro 1, replaces Sky Deck.
-
-This mod features the original level geometry and skybox with vertex colors alongside tons of custom coded objects, but also:
-* Fully fledged SET and CAM layouts for Sonic, Tails and Knuckles.
-* Full GUI support: Titlecards, stage names, mission cards, credits images, multiplayer thumbnails... All with full EN / JP support and SD / HD variants depending if you are using HD GUI or not.
-* Custom level objectives, including new A / B missions requirements.
-* For more details, please check the [GameBanana](https://gamebanana.com/mods/467594) page of this mod.
+![TreeTops_Thumbnail](https://images.gamebanana.com/img/ss/mods/64fb56666155f.jpg)
 
 ## Overview:
 
-You can find on this repository both the code I wrote for this mod and all playable versions that I've released so far.
+This mod brings a fully fledged level port of Tree Tops from Spyro 1 into SADX, replacing Sky Deck.
 
-The purpose of this repository is to backup my code in the cloud and to serve as public resource for other modders, I think some of this code might serve as helpful examples for other people working on level mods.
+You can find more details about this mod in [**GameBanana**](https://gamebanana.com/mods/467594).
 
-This repository also acts as a mean to archive previous releases of this mod since in GameBanana I only offer the latest playable release.
+**Features:**
+* The original level geometry, skybox and objects with their vertex colors directly ripped from the game by me. With many touch-ups added to improve the overall gameplay experience.
+* Complete SET and CAM layouts for every character featured in the level, all of them including the same amount of Rings in each level layout as amount of Gems there are to collect on their original counterparts. Just like in the original Spyro game!
+* A lot of custom coded objects! Breakable chest, the exit portal, a buckload amount of dragons...
+* Custom palette lightning, so it's recommended to use Lantern Engine alongside this mod.
+* Custom A / B / C mission requirements, perfect if you want to fully complete these levels from a fresh savefile.
+* Custom GUI elements such as titlecards, stage nameplates, mission cards, credits images and multiplayer thumbnails! All of them having full English and Japanese support alongside SD and HD quality textures depending if you are using HD GUI or not.
+* A lot of work and care to ensure the best posible gameplay experience, alongside tons of tweaks through code to improve compatibility alongside other mods.
+
+## Compatibility Notes:
+* This mod automatically disables the replaced levels in Dreamcast Conversion, so you don't need to manually disable anything from that mod.
+* There's a minor mod order issue with Hill Top, so if you play with it enabled, be sure that you load Spyro Triple Pack **under** Hill Top. That'll fix it and not affect either of the mods negatively.
+* There's a minor graphic issue with Character Select that only happens Tails version of this level, if you play with this mod enabled you'll see the Sonic race AI spawn (which is disabled). This won't affect gameplay.
+* Multiplayer support is currently limited. It can be playable but some things might not work as intended for the time being.
+* For any other issues, it's always recommended to load this mod on the bottom of the list. If that doesn't help, you can also use the [**Issues**](https://github.com/Jesus-PK/SADX-TreeTops/issues) tab or [**GameBanana**](https://gamebanana.com/mods/467594) page to report any issues.
 
 ## Repository Notes:
+
+This repository hosts the code and playable versions of this mod. You can find them in the [**Releases**](https://github.com/Jesus-PK/SADX-TreeTops/releases) tab or [**GameBanana**](https://gamebanana.com/mods/467594) page.
 
 Cloning this repository should result in a buildable .dll project of this mod without any additional tweaks needed, though there's a few things worth noting:
 
