@@ -19,7 +19,7 @@ You can find more details about this mod in [**GameBanana**](https://gamebanana.
 
 ## Compatibility Notes:
 * This mod automatically disables Sky Deck in Dreamcast Conversion, so you don't need to manually disable anything from that mod.
-* There's a minor mod order issue with Hill Top, so if you play with it enabled, be sure that you load Spyro Triple Pack **under** Hill Top. That'll fix it and not affect either of the mods negatively.
+* There's a minor mod order issue with Hill Top, so if you play with it enabled, be sure that you load Tree Tops **under** Hill Top. That'll fix it and not affect either of the mods negatively.
 * There's a minor graphic issue with Character Select that only happens Tails version of this level, if you play with this mod enabled you'll see the Sonic race AI spawn (which is disabled). This won't affect gameplay.
 * Multiplayer support is currently limited. It can be playable but some things might not work as intended for the time being.
 * For any other issues, it's always recommended to load this mod on the bottom of the list. If that doesn't help, you can also use the [**Issues**](https://github.com/Jesus-PK/SADX-TreeTops/issues) tab or [**GameBanana**](https://gamebanana.com/mods/467594) page to report any issues.
