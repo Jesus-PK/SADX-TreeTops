@@ -18,7 +18,7 @@ You can find more details about this mod in [**GameBanana**](https://gamebanana.
 * A lot of work and care to ensure the best posible gameplay experience, alongside tons of tweaks through code to improve compatibility alongside other mods.
 
 ## Compatibility Notes:
-* This mod automatically disables the replaced levels in Dreamcast Conversion, so you don't need to manually disable anything from that mod.
+* This mod automatically disables Sky Deck in Dreamcast Conversion, so you don't need to manually disable anything from that mod.
 * There's a minor mod order issue with Hill Top, so if you play with it enabled, be sure that you load Spyro Triple Pack **under** Hill Top. That'll fix it and not affect either of the mods negatively.
 * There's a minor graphic issue with Character Select that only happens Tails version of this level, if you play with this mod enabled you'll see the Sonic race AI spawn (which is disabled). This won't affect gameplay.
 * Multiplayer support is currently limited. It can be playable but some things might not work as intended for the time being.
@@ -26,7 +26,7 @@ You can find more details about this mod in [**GameBanana**](https://gamebanana.
 
 ## Repository Notes:
 
-This repository hosts the code and playable versions of this mod. You can find them in the [**Releases**](https://github.com/Jesus-PK/SADX-TreeTops/releases) tab or [**GameBanana**](https://gamebanana.com/mods/467594) page.
+This repository hosts both the code and playable versions of this mod. You can find them in the [**Releases**](https://github.com/Jesus-PK/SADX-TreeTops/releases) tab or [**GameBanana**](https://gamebanana.com/mods/467594) page.
 
 Cloning this repository should result in a buildable .dll project of this mod without any additional tweaks needed, though there's a few things worth noting:
 
@@ -39,7 +39,7 @@ Cloning this repository should result in a buildable .dll project of this mod wi
   * `$(ProjectDir)objects`
   * `$(ProjectDir)programming`
 
-* The files in the `config` folder are the neccesary files to read a configuration form (`IniFile.cpp`, `IniFile.hpp`, `TextConv.cpp`, `TextConv.h`, `Utils.hpp`) - You can get them [HERE](https://github.com/sonicretro/mod-loader-common/tree/master/ModLoaderCommon).
+* The files in the `config` folder are the neccesary files to read a configuration form (`IniFile.cpp`, `IniFile.hpp`, `TextConv.cpp`, `TextConv.h`, `Utils.hpp`) - You can get them [**HERE**](https://github.com/sonicretro/mod-loader-common/tree/master/ModLoaderCommon).
 
 * The files in the `lantern` folder are the Lantern Engine API necessary files (`lanternapi.h` and `sadx-dc-lighting.lib`)
 
@@ -69,4 +69,4 @@ Cloning this repository should result in a buildable .dll project of this mod wi
 
 As always, it's recommended to make your own project from scratch and just use these functions and annotations you see in here as a guide / example to learn what they do instead of just cloning the repository or copypasting functions. I say this because some of these things might only apply to this mod in particular instead of a general level due to using specific nomenclatures / tweaks or they might just be wrong / obsolete as time goes by.
 
-If you are looking for further help and troubleshooting, feel free to check out the [X-Hax Discord](https://discord.gg/gqJCF47).
+If you are looking for further help and troubleshooting, feel free to check out the [**X-Hax Discord**](https://discord.gg/gqJCF47).
