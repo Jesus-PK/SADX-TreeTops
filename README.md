@@ -1,10 +1,10 @@
-# SADX - Tree Tops
+# SADX - Tree Tops (v1.1.0)
 
 ![TreeTops_Thumbnail](https://images.gamebanana.com/img/ss/mods/64fb56666155f.jpg)
 
 ## Overview:
 
-This mod brings a fully fledged level port of Tree Tops from Spyro 1 into SADX, replacing Sky Deck.
+Part of the [**Spyro Triple Pack**](https://github.com/Jesus-PK/SADX-SpyroTriplePack), this mod brings a fully fledged level port of Tree Tops from Spyro 1 into SADX, replacing Sky Deck.
 
 You can find more details about this mod in [**GameBanana**](https://gamebanana.com/mods/467594).
 
