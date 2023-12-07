@@ -17,9 +17,9 @@ extern uint8_t DragonCount;
 //	Bools and code to check if certain mods or config options are enabled:
 
 extern bool HD_GUI;
+extern bool Lantern_Engine;
 extern bool DC_Conversion;
 extern bool HUD_Plus;
-extern bool Lantern_Engine;
 
 extern bool DC_HudTweaks;
 

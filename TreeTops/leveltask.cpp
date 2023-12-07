@@ -3,11 +3,7 @@
 #include "ramps.h"
 #include "o_skybox.h"
 
-//	Custom LevelTask - Custom code for Sky Deck leveltask function (0x5F02E0).
-//	As a workaround for the Lantern Engine API issues, I trampoline the original leveltask and then if Lantern is active > I call the original function once and disable blending (not needed but just in case).
-//	This lets Lantern load the PL / SL files (since in Sky Deck it does it through the leveltask), and then I can just replace those files like I usually do.
-
-static Trampoline* Rd_Skydeck_t = nullptr;
+//	Custom LevelTask:
 
 void RD_TreeTops(task* tp)
 {
@@ -15,12 +11,6 @@ void RD_TreeTops(task* tp)
 
 	if (!twp->mode)
 	{
-		if (Lantern_Engine)
-		{
-			((decltype(RD_TreeTops)*)Rd_Skydeck_t->Target())(tp); // This will call the original function once, I do this only if Lantern is enabled so Lantern can apply it's Trampoline to load the PL / SL files for Sky Deck.
-			set_shader_flags(ShaderFlags_Blend, false); // Since this above would've activated blending (though with a factor of 0, no so visual changes) - Just in case I desactive it via a function of the Lantern API.
-		}
-		
 		ADXTaskInit();
 		PlayMusic(MusicIDs_skydeck1);
 
@@ -36,6 +26,41 @@ void RD_TreeTops(task* tp)
 		DrawDragonHUD();
 
 	DrawKeyHUD();
+}
+
+
+//	Lantern Engine API - Custom PL & SL Files:
+
+//	These functions are custom (any name works), we need to make an individual function for every file we are gonna register down below on the Lantern API:
+
+const char* RegisterLevelPalette(int32_t level, int32_t act)
+{
+	if (level == LevelIDs_SkyDeck)
+		return HelperFunctionsGlobal.GetReplaceablePath("system\\LANTERN_TreeTops-PL.BIN"); // This will override the name used by Lantern Engine.
+	
+	else
+		return nullptr; // Returning null will let Lantern Engine choose the name.
+}
+
+const char* RegisterLevelLight(int32_t level, int32_t act)
+{
+	if (level == LevelIDs_SkyDeck)
+		return HelperFunctionsGlobal.GetReplaceablePath("system\\LANTERN_TreeTops-SL.BIN");
+	
+	else
+		return nullptr;
+}
+
+
+//	Register and load custom PL & SL files:
+
+void LANTERN_TreeTops()
+{
+	if (Lantern_Engine) // We check if Lantern Engine is loaded, this is important because if we try to call an API function without doing this check, the game will crash when Lantern (if Lantern isn't enabled).
+	{
+		pl_load_register(RegisterLevelPalette); // This is an API function from Lantern Engine, it registers a custom PL file we specified in the function we made (RegisterLevelPalette)
+		sl_load_register(RegisterLevelLight); // This is an API function from Lantern Engine, it registers a custom SL file we specified in the function we made (RegisterLevelLight)
+	}
 }
 
 
@@ -98,10 +123,12 @@ void EV0095_PositionFix(task* tp, float x, float y, float z) // The arguments in
 
 void INIT_LevelTask()
 {
-	Rd_Skydeck_t = new Trampoline(0x005F02E0, 0x005F02E5, RD_TreeTops); // Init Level Task Trampoline.
+	RoundMasterList[LevelIDs_SkyDeck] = RD_TreeTops; // Level Task.
 	ScrollMasterList[LevelIDs_SkyDeck] = BG_TreeTops; // Skybox Task.
+
+	LANTERN_TreeTops(); // Lantern API - Register and load custom PL & SL files.
 	
-	RunLevelDestructor_t.Hook(RunLevelDestructor_r); // Init Level Destructor Trampoline.
+	RunLevelDestructor_t.Hook(RunLevelDestructor_r); // Init Level Destructor Funchook.
 	
 	LoadTailsOpponent_t.Hook(LoadTailsOpponent_r); // Remove Tails Race AI.
 	

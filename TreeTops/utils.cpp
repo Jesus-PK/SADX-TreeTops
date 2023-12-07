@@ -9,9 +9,9 @@ uint8_t DragonCount{ 0 };
 //	Bools and code to check if certain mods or config options are enabled:
 
 bool HD_GUI = false;
+bool Lantern_Engine = false;
 bool DC_Conversion = false;
 bool HUD_Plus = false;
-bool Lantern_Engine = false;
 
 bool DC_HudTweaks = false; // Checks if Dreamcast Conversion "Adjust HUD Position" config option is enabled.
 
@@ -36,10 +36,10 @@ void CheckDCConfig()
 void CheckActiveMods()
 {
 	HD_GUI = HelperFunctionsGlobal.Mods->find("sadx-hd-gui") != nullptr; // This needs to be called in the Init (or in a function that will be called in the Init like this), "Find" checks if the modID is present - Remember that != means "Not equal" (If HD_GUI is not nullptr)
+	Lantern_Engine = HelperFunctionsGlobal.Mods->find("sadx.sf94.lantern-engine") != nullptr;
 	CheckDCConfig(); // I call here the DC Conversion check + it's config option check to group it alongside everything else.
 	
 	HUD_Plus = GetModuleHandle(L"sadx-hud-plus") != nullptr;
-	Lantern_Engine = GetModuleHandle(L"sadx-dc-lighting") != nullptr;
 }
 
 
