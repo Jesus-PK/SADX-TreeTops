@@ -167,9 +167,6 @@
     <ClCompile Include="objects\o_dragons.cpp">
       <Filter>Objects</Filter>
     </ClCompile>
-    <ClCompile Include="programming\Trampoline.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="levelranks.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

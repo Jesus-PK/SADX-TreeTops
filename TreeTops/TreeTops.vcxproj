@@ -213,7 +213,6 @@
     <ClCompile Include="programming\AnimationFile.cpp" />
     <ClCompile Include="programming\LandTableInfo.cpp" />
     <ClCompile Include="programming\ModelInfo.cpp" />
-    <ClCompile Include="programming\Trampoline.cpp" />
     <ClCompile Include="ramps.cpp" />
     <ClCompile Include="utils.cpp" />
   </ItemGroup>
