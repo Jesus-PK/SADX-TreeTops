@@ -42,6 +42,16 @@ void CheckActiveMods()
 	HUD_Plus = GetModuleHandle(L"sadx-hud-plus") != nullptr;
 }
 
+void CheckBASS()
+{
+	if (HelperFunctionsGlobal.LoaderSettings->EnableBassMusic == false)
+	{
+		MessageBox(WindowHandle,
+			L"ERROR! BASS for Music is turned off.\n\nThe music of this level won't play correctly.\n\nPlease exit the game, enable BASS for Music, then try again.",
+			L"Tree Tops: BASS Error", MB_OK | MB_ICONERROR);
+	}
+}
+
 
 //	Expand Draw Queue Memory Pool (Applies to the entire game):
 
