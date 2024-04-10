@@ -8,7 +8,7 @@ ModelInfo* MDL_BCDebris02 = nullptr;
 ModelInfo* MDL_BCDebris03 = nullptr;
 ModelInfo* MDL_Number5 = nullptr;
 
-CCL_INFO COLLI_BasicChest = { 0, CollisionShape_Sphere, 0x77, 0x20, 0x400, { 0.0f, 5.25f, 0.0f }, 8.0f, 0.0f, 0.0f, 0.0f, 0, 0, 0 };
+CCL_INFO COL_BasicChest = { 0, CollisionShape_Sphere, 0x77, 0x20, 0x400, { 0.0f, 5.25f, 0.0f }, 8.0f, 0.0f, 0.0f, 0.0f, 0, 0, 0 };
 
 
 //  Basic Chest - Rewards:
@@ -179,7 +179,7 @@ void EXEC_BasicChest(task* tp)
         case 0:
 
             tp->disp = DISPLAY_BasicChest;
-            CCL_Init(tp, &COLLI_BasicChest, 1, 2u);
+            CCL_Init(tp, &COL_BasicChest, 1, 2u);
 
             twp->mode++;
 

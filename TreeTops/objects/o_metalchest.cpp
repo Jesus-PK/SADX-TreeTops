@@ -8,7 +8,7 @@ ModelInfo* MDL_MCDebris02 = nullptr;
 ModelInfo* MDL_MCDebris03 = nullptr;
 ModelInfo* MDL_Number10 = nullptr;
 
-CCL_INFO COLLI_MetalChest = { 0, CollisionShape_Sphere, 0x77, 0x20, 0x400, { 0.0f, 5.25f, 0.0f }, 8.0f, 0.0f, 0.0f, 0.0f, 0, 0, 0 };
+CCL_INFO COL_MetalChest = { 0, CollisionShape_Sphere, 0x77, 0x20, 0x400, { 0.0f, 5.25f, 0.0f }, 8.0f, 0.0f, 0.0f, 0.0f, 0, 0, 0 };
 
 
 //  Metal Chest - Rewards:
@@ -180,7 +180,7 @@ void EXEC_MetalChest(task* tp)
         case 0:
 
             tp->disp = DISPLAY_MetalChest;
-            CCL_Init(tp, &COLLI_MetalChest, 1, 2u);
+            CCL_Init(tp, &COL_MetalChest, 1, 2u);
 
             twp->mode++;
 

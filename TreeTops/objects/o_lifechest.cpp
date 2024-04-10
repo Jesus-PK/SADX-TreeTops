@@ -11,7 +11,7 @@ ModelInfo* MDL_LCDebris03 = nullptr;
 ModelInfo* MDL_LifeStatue = nullptr;
 AnimationFile* ANIM_LifeChest = nullptr;
 
-CCL_INFO COLLI_LifeChest = { 0, CollisionShape_Sphere, 0x77, 0x20, 0x400, { 0.0f, 5.25f, 0.0f }, 8.0f, 0.0f, 0.0f, 0.0f, 0, 0, 0 };
+CCL_INFO COL_LifeChest = { 0, CollisionShape_Sphere, 0x77, 0x20, 0x400, { 0.0f, 5.25f, 0.0f }, 8.0f, 0.0f, 0.0f, 0.0f, 0, 0, 0 };
 
 
 //  Life Chest - Rewards:
@@ -188,7 +188,7 @@ void EXEC_LifeChest(task* tp)
         case 0:
 
             tp->disp = DISPLAY_LifeChest;
-            CCL_Init(tp, &COLLI_LifeChest, 1, 2u);
+            CCL_Init(tp, &COL_LifeChest, 1, 2u);
 
             twp->mode++;
 

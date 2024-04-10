@@ -7,7 +7,7 @@
 ModelInfo* MDL_LargeTorch = nullptr;
 AnimationFile* ANIM_LargeTorch = nullptr;
 
-CCL_INFO COLLI_LargeTorch[] = {
+CCL_INFO COL_LargeTorch[] = {
     { 0, CollisionShape_Cylinder2, 0x77, 0, 0, { 0.0f, 17.0f, 0.0f }, 2.0f, 17.0f, 0.0f, 0.0f, 0, 0, 0 },
     { 0, CollisionShape_Cylinder2, 0x70, 0x2F, 0, { 0.0f, 39.0f, 0.0f }, 2.0f, 5.0f, 0.0f, 0.0f, 0, 0, 0 }
 };
@@ -48,7 +48,7 @@ void EXEC_LargeTorch(task* tp)
     {
         case 0:
 
-            CCL_Init(tp, arrayptrandlength(COLLI_LargeTorch), 4u);
+            CCL_Init(tp, arrayptrandlength(COL_LargeTorch), 4u);
 
             twp->mode++;
 

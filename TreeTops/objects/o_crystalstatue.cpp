@@ -10,7 +10,7 @@ ModelInfo* MDL_CSDebris01 = nullptr;
 ModelInfo* MDL_CSDebris02 = nullptr;
 ModelInfo* MDL_CSDebris03 = nullptr;
 
-CCL_INFO COLLI_CrystalStatue = { 0, CollisionShape_Sphere, 0x77, 0x20, 0x400, { 0.0f, 7.0f, 0.0f }, 11.5f, 0.0f, 0.0f, 0.0f, 0, 0, 0 };
+CCL_INFO COL_CrystalStatue = { 0, CollisionShape_Sphere, 0x77, 0x20, 0x400, { 0.0f, 7.0f, 0.0f }, 11.5f, 0.0f, 0.0f, 0.0f, 0, 0, 0 };
 
 
 //  Crystal Base - Main:
@@ -237,7 +237,7 @@ void EXEC_CrystalStatue(task* tp)
             SetNoRevive(tp); // Enabling this flag makes it so the object won't respawn after is destroyed (if you destroyed the object and you die, the one you collected won't respawn) - Previously known as SetFlagNoRespawn(tp);
             
             tp->disp = DISPLAY_CrystalStatue;
-            CCL_Init(tp, &COLLI_CrystalStatue, 1, 2u);
+            CCL_Init(tp, &COL_CrystalStatue, 1, 2u);
 
             twp->mode++;
 

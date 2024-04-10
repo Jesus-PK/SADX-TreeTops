@@ -7,7 +7,7 @@
 ModelInfo* MDL_Firewood = nullptr;
 AnimationFile* ANIM_Firewood = nullptr;
 
-CCL_INFO COLLI_Firewood[] = {
+CCL_INFO COL_Firewood[] = {
     { 0, CollisionShape_Sphere, 0x77, 0, 0, { 0.0f, 2.5f, 0.0f }, 7.5f, 0.0f, 0.0f, 0.0f, 0, 0, 0 },
     { 0, CollisionShape_Cylinder2, 0x70, 0x2F, 0, { 0.0f, 16.0f, 0.0f }, 3.0f, 7.5f, 0.0f, 0.0f, 0, 0, 0 }
 };
@@ -48,7 +48,7 @@ void EXEC_Firewood(task* tp)
     {
         case 0:
 
-            CCL_Init(tp, arrayptrandlength(COLLI_Firewood), 4u);
+            CCL_Init(tp, arrayptrandlength(COL_Firewood), 4u);
 
             twp->mode++;
 

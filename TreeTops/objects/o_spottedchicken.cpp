@@ -7,7 +7,7 @@
 ModelInfo* MDL_SpottedChicken = nullptr;
 AnimationFile* ANIM_SpottedChicken = nullptr;
 
-CCL_INFO COLLI_SpottedChicken = { 0, CollisionShape_Sphere, 0x77, 0, 0, { 0.0f, 4.0f, 0.0f }, 4.0f, 0.0f, 0.0f, 0.0f, 0, 0, 0 };
+CCL_INFO COL_SpottedChicken = { 0, CollisionShape_Sphere, 0x77, 0, 0, { 0.0f, 4.0f, 0.0f }, 4.0f, 0.0f, 0.0f, 0.0f, 0, 0, 0 };
 
 
 //  SpottedChicken - Main:
@@ -45,7 +45,7 @@ void EXEC_SpottedChicken(task* tp)
     {
         case 0:
 
-            CCL_Init(tp, &COLLI_SpottedChicken, 1, 4u);
+            CCL_Init(tp, &COL_SpottedChicken, 1, 4u);
 
             twp->mode++;
 

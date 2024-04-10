@@ -16,7 +16,7 @@ ModelInfo* MDL_LKCKey = nullptr;
 ModelInfo* MDL_LKCColli01 = nullptr;
 ModelInfo* MDL_LKCColli02 = nullptr;
 
-CCL_INFO COLLI_LKCKey = { 0, CollisionShape_Sphere, 0xF0, 0, 0, { 0.0f, 4.625f, 0.0f }, 4.625f, 0.0f, 0.0f, 0.0f, 0, 0, 0 };
+CCL_INFO COL_LKCKey = { 0, CollisionShape_Sphere, 0xF0, 0, 0, { 0.0f, 4.625f, 0.0f }, 4.625f, 0.0f, 0.0f, 0.0f, 0, 0, 0 };
 
 NJS_VECTOR POS_LKCTrigger = { 0, 0, 0 };
 
@@ -86,7 +86,7 @@ void EXEC_LKCKey(task* tp)
             SetNoRevive(tp);
             
             tp->disp = DISPLAY_LKCKey;
-            CCL_Init(tp, &COLLI_LKCKey, 1, 4u);
+            CCL_Init(tp, &COL_LKCKey, 1, 4u);
 
             twp->mode++;
 

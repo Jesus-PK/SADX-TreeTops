@@ -16,12 +16,12 @@ AnimationFile* ANIM_Jed = nullptr;
 AnimationFile* ANIM_Bruno = nullptr;
 AnimationFile* ANIM_Cleetus = nullptr;
 
-CCL_INFO COLLI_Spyro = { 0, CollisionShape_Capsule, 0x77, 0, 0, { 0.0f, 6.0f, 0.0f }, 6.0f, 3.0f, 0.0f, 0.0f, 0, 0, 0 };
-CCL_INFO COLLI_Isaak = { 0, CollisionShape_Capsule, 0x77, 0, 0, { 0.0f, 15.0f, 0.0f }, 7.5f, 12.5f, 0.0f, 0.0f, 0, 0, 0 };
-CCL_INFO COLLI_Lyle = { 0, CollisionShape_Capsule, 0x77, 0, 0, { 0.0f, 12.5f, 0.0f }, 7.5f, 10.0f, 0.0f, 0.0f, 0, 0, 0 };
-CCL_INFO COLLI_Jed = { 0, CollisionShape_Capsule, 0x77, 0, 0, { 0.0f, 12.5f, 0.0f }, 7.5f, 10.0f, 0.0f, 0.0f, 0, 0, 0 };
-CCL_INFO COLLI_Bruno = { 0, CollisionShape_Capsule, 0x77, 0, 0, { 0.0f, 15.0f, 0.0f }, 7.5f, 12.5f, 0.0f, 0.0f, 0, 0, 0 };
-CCL_INFO COLLI_Cleetus = { 0, CollisionShape_Capsule, 0x77, 0, 0, { 0.0f, 12.5f, 0.0f }, 7.5f, 10.0f, 0.0f, 0.0f, 0, 0, 0 };
+CCL_INFO COL_Spyro = { 0, CollisionShape_Capsule, 0x77, 0, 0, { 0.0f, 6.0f, 0.0f }, 6.0f, 3.0f, 0.0f, 0.0f, 0, 0, 0 };
+CCL_INFO COL_Isaak = { 0, CollisionShape_Capsule, 0x77, 0, 0, { 0.0f, 15.0f, 0.0f }, 7.5f, 12.5f, 0.0f, 0.0f, 0, 0, 0 };
+CCL_INFO COL_Lyle = { 0, CollisionShape_Capsule, 0x77, 0, 0, { 0.0f, 12.5f, 0.0f }, 7.5f, 10.0f, 0.0f, 0.0f, 0, 0, 0 };
+CCL_INFO COL_Jed = { 0, CollisionShape_Capsule, 0x77, 0, 0, { 0.0f, 12.5f, 0.0f }, 7.5f, 10.0f, 0.0f, 0.0f, 0, 0, 0 };
+CCL_INFO COL_Bruno = { 0, CollisionShape_Capsule, 0x77, 0, 0, { 0.0f, 15.0f, 0.0f }, 7.5f, 12.5f, 0.0f, 0.0f, 0, 0, 0 };
+CCL_INFO COL_Cleetus = { 0, CollisionShape_Capsule, 0x77, 0, 0, { 0.0f, 12.5f, 0.0f }, 7.5f, 10.0f, 0.0f, 0.0f, 0, 0, 0 };
 
 
 //  Values:
@@ -80,7 +80,7 @@ void EXEC_Spyro(task* tp)
         case 0:
 
             tp->disp = DISPLAY_Spyro;
-            CCL_Init(tp, &COLLI_Spyro, 1, 4u);
+            CCL_Init(tp, &COL_Spyro, 1, 4u);
 
             twp->mode++;
 
@@ -239,7 +239,7 @@ void EXEC_Isaak(task* tp)
             case 0:
 
                 tp->disp = DISPLAY_Isaak;
-                CCL_Init(tp, &COLLI_Isaak, 1, 4u);
+                CCL_Init(tp, &COL_Isaak, 1, 4u);
 
                 POS_IsaakSmoke.x = twp->pos.x;
                 POS_IsaakSmoke.y = twp->pos.y + 18.0f;
@@ -279,7 +279,7 @@ void EXEC_Lyle(task* tp)
             case 0:
 
                 tp->disp = DISPLAY_Lyle;
-                CCL_Init(tp, &COLLI_Lyle, 1, 4u);
+                CCL_Init(tp, &COL_Lyle, 1, 4u);
 
                 POS_LyleSmoke.x = twp->pos.x;
                 POS_LyleSmoke.y = twp->pos.y + 15.0f;
@@ -319,7 +319,7 @@ void EXEC_Jed(task* tp)
             case 0:
 
                 tp->disp = DISPLAY_Jed;
-                CCL_Init(tp, &COLLI_Jed, 1, 4u);
+                CCL_Init(tp, &COL_Jed, 1, 4u);
 
                 POS_JedSmoke.x = twp->pos.x;
                 POS_JedSmoke.y = twp->pos.y + 15.0f;
@@ -359,7 +359,7 @@ void EXEC_Bruno(task* tp)
             case 0:
 
                 tp->disp = DISPLAY_Bruno;
-                CCL_Init(tp, &COLLI_Bruno, 1, 4u);
+                CCL_Init(tp, &COL_Bruno, 1, 4u);
 
                 POS_BrunoSmoke.x = twp->pos.x;
                 POS_BrunoSmoke.y = twp->pos.y + 18.0f;
@@ -399,7 +399,7 @@ void EXEC_Cleetus(task* tp)
             case 0:
 
                 tp->disp = DISPLAY_Cleetus;
-                CCL_Init(tp, &COLLI_Cleetus, 1, 4u);
+                CCL_Init(tp, &COL_Cleetus, 1, 4u);
 
                 POS_CleetusSmoke.x = twp->pos.x;
                 POS_CleetusSmoke.y = twp->pos.y + 15.0f;
