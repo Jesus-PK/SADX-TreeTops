@@ -777,11 +777,11 @@ struct HintMessageTable
 struct PL_ACTION
 {
 	NJS_ACTION* actptr;
-	char objnum;
-	char mtnmode;
-	unsigned __int16 next;
-	float frame;
-	float racio;
+	Uint8 objnum;
+	Sint8 mtnmode;
+	Uint16 next;
+	Float frame;
+	Float racio;
 };
 
 struct PL_JOIN_VERTEX
@@ -789,12 +789,12 @@ struct PL_JOIN_VERTEX
 	NJS_OBJECT* objptr;
 	NJS_OBJECT* srcobj;
 	NJS_OBJECT* dstobj;
-	char numVertex;
-	char inpmode;
-	char srcdepth;
-	char dstdepth;
+	Uint8 numVertex;
+	Sint8 inpmode;
+	Uint8 srcdepth;
+	Uint8 dstdepth;
 	NJS_POINT3* org;
-	unsigned __int16* pnum;
+	Uint16* pnum;
 };
 
 struct bosswk
@@ -4307,6 +4307,28 @@ struct SAVE_DATA
 	BEST3_TIME M_bossGame;
 	Sint32 M_emblem;
 };
+
+struct LIST_DATA // Different from X360's _LIST_DATA
+{
+	char* name;
+	FILETIME time; // 8 bytes
+	LIST_DATA* next;
+	/*
+	char *name;
+	Magic::Base::SystemTime_t time; // 16 bytes
+	unsigned int *next;
+	*/
+};
+
+struct SMMparams
+{
+	void* mot;
+	NJS_MATRIX* mbp;
+	int type;
+	int motfrm;
+	float frm;
+};
+
 
 // Textures
 

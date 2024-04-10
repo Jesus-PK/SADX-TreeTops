@@ -20,6 +20,7 @@
 #include <cctype>
 #include <cstdlib>
 #include <list>
+#include <stdexcept>
 using std::transform;
 using std::string;
 using std::unordered_map;
@@ -113,7 +114,18 @@ int IniGroup::getIntRadix(const string& key, int radix, int def) const
 	if (iter == m_data.end())
 		return def;
 
-	return (int)std::stoll(iter->second, nullptr, radix);
+	try
+	{
+		return (int)std::stoll(iter->second, nullptr, radix);
+	}
+	catch (std::invalid_argument const& ex)
+	{
+		return def;
+	}
+	catch (std::out_of_range const& ex)
+	{
+		return def;
+	}
 }
 
 /**

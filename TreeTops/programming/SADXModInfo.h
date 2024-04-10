@@ -12,7 +12,7 @@
 #include "WeightInfo.h"
 
  // SADX Mod Loader API version.
-static const int ModLoaderVer = 18;
+static const int ModLoaderVer = 24;
 struct PatchInfo
 {
 	void* address;
@@ -44,7 +44,6 @@ struct LoaderSettings
 	bool DebugScreen;
 	bool DebugFile;
 	bool DebugCrashLog;
-	bool DisableCDCheck;
 	int HorizontalResolution;
 	int VerticalResolution;
 	bool ForceAspectRatio;
@@ -65,11 +64,9 @@ struct LoaderSettings
 	bool ScaleHud;
 	int BackgroundFillMode;
 	int FmvFillMode;
-	bool DisablePolyBuff;
+	bool EnableBassMusic;
 	bool EnableBassSFX;
 	int SEVolume;
-	bool DisableMaterialColorFix;
-	bool DisableInterpolationFix;
 	int TestSpawnLevel;
 	int TestSpawnAct;
 	int TestSpawnCharacter;
@@ -81,6 +78,28 @@ struct LoaderSettings
 	int TestSpawnEvent;
 	int TestSpawnGameMode;
 	int TestSpawnSaveID;
+	bool InputMod;
+	// Patches
+	bool HRTFSound;
+	bool CCEF;
+	bool PolyBuff;
+	bool MaterialColorFix;
+	bool NodeLimit;
+	bool FovFix;
+	bool SCFix;
+	bool Chaos2CrashFix;
+	bool ChunkSpecFix;
+	bool E102PolyFix;
+	bool ChaoPanelFix;
+	bool PixelOffsetFix;
+	bool LightFix;
+	bool KillGbix;
+	bool DisableCDCheck;
+	bool ExtendedSaveSupport;
+	bool CrashGuard;
+	// Graphics
+	int ScreenMode;				// Window Mode (Windowed, Fullscreen, Borderless Fullscren, or Custom Window); requires version 20+
+	bool ShowMouseInFullscreen;	// Displays Cursor when in Fullscreen; requires version 20+
 };
 
 struct ModDependency
@@ -93,22 +112,28 @@ struct ModDependency
 
 struct ModDepsList
 {
-	const ModDependency* data;
-	int size;
+	typedef ModDependency value_type;
+	typedef int size_type;
+	typedef const value_type& reference;
+	typedef const value_type* pointer;
+	typedef pointer iterator;
+
+	pointer data;
+	size_type size;
 
 	// Retrieves an iterator to the start of the list (enables range-based for).
-	const ModDependency* begin()
+	iterator begin()
 	{
 		return data;
 	}
 
 	// Retrieves an iterator to the end of the list (enables range-based for).
-	const ModDependency* end()
+	iterator end()
 	{
 		return data + size;
 	}
 
-	const ModDependency& operator [](int pos)
+	reference operator [](size_type pos)
 	{
 		return data[pos];
 	}
@@ -138,26 +163,32 @@ struct Mod
 
 struct ModList
 {
-	// Retrieves an iterator to the start of the list (enables range-based for).
-	const Mod* (*begin)();
-	// Retrieves an iterator to the end of the list (enables range-based for).
-	const Mod* (*end)();
-	// Retrieves the item at position pos.
-	const Mod& (*at)(int pos);
-	// Retrieves a pointer to the start of the list.
-	const Mod* (*data)();
-	// Retrieves the number of items in the list.
-	int (*size)();
-	// Find a mod by its ID.
-	const Mod* (*find)(const char* id);
-	// Find a mod by its name.
-	const Mod* (*find_by_name)(const char* name);
-	// Find a mod by its folder.
-	const Mod* (*find_by_folder)(const char* folder);
-	// Find a mod by its DLL handle.
-	const Mod* (*find_by_dll)(HMODULE handle);
+	typedef Mod value_type;
+	typedef int size_type;
+	typedef const value_type& reference;
+	typedef const value_type* pointer;
+	typedef pointer iterator;
 
-	const Mod& operator [](int pos)
+	// Retrieves an iterator to the start of the list (enables range-based for).
+	iterator (*begin)();
+	// Retrieves an iterator to the end of the list (enables range-based for).
+	iterator (*end)();
+	// Retrieves the item at position pos.
+	reference (*at)(size_type pos);
+	// Retrieves a pointer to the start of the list.
+	pointer (*data)();
+	// Retrieves the number of items in the list.
+	size_type (*size)();
+	// Find a mod by its ID.
+	iterator (*find)(const char* id);
+	// Find a mod by its name.
+	iterator (*find_by_name)(const char* name);
+	// Find a mod by its folder.
+	iterator (*find_by_folder)(const char* folder);
+	// Find a mod by its DLL handle.
+	iterator (*find_by_dll)(HMODULE handle);
+
+	reference operator [](size_type pos)
 	{
 		return at(pos);
 	}
@@ -390,6 +421,43 @@ struct HelperFunctions
 	*
 	*/
 	uint16_t(__cdecl* RegisterVoice)(const char* fileJP, const char* fileEN, uint16_t durationJP, uint16_t durationEN);
+
+	/**
+	* @brief Push Interpolation fix for animations.
+	*
+	* Use this at the beginning of a display function and please disable it at the end after so it doesn't run for all animations in the game.
+	* Requires version >= 19.
+	*
+	*/
+	void(__cdecl* PushInterpolationFix)();
+
+	// Disable interpolation fix for animations, use it at the end of a display function.
+	// Requires version >= 19.
+	void(__cdecl* PopInterpolationFix)();
+	
+	/**
+	* @brief Prevents a texture list from being freed by njReleaseTextureAll.
+	* 
+	* Don't use this with RegisterCommonPVM because those will still be freed by lateReleaseTexture. 
+	* Requires version >= 20.
+	* 
+	*/
+	void(__cdecl* RegisterPermanentTexlist)(NJS_TEXLIST* texlist);
+
+	/**
+	* @brief Expands a TEX_PVMTABLE array (such as level PVM list) by adding a new entry to it.
+	*
+	* Requires version >= 20.
+	*
+	* @param sourcepvmlist: The original TEX_PVMTABLE array.
+	* @param newpvmentry: Pointer to the TEX_PVMTABLE struct to be added to the array.
+	* @return Pointer to the resized TEX_PVMTABLE array.
+	*/
+	TEX_PVMTABLE* (__cdecl* ExpandPVMList)(TEX_PVMTABLE* sourcepvmlist, const TEX_PVMTABLE &newpvmentry);
+
+	// Removes any file replacements for the specified file.
+	// Requires version >= 22.
+	void(__cdecl* UnreplaceFile)(const char* file);
 };
 
 //static_assert(std::is_standard_layout<HelperFunctions>::value);
