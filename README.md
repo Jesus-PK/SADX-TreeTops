@@ -1,4 +1,4 @@
-# SADX - Tree Tops (v1.1.0)
+# SADX - Tree Tops (v1.2.0)
 
 ![TreeTops_Thumbnail](https://images.gamebanana.com/img/ss/mods/64fb56666155f.jpg)
 
@@ -49,7 +49,6 @@ Cloning this repository should result in a buildable .dll project of this mod wi
   * `AnimationFile.cpp`
   * `LandTableInfo.cpp`
   * `ModelInfo.cpp`
-  * `Trampoline.cpp`
   * `IniFile.cpp`
   * `TextConv.cpp`
     * Remember that you also need to edit them afterwards (change `#include "stdafx.h"` for `#include "pch.h"`)
